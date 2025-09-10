@@ -2,6 +2,7 @@ package pe.edu.upc.NightWave.servicesimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.edu.upc.NightWave.entities.Sonido;
 import pe.edu.upc.NightWave.entities.Usuario;
 import pe.edu.upc.NightWave.repositories.IUsuarioRepository;
 import pe.edu.upc.NightWave.servicesinterfaces.IUsuarioService;
@@ -32,4 +33,6 @@ public class UsuarioServiceImplement implements IUsuarioService
     public Usuario listId(int id) {
         return uR.findById(id).orElse(null);
     }
+    @Override
+    public void update(Usuario usuario) { uR.save(usuario);}
 }

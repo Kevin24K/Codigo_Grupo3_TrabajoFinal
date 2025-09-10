@@ -6,67 +6,67 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.NightWave.dtos.SonidoDTO;
-import pe.edu.upc.NightWave.dtos.UsuarioDTO;
 import pe.edu.upc.NightWave.entities.Sonido;
-import pe.edu.upc.NightWave.entities.Usuario;
-import pe.edu.upc.NightWave.servicesinterfaces.IUsuarioService;
+import pe.edu.upc.NightWave.servicesinterfaces.ISonidoService;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/usuarios")
-public class UsuarioController {
+@RequestMapping("/sonidos")
+public class SonidoController {
     @Autowired
-    private IUsuarioService uS;
+    private ISonidoService sS;
 
     @GetMapping
-    public List<UsuarioDTO> listar(){
-        return uS.list().stream().map(x->{
+    public List<SonidoDTO> listar(){
+        return sS.list().stream().map(x->{
             ModelMapper m = new ModelMapper();
-            return m.map(x,UsuarioDTO.class);
+            return m.map(x,SonidoDTO.class);
         }).collect(Collectors.toList());
     }
     @PostMapping
-    public void insertar(@RequestBody UsuarioDTO dto){
+    public void insertar(@RequestBody SonidoDTO dto){
         ModelMapper m = new ModelMapper();
-        Usuario u = m.map(dto, Usuario.class);
-        uS.insert(u);
+        Sonido a = m.map(dto, Sonido.class);
+        sS.insert(a);
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id) {
-        Usuario usuario = uS.listId(id);
-        if (usuario == null) {
+        Sonido area = sS.listId(id);
+        if (area == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("No existe un registro con el ID: " + id);
         }
-        uS.delete(id);
+        sS.delete(id);
         return ResponseEntity.ok("Registro con ID " + id + " eliminado correctamente.");
     }
     @GetMapping("/{id}")
     public ResponseEntity<?> listarId(@PathVariable("id") Integer id) {
-        Usuario usuario = uS.listId(id);
-        if (usuario == null) {
+        Sonido sonido = sS.listId(id);
+        if (sonido == null) {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
                     .body("No existe un registro con el ID: " + id);
         }
         ModelMapper m = new ModelMapper();
-        UsuarioDTO dto = m.map(usuario, UsuarioDTO.class);
+        SonidoDTO dto = m.map(sonido, SonidoDTO.class);
         return ResponseEntity.ok(dto);
     }
 
     @PutMapping
-    public ResponseEntity<String> modificar(@RequestBody UsuarioDTO dto) {
+    public ResponseEntity<String> modificar(@RequestBody SonidoDTO dto) {
         ModelMapper m = new ModelMapper();
-        Usuario ur = m.map(dto, Usuario.class);
+        Sonido sr = m.map(dto, Sonido.class);
 
-        Usuario existente = uS.listId(ur.getIdUsuario());
+        Sonido existente = sS.listId(sr.getIdSonido());
         if (existente == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No se puede modificar. No existe un registro con el ID: " + ur.getIdUsuario());
+                    .body("No se puede modificar. No existe un registro con el ID: " + sr.getIdSonido());
         }
-        uS.update(ur);
-        return ResponseEntity.ok("Registro con ID " + ur.getIdUsuario() + " modificado correctamente.");
+        sS.update(sr);
+        return ResponseEntity.ok("Registro con ID " + sr.getIdSonido() + " modificado correctamente.");
     }
+
+
 }
