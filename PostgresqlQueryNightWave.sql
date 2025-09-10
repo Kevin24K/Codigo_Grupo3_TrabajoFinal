@@ -1,8 +1,18 @@
 -- ======================================
--- 1) Usuarios
+-- 1) Tabla Roles
+-- ======================================
+CREATE TABLE Roles (
+    id_rol SERIAL PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL UNIQUE, -- Ej: 'usuario', 'admin'
+    descripcion TEXT
+);
+
+-- ======================================
+-- 2) Usuarios
 -- ======================================
 CREATE TABLE Usuarios (
     id_usuario SERIAL PRIMARY KEY,
+    id_rol INT NOT NULL,
     nombre_completo VARCHAR(100) NOT NULL,
     correo_electronico VARCHAR(100) UNIQUE NOT NULL,
     contrasenia VARCHAR(255) NOT NULL,
@@ -11,11 +21,12 @@ CREATE TABLE Usuarios (
     distrito VARCHAR(50),
     telefono VARCHAR(20),
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    ultimo_acceso TIMESTAMP
+    ultimo_acceso TIMESTAMP,
+    CONSTRAINT FK_Usuarios_Roles FOREIGN KEY (id_rol) REFERENCES Roles(id_rol)
 );
 
 -- ======================================
--- 2) Sonidos
+-- 3) Sonidos
 -- ======================================
 CREATE TABLE Sonidos (
     id_sonido SERIAL PRIMARY KEY,
@@ -26,7 +37,7 @@ CREATE TABLE Sonidos (
 );
 
 -- ======================================
--- 3) Integraciones
+-- 4) Integraciones
 -- ======================================
 CREATE TABLE Integraciones (
     id_integracion SERIAL PRIMARY KEY,
@@ -39,7 +50,7 @@ CREATE TABLE Integraciones (
 );
 
 -- ======================================
--- 4) PerfilesSuenio
+-- 5) PerfilesSuenio
 -- ======================================
 CREATE TABLE PerfilesSuenio (
     id_perfil SERIAL PRIMARY KEY,
@@ -55,7 +66,7 @@ CREATE TABLE PerfilesSuenio (
 );
 
 -- ======================================
--- 5) Recomendaciones
+-- 6) Recomendaciones
 -- ======================================
 CREATE TABLE Recomendaciones (
     id_recomendacion SERIAL PRIMARY KEY,
@@ -68,7 +79,7 @@ CREATE TABLE Recomendaciones (
 );
 
 -- ======================================
--- 6) Meditaciones
+-- 7) Meditaciones
 -- ======================================
 CREATE TABLE Meditaciones (
     id_meditacion SERIAL PRIMARY KEY,
@@ -82,7 +93,7 @@ CREATE TABLE Meditaciones (
 );
 
 -- ======================================
--- 7) Recompensas
+-- 8) Recompensas
 -- ======================================
 CREATE TABLE Recompensas (
     id_recompensa SERIAL PRIMARY KEY,
@@ -94,7 +105,7 @@ CREATE TABLE Recompensas (
 );
 
 -- ======================================
--- 8) ObjetivosSuenio
+-- 9) ObjetivosSuenio
 -- ======================================
 CREATE TABLE ObjetivosSuenio (
     id_objetivo SERIAL PRIMARY KEY,
@@ -108,7 +119,7 @@ CREATE TABLE ObjetivosSuenio (
 );
 
 -- ======================================
--- 9) Alarmas
+-- 10) Alarmas
 -- ======================================
 CREATE TABLE Alarmas (
     id_alarma SERIAL PRIMARY KEY,
@@ -122,7 +133,7 @@ CREATE TABLE Alarmas (
 );
 
 -- ======================================
--- 10) Recordatorios
+-- 11) Recordatorios
 -- ======================================
 CREATE TABLE Recordatorios (
     id_recordatorio SERIAL PRIMARY KEY,
@@ -135,7 +146,7 @@ CREATE TABLE Recordatorios (
 );
 
 -- ======================================
--- 11) RegistrosSuenio
+-- 12) RegistrosSuenio
 -- ======================================
 CREATE TABLE RegistrosSuenio (
     id_registro SERIAL PRIMARY KEY,
@@ -152,7 +163,7 @@ CREATE TABLE RegistrosSuenio (
 );
 
 -- ======================================
--- 12) HistorialAcceso
+-- 13) HistorialAcceso
 -- ======================================
 CREATE TABLE HistorialAcceso (
     id_acceso SERIAL PRIMARY KEY,

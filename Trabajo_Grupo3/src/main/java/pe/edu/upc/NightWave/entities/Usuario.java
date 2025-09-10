@@ -1,6 +1,7 @@
 package pe.edu.upc.NightWave.entities;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.time.LocalDate;
 
@@ -39,16 +40,20 @@ public class Usuario {
     @Column(name = "ultimo_acceso")
     private LocalDateTime ultimoAcceso;
 
-    // Constructor vacío
-    public Usuario() {
-    }
+    @ManyToOne
+    @JoinColumn(name = "id_rol")
+    private Rol rol;
 
-    // Constructor completo
-    public Usuario(int idUsuario, String nombreCompleto, String correoElectronico, String contrasenia,
-                   LocalDate fechaNacimiento, String departamento, String distrito, String telefono,
-                   LocalDateTime fechaRegistro, LocalDateTime ultimoAcceso) {
-        this.idUsuario = idUsuario;
+    // Constructor vacío
+    public Usuario() {}
+
+    public Usuario(String nombreCompleto, int idUsuario, String correoElectronico,
+                   String contrasenia, LocalDate fechaNacimiento, String departamento,
+                   String distrito, String telefono, LocalDateTime fechaRegistro,
+                   LocalDateTime ultimoAcceso, Rol rol) {
         this.nombreCompleto = nombreCompleto;
+        this.rol = rol;
+        this.idUsuario = idUsuario;
         this.correoElectronico = correoElectronico;
         this.contrasenia = contrasenia;
         this.fechaNacimiento = fechaNacimiento;
@@ -139,4 +144,8 @@ public class Usuario {
     public void setUltimoAcceso(LocalDateTime ultimoAcceso) {
         this.ultimoAcceso = ultimoAcceso;
     }
+
+    public Rol getRol() { return rol;}
+
+    public void setRol(Rol rol) { this.rol = rol; }
 }

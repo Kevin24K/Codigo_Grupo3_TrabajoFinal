@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 public class UsuarioDTO {
     private int idUsuario;
+    private int idRol;
     private String nombreCompleto;
     private String correoElectronico;
     private String contrasenia;
@@ -93,5 +94,13 @@ public class UsuarioDTO {
 
     public void setUltimoAcceso(LocalDateTime ultimoAcceso) {
         this.ultimoAcceso = ultimoAcceso;
+    }
+
+    public int getIdRol() {
+        return idRol;
+    }
+
+    public void setIdRol(int idRol) {
+        this.idRol = idRol;
     }
 }
