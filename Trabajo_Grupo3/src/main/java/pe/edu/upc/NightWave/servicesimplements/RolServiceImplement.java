@@ -8,7 +8,7 @@ import pe.edu.upc.NightWave.servicesinterfaces.IRolService;
 
 import java.util.List;
 @Service
-public class IRolServiceImplement implements IRolService
+public class RolServiceImplement implements IRolService
 {
     @Autowired
     private IRolRepository rR;
@@ -31,5 +31,10 @@ public class IRolServiceImplement implements IRolService
     @Override
     public Rol listId(int id) {
         return null;
+    }
+
+    @Override
+    public void update(Rol rol) {
+        rR.save(rol);
     }
 }

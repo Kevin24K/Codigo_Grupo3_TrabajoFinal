@@ -3,7 +3,7 @@ package pe.edu.upc.NightWave.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Roles")
+@Table(name = "roles")
 public class Rol
 {
     @Id

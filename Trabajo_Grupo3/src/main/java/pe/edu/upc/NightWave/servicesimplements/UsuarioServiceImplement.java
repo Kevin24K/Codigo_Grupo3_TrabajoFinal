@@ -14,22 +14,7 @@ public class UsuarioServiceImplement implements IUsuarioService
     private IUsuarioRepository uR;
 
     @Override
-    public List<Usuario> list() {
-        return uR.findAll();
-    }
-
-    @Override
-    public void insert(Usuario usuario) {
-        uR.save(usuario);
-    }
-
-    @Override
-    public void delete(int id) {
-        uR.deleteById(id);
-    }
-
-    @Override
-    public Usuario listId(int id) {
-        return uR.findById(id).orElse(null);
+    public List<Usuario> listByRolNombre(String nombreRol) {
+        return uR.findByRolNombre(nombreRol);
     }
 }
