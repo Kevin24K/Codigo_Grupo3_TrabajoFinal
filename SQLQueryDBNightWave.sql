@@ -206,6 +206,8 @@ INSERT INTO roles (nombre, descripcion) VALUES
 ('usuario', 'Usuario estándar de la aplicación'),
 ('moderador', 'Usuario con permisos intermedios');
 
+Select* from roles
+
 INSERT INTO usuarios (id_rol, nombre_completo, correo_electronico, contrasenia, fecha_nacimiento, departamento, distrito, telefono)
 VALUES
 (1, 'Juan Pérez', 'juan.perez@example.com', '123456', '1990-05-15', 'Lima', 'San Isidro', '987654321'),
@@ -214,5 +216,32 @@ VALUES
 (3, 'Ana Torres', 'ana.torres@example.com', 'zxcvb', '1992-03-25', 'Arequipa', 'Cercado', '934567890'),
 (1, 'Pedro Gómez', 'pedro.gomez@example.com', 'pass123', '1985-01-05', 'Lima', 'La Molina', '945612378');
 
-SELECT * FROM usuarios
-SELECT * FROM roles
+Select * from usuarios
+
+INSERT INTO sonidos (nombre, tipo, url_archivo, duracion) VALUES
+('Despertador clásico', 'alarma', 'https://example.com/sonidos/despertador.mp3', 30),
+('Olas del mar', 'relajante', 'https://example.com/sonidos/olas.mp3', 120),
+('Campanas suaves', 'alarma', 'https://example.com/sonidos/campanas.mp3', 45),
+('Lluvia ligera', 'ambiental', 'https://example.com/sonidos/lluvia.mp3', 180);
+
+Select * from sonidos
+
+INSERT INTO configuracion (id_usuario, modo_sin_distracciones, modo_nocturno, modo_avion) VALUES
+(1, TRUE, FALSE, FALSE),
+(2, FALSE, TRUE, FALSE),
+(3, FALSE, FALSE, TRUE);
+
+Select * from configuracion
+
+INSERT INTO control_parental (id_padre, id_hijo, restricciones) VALUES
+(1, 2, 'Restringido acceso a redes sociales de 22:00 a 06:00'),
+(1, 3, 'Tiempo de pantalla máximo 2 horas diarias');
+
+Select * from control_parental
+
+INSERT INTO alarmas (id_usuario, hora_alarma, id_sonido, dias_activos, activa) VALUES
+(2, '07:00:00', 1, 'Lunes,Martes,Miercoles,Jueves,Viernes', TRUE),
+(2, '09:30:00', 2, 'Sabado,Domingo', TRUE),
+(3, '06:45:00', 3, 'Lunes,Miercoles,Viernes', FALSE);
+
+Select * from alarmas
