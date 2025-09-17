@@ -1,33 +1,15 @@
-package pe.edu.upc.NightWave.entities;
+package pe.edu.upc.NightWave.dtos;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "Integracion")
-public class Integracion {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class IntegracionDTO {
     private int id;
-
-    @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario;
-
-    @Column(name = "proveedor", length = 100, nullable = false)
+    private int usuarioId;
     private String proveedor;
-
-    @Column(name = "tipo", length = 50, nullable = false)
     private String tipo;
-
-    @Column(name = "token_acceso", length = 500, nullable = false)
     private String tokenAcceso;
-
-    @Column(name = "fecha_registro")
     private LocalDateTime fechaRegistro;
-
-    @Column(name = "activo")
-    private boolean activo = true;
+    private boolean activo;
 
     // Getters y Setters
     public int getId() {
@@ -37,11 +19,11 @@ public class Integracion {
         this.id = id;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public int getUsuarioId() {
+        return usuarioId;
     }
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
     }
 
     public String getProveedor() {

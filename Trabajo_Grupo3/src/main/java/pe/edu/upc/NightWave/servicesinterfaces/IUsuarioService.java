@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface IUsuarioService
 {
-    List<Usuario> listByRolNombre(String nombreRol);
     void insert(Usuario usuario);
     List<Usuario> list();
     Usuario listId(int id);
     void update(Usuario usuario);
     void delete(int id);
+    List<Usuario> listByRolNombre(String nombreRol);
 }

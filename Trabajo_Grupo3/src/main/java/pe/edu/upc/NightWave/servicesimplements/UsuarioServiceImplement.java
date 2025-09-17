@@ -18,7 +18,6 @@ public class UsuarioServiceImplement implements IUsuarioService
         return uR.findByRolNombre(nombreRol);
     }
 
-
     @Override
     public void insert(Usuario usuario) {
         uR.save(usuario);

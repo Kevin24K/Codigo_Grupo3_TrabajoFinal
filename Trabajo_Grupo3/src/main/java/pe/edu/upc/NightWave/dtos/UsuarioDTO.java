@@ -4,103 +4,77 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class UsuarioDTO {
-    private int idUsuario;
-    private int idRol;
-    private String nombreCompleto;
-    private String correoElectronico;
-    private String contrasenia;
-    private LocalDate fechaNacimiento;
-    private String departamento;
-    private String distrito;
-    private String telefono;
-    private LocalDateTime fechaRegistro;
-    private LocalDateTime ultimoAcceso;
+    private int id;
+    private String nombre;
+    private String apellido;
+    private String email;
+    private String password;
+    private LocalDateTime fechaNacimiento;
+    private String genero;
+    private int rolId;
 
-    public int getIdUsuario() {
-        return idUsuario;
+
+    public int getId() {
+        return id;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getNombreCompleto() {
-        return nombreCompleto;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getCorreoElectronico() {
-        return correoElectronico;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setCorreoElectronico(String correoElectronico) {
-        this.correoElectronico = correoElectronico;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
-    public String getContrasenia() {
-        return contrasenia;
+    public String getEmail() {
+        return email;
     }
 
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public LocalDate getFechaNacimiento() {
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public LocalDateTime getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+    public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public String getDepartamento() {
-        return departamento;
+    public String getGenero() {
+        return genero;
     }
 
-    public void setDepartamento(String departamento) {
-        this.departamento = departamento;
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
-    public String getDistrito() {
-        return distrito;
+    public int getRolId() {
+        return rolId;
     }
 
-    public void setDistrito(String distrito) {
-        this.distrito = distrito;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public LocalDateTime getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(LocalDateTime fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
-
-    public LocalDateTime getUltimoAcceso() {
-        return ultimoAcceso;
-    }
-
-    public void setUltimoAcceso(LocalDateTime ultimoAcceso) {
-        this.ultimoAcceso = ultimoAcceso;
-    }
-
-    public int getIdRol() {
-        return idRol;
-    }
-
-    public void setIdRol(int idRol) {
-        this.idRol = idRol;
+    public void setRolId(int rolId) {
+        this.rolId = rolId;
     }
 }

@@ -30,7 +30,7 @@ public class RolServiceImplement implements IRolService
 
     @Override
     public Rol listId(int id) {
-        return null;
+        return rR.findById(id).orElse(null);
     }
 
     @Override

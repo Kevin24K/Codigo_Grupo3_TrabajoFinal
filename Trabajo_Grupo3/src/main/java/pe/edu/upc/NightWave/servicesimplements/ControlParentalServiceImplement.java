@@ -32,8 +32,7 @@ public class ControlParentalServiceImplement implements IControlParentalService 
 
     @Override
     public ControlParental listId(int id) {
-        Optional<ControlParental> opt = cpR.findById(id);
-        return opt.orElse(null);
+        return cpR.findById(id).orElse(null);
     }
 
     @Override

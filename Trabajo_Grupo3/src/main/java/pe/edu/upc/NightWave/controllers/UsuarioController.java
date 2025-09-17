@@ -24,7 +24,7 @@ public class UsuarioController {
         List<UsuarioDTO> lista = uS.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
             UsuarioDTO dto = m.map(x, UsuarioDTO.class);
-            dto.setIdRol(x.getRol().getIdRol());
+            dto.setRolId(x.getRol().getIdRol());
             return dto;
         }).collect(Collectors.toList());
 
@@ -42,7 +42,7 @@ public class UsuarioController {
         }
         ModelMapper m = new ModelMapper();
         UsuarioDTO dto = m.map(usuario, UsuarioDTO.class);
-        dto.setIdRol(usuario.getRol().getIdRol());
+        dto.setRolId(usuario.getRol().getIdRol());
         return ResponseEntity.ok(dto);
     }
 
@@ -50,23 +50,23 @@ public class UsuarioController {
     public ResponseEntity<String> registrar(@RequestBody UsuarioDTO dto) {
         ModelMapper m = new ModelMapper();
         Usuario usuario = m.map(dto, Usuario.class);
-        usuario.getRol().setIdRol(dto.getIdRol());
+        usuario.getRol().setIdRol(dto.getRolId());
         uS.insert(usuario);
         return ResponseEntity.status(HttpStatus.CREATED).body("Usuario registrado correctamente.");
     }
 
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody UsuarioDTO dto) {
-        Usuario existente = uS.listId(dto.getIdUsuario());
+        Usuario existente = uS.listId(dto.getId());
         if (existente == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No se puede modificar. No existe usuario con ID: " + dto.getIdUsuario());
+                    .body("No se puede modificar. No existe usuario con ID: " + dto.getId());
         }
         ModelMapper m = new ModelMapper();
         Usuario usuario = m.map(dto, Usuario.class);
-        usuario.getRol().setIdRol(dto.getIdRol());
+        usuario.getRol().setIdRol(dto.getRolId());
         uS.update(usuario);
-        return ResponseEntity.ok("Usuario con ID " + dto.getIdUsuario() + " modificado correctamente.");
+        return ResponseEntity.ok("Usuario con ID " + dto.getId() + " modificado correctamente.");
     }
 
     @DeleteMapping("/{id}")
@@ -78,4 +78,6 @@ public class UsuarioController {
         uS.delete(id);
         return ResponseEntity.ok("Usuario con ID " + id + " eliminado correctamente.");
     }
+
+
 }

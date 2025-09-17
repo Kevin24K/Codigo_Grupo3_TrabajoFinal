@@ -6,146 +6,110 @@ import java.time.LocalDateTime;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "Usuario")
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUsuario;
+    private int id;
 
-    @Column(name = "nombre_completo", nullable = false, length = 100)
-    private String nombreCompleto;
+    @Column(name = "nombre", length = 50, nullable = false)
+    private String nombre;
 
-    @Column(name = "correo_electronico", nullable = false, unique = true, length = 100)
-    private String correoElectronico;
+    @Column(name = "apellido", length = 50, nullable = false)
+    private String apellido;
 
-    @Column(name = "contrasenia", nullable = false, length = 255)
-    private String contrasenia;
+    @Column(name = "email", length = 100, nullable = false, unique = true)
+    private String email;
 
-    @Column(name = "fecha_nacimiento")
-    private LocalDate fechaNacimiento;
+    @Column(name = "password", length = 50, nullable = false)
+    private String password;
 
-    @Column(name = "departamento", length = 50)
-    private String departamento;
+    @Column(name = "fecha_nacimiento", nullable = false)
+    private LocalDateTime fechaNacimiento;
 
-    @Column(name = "distrito", length = 50)
-    private String distrito;
-
-    @Column(name = "telefono", length = 20)
-    private String telefono;
-
-    @Column(name = "fecha_registro", nullable = false)
-    private LocalDateTime fechaRegistro;
-
-    @Column(name = "ultimo_acceso")
-    private LocalDateTime ultimoAcceso;
+    @Column(name = "genero", length = 20)
+    private String genero;
 
     @ManyToOne
-    @JoinColumn(name = "id_rol")
+    @JoinColumn(name = "rol_id", nullable = false)
     private Rol rol;
 
     // Constructor vacío
     public Usuario() {}
 
-    public Usuario(String nombreCompleto, int idUsuario, String correoElectronico,
-                   String contrasenia, LocalDate fechaNacimiento, String departamento,
-                   String distrito, String telefono, LocalDateTime fechaRegistro,
-                   LocalDateTime ultimoAcceso, Rol rol) {
-        this.nombreCompleto = nombreCompleto;
-        this.rol = rol;
-        this.idUsuario = idUsuario;
-        this.correoElectronico = correoElectronico;
-        this.contrasenia = contrasenia;
+    public Usuario(int id, String nombre, String apellido, String password, String email, LocalDateTime fechaNacimiento, String genero, Rol rol) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.password = password;
+        this.email = email;
         this.fechaNacimiento = fechaNacimiento;
-        this.departamento = departamento;
-        this.distrito = distrito;
-        this.telefono = telefono;
-        this.fechaRegistro = fechaRegistro;
-        this.ultimoAcceso = ultimoAcceso;
+        this.genero = genero;
+        this.rol = rol;
     }
 
-    // Getters y Setters
-    public int getIdUsuario() {
-        return idUsuario;
+    public int getId() {
+        return id;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getNombreCompleto() {
-        return nombreCompleto;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getCorreoElectronico() {
-        return correoElectronico;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCorreoElectronico(String correoElectronico) {
-        this.correoElectronico = correoElectronico;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getContrasenia() {
-        return contrasenia;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
-    public LocalDate getFechaNacimiento() {
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public LocalDateTime getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+    public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public String getDepartamento() {
-        return departamento;
+    public String getGenero() {
+        return genero;
     }
 
-    public void setDepartamento(String departamento) {
-        this.departamento = departamento;
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
-    public String getDistrito() {
-        return distrito;
+    public Rol getRol() {
+        return rol;
     }
 
-    public void setDistrito(String distrito) {
-        this.distrito = distrito;
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public LocalDateTime getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(LocalDateTime fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
-
-    public LocalDateTime getUltimoAcceso() {
-        return ultimoAcceso;
-    }
-
-    public void setUltimoAcceso(LocalDateTime ultimoAcceso) {
-        this.ultimoAcceso = ultimoAcceso;
-    }
-
-    public Rol getRol() { return rol;}
-
-    public void setRol(Rol rol) { this.rol = rol; }
 }
