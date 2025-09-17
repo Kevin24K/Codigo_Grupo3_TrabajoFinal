@@ -1,48 +1,20 @@
-package pe.edu.upc.NightWave.entities;
+package pe.edu.upc.NightWave.dtos;
 
-import jakarta.persistence.*;
+import pe.edu.upc.NightWave.entities.Usuario;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-@Entity
-@Table(name="Suenios")
-public class Suenio {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class SuenioDTO {
     private int idSuenio;
-    @Column(name = "fechaRegistro",nullable = false)
     private LocalDate fechaRegistro;
-    @Column(name = "horaAcostarse",nullable = false)
     private LocalTime horaAcostarse;
-    @Column(name = "horaDespertar",nullable = false)
     private LocalTime horaDespertar;
-    //Buena Regular Mala
-    @Column(name = "calidadSuenio",nullable = false, length = 100)
     private String calidadSuenio;
-    @Column(name = "cafeinaConsumida",nullable = false)
-    private boolean cafeinaConsumida;
-    @Column(name = "ejercicioRealizado",nullable = false)
-    private boolean ejercicioRealizado;
-    @Column(name = "notas",nullable = false, length = 100)
+    private Boolean cafeinaConsumida;
+    private Boolean ejercicioRealizado;
     private String notas;
-    @ManyToOne
-    @JoinColumn(name = "idUsuario", nullable = false)
     private Usuario usuario;
-
-    public Suenio() {}
-
-    public Suenio(int idSuenio, LocalDate fechaRegistro, LocalTime horaAcostarse, LocalTime horaDespertar, String calidadSuenio, boolean cafeinaConsumida, boolean ejercicioRealizado, String notas, Usuario usuario) {
-        this.idSuenio = idSuenio;
-        this.fechaRegistro = fechaRegistro;
-        this.horaAcostarse = horaAcostarse;
-        this.horaDespertar = horaDespertar;
-        this.calidadSuenio = calidadSuenio;
-        this.cafeinaConsumida = cafeinaConsumida;
-        this.ejercicioRealizado = ejercicioRealizado;
-        this.notas = notas;
-        this.usuario = usuario;
-    }
 
     public int getIdSuenio() {
         return idSuenio;
@@ -84,19 +56,19 @@ public class Suenio {
         this.calidadSuenio = calidadSuenio;
     }
 
-    public boolean isCafeinaConsumida() {
+    public Boolean getCafeinaConsumida() {
         return cafeinaConsumida;
     }
 
-    public void setCafeinaConsumida(boolean cafeinaConsumida) {
+    public void setCafeinaConsumida(Boolean cafeinaConsumida) {
         this.cafeinaConsumida = cafeinaConsumida;
     }
 
-    public boolean isEjercicioRealizado() {
+    public Boolean getEjercicioRealizado() {
         return ejercicioRealizado;
     }
 
-    public void setEjercicioRealizado(boolean ejercicioRealizado) {
+    public void setEjercicioRealizado(Boolean ejercicioRealizado) {
         this.ejercicioRealizado = ejercicioRealizado;
     }
 

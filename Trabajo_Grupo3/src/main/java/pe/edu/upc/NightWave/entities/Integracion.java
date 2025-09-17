@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class Integracion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idIntegracion;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
@@ -27,19 +27,35 @@ public class Integracion {
     private LocalDateTime fechaRegistro;
 
     @Column(name = "activo")
-    private boolean activo = true;
+    private boolean activo;
+
+    public Integracion() {}
+
+    public Integracion(int idIntegracion, Usuario usuario, String proveedor, String tipo, String tokenAcceso, LocalDateTime fechaRegistro, boolean activo) {
+        this.idIntegracion = idIntegracion;
+        this.usuario = usuario;
+        this.proveedor = proveedor;
+        this.tipo = tipo;
+        this.tokenAcceso = tokenAcceso;
+        this.fechaRegistro = fechaRegistro;
+        this.activo = activo;
+    }
 
     // Getters y Setters
-    public int getId() {
-        return id;
+
+
+    public int getIdIntegracion() {
+        return idIntegracion;
     }
-    public void setId(int id) {
-        this.id = id;
+
+    public void setIdIntegracion(int idIntegracion) {
+        this.idIntegracion = idIntegracion;
     }
 
     public Usuario getUsuario() {
         return usuario;
     }
+
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
@@ -47,6 +63,7 @@ public class Integracion {
     public String getProveedor() {
         return proveedor;
     }
+
     public void setProveedor(String proveedor) {
         this.proveedor = proveedor;
     }
@@ -54,6 +71,7 @@ public class Integracion {
     public String getTipo() {
         return tipo;
     }
+
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
@@ -61,6 +79,7 @@ public class Integracion {
     public String getTokenAcceso() {
         return tokenAcceso;
     }
+
     public void setTokenAcceso(String tokenAcceso) {
         this.tokenAcceso = tokenAcceso;
     }
@@ -68,6 +87,7 @@ public class Integracion {
     public LocalDateTime getFechaRegistro() {
         return fechaRegistro;
     }
+
     public void setFechaRegistro(LocalDateTime fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
@@ -75,6 +95,7 @@ public class Integracion {
     public boolean isActivo() {
         return activo;
     }
+
     public void setActivo(boolean activo) {
         this.activo = activo;
     }

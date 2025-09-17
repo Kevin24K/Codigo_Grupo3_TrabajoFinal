@@ -11,7 +11,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idUsuario;
 
     @Column(name = "nombre", length = 50, nullable = false)
     private String nombre;
@@ -32,29 +32,29 @@ public class Usuario {
     private String genero;
 
     @ManyToOne
-    @JoinColumn(name = "rol_id", nullable = false)
+    @JoinColumn(name = "idRol", nullable = false)
     private Rol rol;
 
     // Constructor vacío
     public Usuario() {}
 
-    public Usuario(int id, String nombre, String apellido, String password, String email, LocalDateTime fechaNacimiento, String genero, Rol rol) {
-        this.id = id;
+    public Usuario(int idUsuario, String nombre, String apellido, String email, String password, LocalDateTime fechaNacimiento, String genero, Rol rol) {
+        this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.password = password;
         this.email = email;
+        this.password = password;
         this.fechaNacimiento = fechaNacimiento;
         this.genero = genero;
         this.rol = rol;
     }
 
-    public int getId() {
-        return id;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getNombre() {
@@ -65,20 +65,20 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getApellido() {
         return apellido;
     }
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

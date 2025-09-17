@@ -1,45 +1,18 @@
-package pe.edu.upc.NightWave.entities;
+package pe.edu.upc.NightWave.dtos;
 
-import jakarta.persistence.*;
+import pe.edu.upc.NightWave.entities.Usuario;
 
 import java.time.LocalDate;
 
-@Entity
-@Table(name="Estres")
-public class Estres {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class EstresDTO {
     private int idEstres;
-    //Nivel de estres BAJO MEDIO ALTO
-    @Column(name = "nivelEstres",nullable = false, length = 50)
     private String nivelEstres;
-    //Nivel de ansiedad BAJO MEDIO ALTO
-    @Column(name = "nivelAnsiedad",nullable = false, length = 50)
     private String nivelAnsiedad;
-    @Column(name = "factoresEstimulantes",nullable = false, length = 50)
     private String factoresEstimulantes;
-    @Column(name = "sintomasFisicos",nullable = false, length = 100)
     private String sintomasFisicos;
-    @Column(name = "sintomasEmocionales",nullable = false, length = 100)
     private String sintomasEmocionales;
-    @Column(name = "fechaRegistro",nullable = false)
     private LocalDate fechaRegistro;
-    @ManyToOne
-    @JoinColumn(name = "idUsuario", nullable = false)
     private Usuario usuario;
-
-    public Estres() {}
-
-    public Estres(int idEstres, String nivelEstres, String nivelAnsiedad, String factoresEstimulantes, String sintomasFisicos, String sintomasEmocionales, LocalDate fechaRegistro, Usuario usuario) {
-        this.idEstres = idEstres;
-        this.nivelEstres = nivelEstres;
-        this.nivelAnsiedad = nivelAnsiedad;
-        this.factoresEstimulantes = factoresEstimulantes;
-        this.sintomasFisicos = sintomasFisicos;
-        this.sintomasEmocionales = sintomasEmocionales;
-        this.fechaRegistro = fechaRegistro;
-        this.usuario = usuario;
-    }
 
     public int getIdEstres() {
         return idEstres;

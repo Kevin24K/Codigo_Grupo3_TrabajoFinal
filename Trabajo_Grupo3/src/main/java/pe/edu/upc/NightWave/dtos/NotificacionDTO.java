@@ -1,40 +1,18 @@
-package pe.edu.upc.NightWave.entities;
+package pe.edu.upc.NightWave.dtos;
 
-import jakarta.persistence.*;
+
+import pe.edu.upc.NightWave.entities.Usuario;
 
 import java.time.LocalDate;
 
-@Entity
-@Table(name="Notificaciones")
-public class Notificacion {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class NotificacionDTO {
     private int idNotificacion;
-    @Column(name = "titulo",nullable = false, length = 100)
     private String titulo;
-    @Column(name = "mensaje",nullable = false, length = 100)
     private String mensaje;
-    @Column(name = "tipo",nullable = false, length = 50)
     private String tipo;
-    @Column(name = "fechaProgramada",nullable = false)
     private LocalDate fechaProgramada;
-    @Column(name = "leida",nullable = false)
-    private boolean leida;
-    @ManyToOne
-    @JoinColumn(name = "idUsuario", nullable = false)
+    private Boolean leida;
     private Usuario usuario;
-
-    public Notificacion() {}
-
-    public Notificacion(int idNotificacion, String titulo, String mensaje, String tipo, LocalDate fechaProgramada, boolean leida, Usuario usuario) {
-        this.idNotificacion = idNotificacion;
-        this.titulo = titulo;
-        this.mensaje = mensaje;
-        this.tipo = tipo;
-        this.fechaProgramada = fechaProgramada;
-        this.leida = leida;
-        this.usuario = usuario;
-    }
 
     public int getIdNotificacion() {
         return idNotificacion;
@@ -76,11 +54,11 @@ public class Notificacion {
         this.fechaProgramada = fechaProgramada;
     }
 
-    public boolean isLeida() {
+    public Boolean getLeida() {
         return leida;
     }
 
-    public void setLeida(boolean leida) {
+    public void setLeida(Boolean leida) {
         this.leida = leida;
     }
 
@@ -92,3 +70,4 @@ public class Notificacion {
         this.usuario = usuario;
     }
 }
+

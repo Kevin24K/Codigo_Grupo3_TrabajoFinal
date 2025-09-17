@@ -84,20 +84,4 @@ public class RolController {
         return ResponseEntity.ok("Rol con ID " + id + " eliminado correctamente.");
     }
 
-    // 📌 Listar usuarios por nombre de rol
-    @GetMapping("/{nombreRol}/usuarios")
-    public ResponseEntity<?> listarUsuariosPorRol(@PathVariable("nombreRol") String nombreRol) {
-        List<UsuarioDTO> lista = uS.listByRolNombre(nombreRol).stream().map(x -> {
-            ModelMapper m = new ModelMapper();
-            UsuarioDTO dto = m.map(x, UsuarioDTO.class);
-            dto.setRolId(x.getRol().getIdRol()); // Asigna el ID del rol al DTO
-            return dto;
-        }).collect(Collectors.toList());
-
-        if (lista.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body("No existen usuarios con el rol: " + nombreRol);
-        }
-        return ResponseEntity.ok(lista);
-    }
 }

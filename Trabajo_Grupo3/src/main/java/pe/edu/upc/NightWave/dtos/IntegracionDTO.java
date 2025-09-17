@@ -3,7 +3,7 @@ package pe.edu.upc.NightWave.dtos;
 import java.time.LocalDateTime;
 
 public class IntegracionDTO {
-    private int id;
+    private int idIntegracion;
     private int usuarioId;
     private String proveedor;
     private String tipo;
@@ -12,11 +12,13 @@ public class IntegracionDTO {
     private boolean activo;
 
     // Getters y Setters
-    public int getId() {
-        return id;
+
+    public int getIdIntegracion() {
+        return idIntegracion;
     }
-    public void setId(int id) {
-        this.id = id;
+
+    public void setIdIntegracion(int idIntegracion) {
+        this.idIntegracion = idIntegracion;
     }
 
     public int getUsuarioId() {

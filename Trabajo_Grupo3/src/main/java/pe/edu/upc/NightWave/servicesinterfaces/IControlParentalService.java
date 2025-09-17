@@ -4,9 +4,9 @@ import pe.edu.upc.NightWave.entities.ControlParental;
 import java.util.List;
 
 public interface IControlParentalService {
-    void insert(ControlParental controlParental);
-    List<ControlParental> list();
-    void delete(int id);
-    ControlParental listId(int id);
-    void update(ControlParental controlParental);
+    public void insert(ControlParental controlParental);
+    public List<ControlParental> list();
+    public void delete(int id);
+    public ControlParental listId(int id);
+    public void update(ControlParental controlParental);
 }

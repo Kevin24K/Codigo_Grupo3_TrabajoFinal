@@ -1,25 +1,26 @@
 package pe.edu.upc.NightWave.dtos;
 
+import pe.edu.upc.NightWave.entities.Rol;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class UsuarioDTO {
-    private int id;
+    private int idUsuario;
     private String nombre;
     private String apellido;
     private String email;
     private String password;
     private LocalDateTime fechaNacimiento;
     private String genero;
-    private int rolId;
+    private Rol rol;
 
-
-    public int getId() {
-        return id;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getNombre() {
@@ -70,11 +71,11 @@ public class UsuarioDTO {
         this.genero = genero;
     }
 
-    public int getRolId() {
-        return rolId;
+    public Rol getRol() {
+        return rol;
     }
 
-    public void setRolId(int rolId) {
-        this.rolId = rolId;
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 }

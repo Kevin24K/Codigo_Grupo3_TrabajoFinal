@@ -55,15 +55,15 @@ public class IntegracionController {
 
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody IntegracionDTO dto) {
-        Integracion existente = iS.listId(dto.getId());
+        Integracion existente = iS.listId(dto.getIdIntegracion());
         if (existente == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No se puede modificar. No existe integración con ID: " + dto.getId());
+                    .body("No se puede modificar. No existe integración con ID: " + dto.getIdIntegracion());
         }
         ModelMapper m = new ModelMapper();
         Integracion integracion = m.map(dto, Integracion.class);
         iS.update(integracion);
-        return ResponseEntity.ok("Integración con ID " + dto.getId() + " modificada correctamente.");
+        return ResponseEntity.ok("Integración con ID " + dto.getIdIntegracion() + " modificada correctamente.");
     }
 
     @DeleteMapping("/{id}")
