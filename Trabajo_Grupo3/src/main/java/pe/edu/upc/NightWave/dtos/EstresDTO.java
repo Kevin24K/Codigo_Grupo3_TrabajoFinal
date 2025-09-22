@@ -1,0 +1,85 @@
+package pe.edu.upc.NightWave.dtos;
+
+import jakarta.persistence.*;
+import pe.edu.upc.NightWave.entities.Usuario;
+
+import java.time.LocalDateTime;
+
+public class EstresDTO
+{
+
+    private int id;
+    private int nivelEstres;
+    private int nivelAnsiedad;
+    private String factoresEstimulantes;
+    private String sintomasFisicos;
+    private String sintomasEmocionales;
+    private LocalDateTime fechaRegistro;
+    private Usuario usuario;
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public LocalDateTime getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(LocalDateTime fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public String getSintomasEmocionales() {
+        return sintomasEmocionales;
+    }
+
+    public void setSintomasEmocionales(String sintomasEmocionales) {
+        this.sintomasEmocionales = sintomasEmocionales;
+    }
+
+    public String getSintomasFisicos() {
+        return sintomasFisicos;
+    }
+
+    public void setSintomasFisicos(String sintomasFisicos) {
+        this.sintomasFisicos = sintomasFisicos;
+    }
+
+    public String getFactoresEstimulantes() {
+        return factoresEstimulantes;
+    }
+
+    public void setFactoresEstimulantes(String factoresEstimulantes) {
+        this.factoresEstimulantes = factoresEstimulantes;
+    }
+
+    public int getNivelAnsiedad() {
+        return nivelAnsiedad;
+    }
+
+    public void setNivelAnsiedad(int nivelAnsiedad) {
+        this.nivelAnsiedad = nivelAnsiedad;
+    }
+
+    public int getNivelEstres() {
+        return nivelEstres;
+    }
+
+    public void setNivelEstres(int nivelEstres) {
+        this.nivelEstres = nivelEstres;
+    }
+}
+

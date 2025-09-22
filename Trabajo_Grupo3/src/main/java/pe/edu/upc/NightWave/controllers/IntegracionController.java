@@ -15,9 +15,11 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/integraciones")
 public class IntegracionController {
+
     @Autowired
     private IIntegracionService iS;
 
+    // Listar todas las integracion
     @GetMapping
     public ResponseEntity<?> listar() {
         List<IntegracionDTO> lista = iS.list().stream().map(x -> {
@@ -27,53 +29,57 @@ public class IntegracionController {
 
         if (lista.isEmpty()) {
             return ResponseEntity.status(HttpStatus.OK)
-                    .body("No existen integraciones registradas.");
+                    .body("No existen dispositivos registrados.");
         }
         return ResponseEntity.ok(lista);
     }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<?> listarPorId(@PathVariable("id") Integer id) {
-        Integracion integracion = iS.listId(id);
-        if (integracion == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No existe integración con ID: " + id);
-        }
-        ModelMapper m = new ModelMapper();
-        IntegracionDTO dto = m.map(integracion, IntegracionDTO.class);
-        return ResponseEntity.ok(dto);
-    }
-
+    // Registrar nueva integración
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody IntegracionDTO dto) {
         ModelMapper m = new ModelMapper();
-        Integracion integracion = m.map(dto, Integracion.class);
-        iS.insert(integracion);
+        Integracion i = m.map(dto, Integracion.class);
+        iS.insert(i);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body("Integración registrada correctamente.");
+                .body("Dispositivo registrado correctamente.");
     }
 
-    @PutMapping
-    public ResponseEntity<String> modificar(@RequestBody IntegracionDTO dto) {
-        Integracion existente = iS.listId(dto.getId());
-        if (existente == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No se puede modificar. No existe integración con ID: " + dto.getId());
-        }
-        ModelMapper m = new ModelMapper();
-        Integracion integracion = m.map(dto, Integracion.class);
-        iS.update(integracion);
-        return ResponseEntity.ok("Integración con ID " + dto.getId() + " modificada correctamente.");
-    }
-
+    // Eliminar integración por ID
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id) {
-        Integracion existente = iS.listId(id);
-        if (existente == null) {
+        Integracion i = iS.listId(id);
+        if (i == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No existe integración con ID: " + id);
+                    .body("No existe un registro con el ID: " + id);
         }
         iS.delete(id);
-        return ResponseEntity.ok("Integración con ID " + id + " eliminada correctamente.");
+        return ResponseEntity.ok("Registro con ID " + id + " eliminado correctamente.");
+    }
+
+    // Listar integración por ID
+    @GetMapping("/{id}")
+    public ResponseEntity<?> listarId(@PathVariable("id") Integer id) {
+        Integracion i = iS.listId(id);
+        if (i == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No existe un registro con el ID: " + id);
+        }
+        ModelMapper m = new ModelMapper();
+        IntegracionDTO dto = m.map(i, IntegracionDTO.class);
+        return ResponseEntity.ok(dto);
+    }
+
+    // Modificar integración
+    @PutMapping
+    public ResponseEntity<String> modificar(@RequestBody IntegracionDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Integracion i = m.map(dto, Integracion.class);
+
+        Integracion existente = iS.listId(i.getId());
+        if (existente == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No se puede modificar. No existe un registro con el ID: " + i.getId());
+        }
+        iS.update(i);
+        return ResponseEntity.ok("Registro con ID " + i.getId() + " modificado correctamente.");
     }
 }

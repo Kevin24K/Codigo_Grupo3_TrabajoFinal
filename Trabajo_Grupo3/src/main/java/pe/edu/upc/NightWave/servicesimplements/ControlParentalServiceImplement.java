@@ -7,7 +7,6 @@ import pe.edu.upc.NightWave.repositories.IControlParentalRepository;
 import pe.edu.upc.NightWave.servicesinterfaces.IControlParentalService;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ControlParentalServiceImplement implements IControlParentalService {

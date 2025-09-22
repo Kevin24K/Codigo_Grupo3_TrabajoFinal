@@ -23,11 +23,11 @@ public class Integracion {
     @Column(name = "token_acceso", length = 500, nullable = false)
     private String tokenAcceso;
 
-    @Column(name = "fecha_registro")
+    @Column(name = "fecha_registro", nullable = false)
     private LocalDateTime fechaRegistro;
 
-    @Column(name = "activo")
-    private boolean activo = true;
+    @Column(name = "activo", nullable = false)
+    private boolean activo;
 
     // Getters y Setters
     public int getId() {

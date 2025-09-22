@@ -28,7 +28,7 @@ public class Usuario {
     @Column(name = "fecha_nacimiento", nullable = false)
     private LocalDateTime fechaNacimiento;
 
-    @Column(name = "genero", length = 20)
+    @Column(name = "genero", length = 20, nullable = false)
     private String genero;
 
     @ManyToOne

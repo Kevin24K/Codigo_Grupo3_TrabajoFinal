@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.NightWave.dtos.ListaUsuariosDTO;
 import pe.edu.upc.NightWave.dtos.UsuarioDTO;
 import pe.edu.upc.NightWave.entities.Usuario;
 import pe.edu.upc.NightWave.servicesinterfaces.IUsuarioService;
@@ -23,13 +24,12 @@ public class UsuarioController {
     public ResponseEntity<?> listar() {
         List<UsuarioDTO> lista = uS.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
-            UsuarioDTO dto = m.map(x, UsuarioDTO.class);
-            dto.setRolId(x.getRol().getIdRol());
-            return dto;
+            return m.map(x, UsuarioDTO.class);
         }).collect(Collectors.toList());
 
         if (lista.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.OK).body("No existen usuarios registrados.");
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body("No existen usuarios registrados.");
         }
         return ResponseEntity.ok(lista);
     }
@@ -41,7 +41,7 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe usuario con ID: " + id);
         }
         ModelMapper m = new ModelMapper();
-        UsuarioDTO dto = m.map(usuario, UsuarioDTO.class);
+        ListaUsuariosDTO dto = m.map(usuario, ListaUsuariosDTO.class);
         dto.setRolId(usuario.getRol().getIdRol());
         return ResponseEntity.ok(dto);
     }
@@ -78,6 +78,4 @@ public class UsuarioController {
         uS.delete(id);
         return ResponseEntity.ok("Usuario con ID " + id + " eliminado correctamente.");
     }
-
-
 }

@@ -13,7 +13,6 @@ public class UsuarioDTO {
     private String genero;
     private int rolId;
 
-
     public int getId() {
         return id;
     }

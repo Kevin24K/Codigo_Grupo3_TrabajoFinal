@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface IRecompensasService
 {
-    void insert(Recompensas recompensas);
-    List<Recompensas> list();
-    void delete(int id);
-    Recompensas listId(int id);
+    public void insert(Recompensas recompensas);
+    public List<Recompensas> list();
+    public void delete(int id);
+    public Recompensas listId(int id);
     public void update(Recompensas recompensas);
 }

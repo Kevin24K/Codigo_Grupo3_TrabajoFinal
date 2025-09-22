@@ -6,11 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.NightWave.dtos.RolDTO;
-import pe.edu.upc.NightWave.dtos.UsuarioDTO;
 import pe.edu.upc.NightWave.entities.Rol;
-import pe.edu.upc.NightWave.entities.Usuario;
 import pe.edu.upc.NightWave.servicesinterfaces.IRolService;
-import pe.edu.upc.NightWave.servicesinterfaces.IUsuarioService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,10 +19,7 @@ public class RolController {
     @Autowired
     private IRolService rS;
 
-    @Autowired
-    private IUsuarioService uS;
-
-    // 📌 Listar todos los roles
+    // Listar todos los roles
     @GetMapping
     public ResponseEntity<?> listar() {
         List<RolDTO> lista = rS.list().stream().map(x -> {
@@ -34,32 +28,41 @@ public class RolController {
         }).collect(Collectors.toList());
 
         if (lista.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.OK).body("No existen roles registrados.");
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body("No existen roles registrados.");
         }
         return ResponseEntity.ok(lista);
     }
 
+    // Registrar rol
+    @PostMapping
+    public ResponseEntity<String> registrar(@RequestBody RolDTO dto) {
+        if (dto.getNombre() == null || dto.getNombre().isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("El nombre del rol es obligatorio.");
+        }
+
+        ModelMapper m = new ModelMapper();
+        Rol rol = m.map(dto, Rol.class);
+        rS.insert(rol);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Rol registrado correctamente.");
+    }
+
+    // Listar rol por ID
     @GetMapping("/{id}")
-    public ResponseEntity<?> listarPorId(@PathVariable("id") Integer id) {
+    public ResponseEntity<?> listarId(@PathVariable("id") Integer id) {
         Rol rol = rS.listId(id);
         if (rol == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe un rol con ID: " + id);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No existe un rol con ID: " + id);
         }
         ModelMapper m = new ModelMapper();
         RolDTO dto = m.map(rol, RolDTO.class);
         return ResponseEntity.ok(dto);
     }
 
-    // 📌 Registrar rol
-    @PostMapping
-    public ResponseEntity<String> registrar(@RequestBody RolDTO dto) {
-        ModelMapper m = new ModelMapper();
-        Rol rol = m.map(dto, Rol.class);
-        rS.insert(rol);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Rol registrado correctamente.");
-    }
-
-    // 📌 Modificar rol
+    // Modificar rol
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody RolDTO dto) {
         Rol existente = rS.listId(dto.getIdRol());
@@ -73,31 +76,15 @@ public class RolController {
         return ResponseEntity.ok("Rol con ID " + dto.getIdRol() + " modificado correctamente.");
     }
 
-    // 📌 Eliminar rol
+    // Eliminar rol
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id) {
         Rol rol = rS.listId(id);
         if (rol == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe un rol con ID: " + id);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No existe un rol con ID: " + id);
         }
         rS.delete(id);
         return ResponseEntity.ok("Rol con ID " + id + " eliminado correctamente.");
-    }
-
-    // 📌 Listar usuarios por nombre de rol
-    @GetMapping("/{nombreRol}/usuarios")
-    public ResponseEntity<?> listarUsuariosPorRol(@PathVariable("nombreRol") String nombreRol) {
-        List<UsuarioDTO> lista = uS.listByRolNombre(nombreRol).stream().map(x -> {
-            ModelMapper m = new ModelMapper();
-            UsuarioDTO dto = m.map(x, UsuarioDTO.class);
-            dto.setRolId(x.getRol().getIdRol()); // Asigna el ID del rol al DTO
-            return dto;
-        }).collect(Collectors.toList());
-
-        if (lista.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body("No existen usuarios con el rol: " + nombreRol);
-        }
-        return ResponseEntity.ok(lista);
     }
 }
