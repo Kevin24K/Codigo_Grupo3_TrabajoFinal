@@ -5,10 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.NightWave.dtos.PromedioHorasSuenoDTO;
+import pe.edu.upc.NightWave.dtos.RelacionEstresCalidadDTO;
 import pe.edu.upc.NightWave.dtos.SuenoDTO;
 import pe.edu.upc.NightWave.entities.Sueno;
 import pe.edu.upc.NightWave.servicesinterfaces.ISuenoService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -81,4 +84,79 @@ public class SuenoController {
         sS.delete(id);
         return ResponseEntity.ok("Registro con ID " + id + " eliminado correctamente.");
     }
+
+
+    @GetMapping("/buscar-por-calidad-de-sueno")
+    public ResponseEntity<?> buscarPorCalidadDeSueno(@RequestParam(value = "calidad", required = false) Integer calidad) {
+        if (calidad == null) {
+            return ResponseEntity.ok("Debe proporcionar un valor de calidad de sueño válido.");
+        }
+
+        List<Sueno> lista = sS.BuscarPorCalidadDeSueno(calidad);
+
+        if (lista.isEmpty()) {
+            return ResponseEntity.ok("No hay registros con esa calidad de sueño.");
+        }
+
+        List<SuenoDTO> listaDTO = lista.stream().map(s -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(s, SuenoDTO.class);
+        }).collect(Collectors.toList());
+
+        return ResponseEntity.ok(listaDTO);
+    }
+
+    @GetMapping("/promedio/{usuarioId}")
+    public ResponseEntity<?> promedioHorasUsuario(@PathVariable int usuarioId) {
+        Double promedio = sS.promedioHorasDormidasPorUsuario(usuarioId);
+
+        if (promedio == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("El usuario no tiene registros de sueño.");
+        }
+
+        PromedioHorasSuenoDTO dto = new PromedioHorasSuenoDTO();
+        dto.setUsuarioId(usuarioId);
+        dto.setPromedioHorasDormidas(promedio);
+        return ResponseEntity.ok(dto);
+    }
+
+    @GetMapping("/promedio/todos")
+    public ResponseEntity<?> promedioHorasTodosUsuarios() {
+        List<Object[]> resultados = sS.promedioHorasDormidasTodosUsuarios();
+
+        if (resultados.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No se encontraron registros de sueño para ningún usuario.");
+        }
+
+        List<PromedioHorasSuenoDTO> listaDTO = new ArrayList<>();
+        for (Object[] fila : resultados) {
+            PromedioHorasSuenoDTO dto = new PromedioHorasSuenoDTO();
+            dto.setUsuarioId((Integer) fila[0]);
+            dto.setPromedioHorasDormidas((Double) fila[1]);
+            listaDTO.add(dto);
+        }
+
+        return ResponseEntity.ok(listaDTO);
+    }
+
+    @GetMapping("/relacion/estres-calidad/{usuarioId}")
+    public ResponseEntity<?> relacionEstresCalidadPorUsuario(@PathVariable int usuarioId) {
+        Object[] resultado = sS.relacionEstresCalidadPorUsuario(usuarioId);
+
+        if (resultado == null || resultado[0] == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("El usuario no tiene registros de sueño.");
+        }
+
+        RelacionEstresCalidadDTO dto = new RelacionEstresCalidadDTO();
+        dto.setUsuarioId((Integer) resultado[0]);
+        dto.setPromedioEstres((Double) resultado[1]);
+        dto.setPromedioCalidadSueno((Double) resultado[2]);
+        dto.setCorrelacionEstresCalidad((Double) resultado[3]);
+
+        return ResponseEntity.ok(dto);
+    }
+
 }

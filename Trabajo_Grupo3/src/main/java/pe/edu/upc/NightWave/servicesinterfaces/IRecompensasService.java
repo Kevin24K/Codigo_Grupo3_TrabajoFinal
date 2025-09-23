@@ -12,4 +12,5 @@ public interface IRecompensasService
     public void delete(int id);
     public Recompensas listId(int id);
     public void update(Recompensas recompensas);
+    List<Recompensas> listarPorTipoRecompensa(String tipoRecompensa);
 }

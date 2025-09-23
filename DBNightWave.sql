@@ -11,7 +11,8 @@ CREATE TABLE Usuario (
     password VARCHAR(255) NOT NULL,
     fecha_nacimiento TIMESTAMP,
     genero VARCHAR(20),
-    rol_id INT REFERENCES Rol(id)
+    rol_id INT REFERENCES Rol(id),
+	activa BOOLEAN DEFAULT TRUE
 );
 
 CREATE TABLE Tipo_Musica (

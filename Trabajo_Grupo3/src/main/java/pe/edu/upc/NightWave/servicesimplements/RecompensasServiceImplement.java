@@ -40,4 +40,8 @@ public class RecompensasServiceImplement implements IRecompensasService
         rR.save(recompensas);
     }
 
+    @Override
+    public List<Recompensas> listarPorTipoRecompensa(String tipoRecompensa) {
+        return rR.findByTipoRecompensa(tipoRecompensa);
+    }
 }

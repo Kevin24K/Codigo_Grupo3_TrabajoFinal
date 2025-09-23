@@ -20,9 +20,6 @@ public class Sueno {
     @Column(name = "hora_despertar", nullable = false)
     private LocalDateTime horaDespertar;
 
-    @Column(name = "horas_dormidas", nullable = false)
-    private double horasDormidas;
-
     @Column(name = "calidad_sueno", nullable = false)
     private int calidadSueno;
 
@@ -53,14 +50,13 @@ public class Sueno {
 
     // Constructor completo
     public Sueno(int id, LocalDateTime fechaRegistro, LocalDateTime horaAcostarse, LocalDateTime horaDespertar,
-                 double horasDormidas, int calidadSueno, int interrupciones, boolean cafeinaConsumida,
+                 int calidadSueno, int interrupciones, boolean cafeinaConsumida,
                  boolean ejercicioRealizado, boolean pantallasAntesDormir, int nivelEstresDia, String notas,
                  Usuario usuario) {
         this.id = id;
         this.fechaRegistro = fechaRegistro;
         this.horaAcostarse = horaAcostarse;
         this.horaDespertar = horaDespertar;
-        this.horasDormidas = horasDormidas;
         this.calidadSueno = calidadSueno;
         this.interrupciones = interrupciones;
         this.cafeinaConsumida = cafeinaConsumida;
@@ -102,14 +98,6 @@ public class Sueno {
 
     public void setHoraDespertar(LocalDateTime horaDespertar) {
         this.horaDespertar = horaDespertar;
-    }
-
-    public double getHorasDormidas() {
-        return horasDormidas;
-    }
-
-    public void setHorasDormidas(double horasDormidas) {
-        this.horasDormidas = horasDormidas;
     }
 
     public int getCalidadSueno() {

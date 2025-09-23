@@ -11,7 +11,6 @@ public class SuenoDTO
     private LocalDateTime fechaRegistro;
     private LocalDateTime horaAcostarse;
     private LocalDateTime horaDespertar;
-    private double horasDormidas;
     private int calidadSueno;
     private int interrupciones;
     private boolean cafeinaConsumida;
@@ -51,14 +50,6 @@ public class SuenoDTO
 
     public void setHoraDespertar(LocalDateTime horaDespertar) {
         this.horaDespertar = horaDespertar;
-    }
-
-    public double getHorasDormidas() {
-        return horasDormidas;
-    }
-
-    public void setHorasDormidas(double horasDormidas) {
-        this.horasDormidas = horasDormidas;
     }
 
     public int getCalidadSueno() {

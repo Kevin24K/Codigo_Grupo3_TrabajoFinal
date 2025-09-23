@@ -82,4 +82,25 @@ public class RecompensaController
         rS.delete(id);
         return ResponseEntity.ok("Registro con ID " + id + " eliminado correctamente.");
     }
+
+    @GetMapping("/buscar-por-tipo-recompensa")
+    public ResponseEntity<?> buscarRecompensasPorTipo(@RequestParam(value = "tipo", required = false) String tipo) {
+        if (tipo == null || tipo.trim().isEmpty()) {
+            return ResponseEntity.ok("Debe proporcionar un tipo de recompensa válido.");
+        }
+
+        List<Recompensas> lista = rS.listarPorTipoRecompensa(tipo);
+
+        if (lista.isEmpty()) {
+            return ResponseEntity.ok("No se encontraron recompensas del tipo: " + tipo);
+        }
+
+        List<RecompensasDTO> listaDTO = lista.stream().map(r -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(r, RecompensasDTO.class);
+        }).collect(Collectors.toList());
+
+        return ResponseEntity.ok(listaDTO);
+    }
+
 }

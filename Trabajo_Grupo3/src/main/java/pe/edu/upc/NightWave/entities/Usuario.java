@@ -35,18 +35,30 @@ public class Usuario {
     @JoinColumn(name = "rol_id", nullable = false)
     private Rol rol;
 
+    @Column(name = "activo", nullable = false)
+    private boolean activo;
+
     // Constructor vacío
     public Usuario() {}
 
-    public Usuario(int id, String nombre, String apellido, String password, String email, LocalDateTime fechaNacimiento, String genero, Rol rol) {
+    public Usuario(int id, String nombre, String apellido, String email, String password, LocalDateTime fechaNacimiento, String genero, Rol rol, boolean activo) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.password = password;
         this.email = email;
+        this.password = password;
         this.fechaNacimiento = fechaNacimiento;
         this.genero = genero;
         this.rol = rol;
+        this.activo = activo;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
     public int getId() {

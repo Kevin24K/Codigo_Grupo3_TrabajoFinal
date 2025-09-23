@@ -12,6 +12,15 @@ public class UsuarioDTO {
     private LocalDateTime fechaNacimiento;
     private String genero;
     private int rolId;
+    private boolean activo;
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
 
     public int getId() {
         return id;

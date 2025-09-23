@@ -13,9 +13,8 @@ public class UsuarioServiceImplement implements IUsuarioService
     @Autowired
     private IUsuarioRepository uR;
 
-    @Override
-    public List<Usuario> listByRolNombre(String nombreRol) {
-        return uR.findByRolNombre(nombreRol);
+    public List<Usuario> listarUsuariosPorRol(int rolId) {
+        return uR.findByRolId(rolId);
     }
 
     @Override

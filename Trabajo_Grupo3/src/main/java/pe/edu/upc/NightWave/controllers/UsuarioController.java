@@ -78,4 +78,26 @@ public class UsuarioController {
         uS.delete(id);
         return ResponseEntity.ok("Usuario con ID " + id + " eliminado correctamente.");
     }
+
+    @GetMapping("/filtro/usuarios")
+    public ResponseEntity<?> buscarUsuariosPorRol(@RequestParam(value = "rolId", required = false) Integer rolId) {
+        if (rolId == null) {
+            return ResponseEntity.ok("Debe proporcionar un rolId válido.");
+        }
+
+        List<Usuario> usuarios = uS.listarUsuariosPorRol(rolId);
+
+        if (usuarios.isEmpty()) {
+            return ResponseEntity.ok("No existen usuarios asociados al rol con ID " + rolId);
+        }
+
+        List<ListaUsuariosDTO> listaDTO = usuarios.stream().map(u -> {
+            ModelMapper m = new ModelMapper();
+            ListaUsuariosDTO dto = m.map(u, ListaUsuariosDTO.class);
+            dto.setRolId(u.getRol().getIdRol());
+            return dto;
+        }).collect(Collectors.toList());
+
+        return ResponseEntity.ok(listaDTO);
+    }
 }
