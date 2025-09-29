@@ -11,4 +11,7 @@ public interface IObjetivosRecompensasService
     public void delete(int id);
     public ObjetivosRecompensas  listId(int id);
     public void update(ObjetivosRecompensas objetivosRecompensas);
+
+    List<ObjetivosRecompensas> findByObjetivoId(int objetivoId);
+    Long countByRecompensaId(int recompensaId);
 }

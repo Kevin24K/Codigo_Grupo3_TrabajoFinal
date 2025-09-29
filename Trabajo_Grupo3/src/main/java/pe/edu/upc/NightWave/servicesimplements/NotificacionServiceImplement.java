@@ -38,4 +38,14 @@ public class NotificacionServiceImplement implements INotificacionService
     public void update(Notificacion notificacion) {
         nR.save(notificacion);
     }
+
+    @Override
+    public List<Notificacion> findByUsuarioId(int usuarioId) {
+        return nR.findByUsuarioId(usuarioId);
+    }
+
+    @Override
+    public List<Notificacion> findByUsuarioIdAndLeidaFalse(int usuarioId) {
+        return nR.findByUsuarioIdAndLeidaFalse(usuarioId);
+    }
 }

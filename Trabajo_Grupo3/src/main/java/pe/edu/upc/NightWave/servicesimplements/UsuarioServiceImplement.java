@@ -7,15 +7,14 @@ import pe.edu.upc.NightWave.repositories.IUsuarioRepository;
 import pe.edu.upc.NightWave.servicesinterfaces.IUsuarioService;
 
 import java.util.List;
+
+
 @Service
-public class UsuarioServiceImplement implements IUsuarioService
+public  class UsuarioServiceImplement implements IUsuarioService
 {
     @Autowired
     private IUsuarioRepository uR;
 
-    public List<Usuario> listarUsuariosPorRol(int rolId) {
-        return uR.findByRolId(rolId);
-    }
 
     @Override
     public void insert(Usuario usuario) {
@@ -40,5 +39,10 @@ public class UsuarioServiceImplement implements IUsuarioService
     @Override
     public void delete(int id) {
         uR.deleteById(id);
+    }
+
+    @Override
+    public List<Usuario> listarUsuariosPorRol(int rolId) {
+        return uR.listarUsuariosPorRol(rolId);
     }
 }

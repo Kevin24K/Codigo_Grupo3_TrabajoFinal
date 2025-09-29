@@ -6,14 +6,14 @@ import pe.edu.upc.NightWave.entities.SeguimientoHabitos;
 import pe.edu.upc.NightWave.repositories.ISeguimientoHabitosRepository;
 import pe.edu.upc.NightWave.servicesinterfaces.ISeguimientoHabitosService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class SeguimientoHabitosServiceImplement implements ISeguimientoHabitosService
-{
+public class SeguimientoHabitosServiceImplement implements ISeguimientoHabitosService {
+
     @Autowired
     private ISeguimientoHabitosRepository shR;
-
 
     @Override
     public void insert(SeguimientoHabitos seguimientoHabitos) {
@@ -38,5 +38,25 @@ public class SeguimientoHabitosServiceImplement implements ISeguimientoHabitosSe
     @Override
     public void update(SeguimientoHabitos seguimientoHabitos) {
         shR.save(seguimientoHabitos);
+    }
+
+    @Override
+    public List<SeguimientoHabitos> findByUsuarioId(int usuarioId) {
+        return shR.findByUsuarioId(usuarioId);
+    }
+
+    @Override
+    public List<SeguimientoHabitos> findByUsuarioIdAndEstadoCumplimientoTrue(int usuarioId) {
+        return shR.findByUsuarioIdAndEstadoCumplimientoTrue(usuarioId);
+    }
+
+    @Override
+    public List<SeguimientoHabitos> findByUsuarioIdAndEstadoCumplimientoFalse(int usuarioId) {
+        return shR.findByUsuarioIdAndEstadoCumplimientoFalse(usuarioId);
+    }
+
+    @Override
+    public List<SeguimientoHabitos> findByUsuarioIdAndFechaRegistro(int usuarioId, LocalDate fecha) {
+        return shR.findByUsuarioIdAndFechaRegistro(usuarioId, fecha);
     }
 }

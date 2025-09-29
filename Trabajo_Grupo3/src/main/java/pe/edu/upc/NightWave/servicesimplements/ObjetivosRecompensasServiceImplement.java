@@ -38,4 +38,14 @@ public class ObjetivosRecompensasServiceImplement implements IObjetivosRecompens
     public void update(ObjetivosRecompensas objetivosRecompensas) {
         orR.save(objetivosRecompensas);
     }
+
+    @Override
+    public List<ObjetivosRecompensas> findByObjetivoId(int objetivoId) {
+        return orR.findByObjetivoId(objetivoId);
+    }
+
+    @Override
+    public Long countByRecompensaId(int recompensaId) {
+        return orR.countByRecompensaId(recompensaId);
+    }
 }

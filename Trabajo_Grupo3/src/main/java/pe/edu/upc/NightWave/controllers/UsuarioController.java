@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.NightWave.dtos.ListaUsuariosDTO;
 import pe.edu.upc.NightWave.dtos.UsuarioDTO;
 import pe.edu.upc.NightWave.entities.Usuario;
+import pe.edu.upc.NightWave.repositories.IRolRepository;
 import pe.edu.upc.NightWave.servicesinterfaces.IUsuarioService;
 
 import java.util.List;
@@ -46,14 +47,32 @@ public class UsuarioController {
         return ResponseEntity.ok(dto);
     }
 
+
+    @Autowired
+    private IRolRepository rR;
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody UsuarioDTO dto) {
+        if (dto.getRolId() <= 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Debe proporcionar un rolId válido para registrar el usuario.");
+        }
+
+        boolean rolExiste = rR.existsById(dto.getRolId());
+        if (!rolExiste) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("El rol con ID " + dto.getRolId() + " no existe en el sistema.");
+        }
+
         ModelMapper m = new ModelMapper();
         Usuario usuario = m.map(dto, Usuario.class);
         usuario.getRol().setIdRol(dto.getRolId());
         uS.insert(usuario);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Usuario registrado correctamente.");
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Usuario registrado correctamente.");
     }
+
+
 
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody UsuarioDTO dto) {
@@ -80,15 +99,17 @@ public class UsuarioController {
     }
 
     @GetMapping("/filtro/usuarios")
-    public ResponseEntity<?> buscarUsuariosPorRol(@RequestParam(value = "rolId", required = false) Integer rolId) {
+    public ResponseEntity<?> buscarUsuariosPorRol(@RequestParam Integer rolId) {
         if (rolId == null) {
-            return ResponseEntity.ok("Debe proporcionar un rolId válido.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Debe proporcionar un rolId válido.");
         }
 
         List<Usuario> usuarios = uS.listarUsuariosPorRol(rolId);
 
         if (usuarios.isEmpty()) {
-            return ResponseEntity.ok("No existen usuarios asociados al rol con ID " + rolId);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No existen usuarios asociados al rol con ID " + rolId);
         }
 
         List<ListaUsuariosDTO> listaDTO = usuarios.stream().map(u -> {
@@ -100,4 +121,5 @@ public class UsuarioController {
 
         return ResponseEntity.ok(listaDTO);
     }
+
 }

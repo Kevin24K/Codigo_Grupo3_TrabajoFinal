@@ -26,7 +26,7 @@ public class Usuario {
     private String password;
 
     @Column(name = "fecha_nacimiento", nullable = false)
-    private LocalDateTime fechaNacimiento;
+    private LocalDate fechaNacimiento;
 
     @Column(name = "genero", length = 20, nullable = false)
     private String genero;
@@ -41,7 +41,7 @@ public class Usuario {
     // Constructor vacío
     public Usuario() {}
 
-    public Usuario(int id, String nombre, String apellido, String email, String password, LocalDateTime fechaNacimiento, String genero, Rol rol, boolean activo) {
+    public Usuario(int id, String nombre, String apellido, String email, String password, LocalDate fechaNacimiento, String genero, Rol rol, boolean activo) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -101,11 +101,11 @@ public class Usuario {
         this.password = password;
     }
 
-    public LocalDateTime getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

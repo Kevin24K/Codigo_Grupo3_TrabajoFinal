@@ -1,15 +1,19 @@
 package pe.edu.upc.NightWave.servicesinterfaces;
 
-import pe.edu.upc.NightWave.entities.Rol;
 import pe.edu.upc.NightWave.entities.SeguimientoHabitos;
 
+import java.time.LocalDate;
 import java.util.List;
 
-public interface ISeguimientoHabitosService
-{
-    public List<SeguimientoHabitos> list();
-    public void insert(SeguimientoHabitos  seguimientoHabitos);
-    public void delete(int id);
-    public void update(SeguimientoHabitos  seguimientoHabitos);
-    public SeguimientoHabitos listId(int id);
+public interface ISeguimientoHabitosService {
+    void insert(SeguimientoHabitos seguimientoHabitos);
+    List<SeguimientoHabitos> list();
+    void delete(int id);
+    SeguimientoHabitos listId(int id);
+    void update(SeguimientoHabitos seguimientoHabitos);
+
+    List<SeguimientoHabitos> findByUsuarioId(int usuarioId);
+    List<SeguimientoHabitos> findByUsuarioIdAndEstadoCumplimientoTrue(int usuarioId);
+    List<SeguimientoHabitos> findByUsuarioIdAndEstadoCumplimientoFalse(int usuarioId);
+    List<SeguimientoHabitos> findByUsuarioIdAndFechaRegistro(int usuarioId, LocalDate fecha);
 }
