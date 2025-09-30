@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.NightWave.dtos.SeguimientoHabitosDTO;
 import pe.edu.upc.NightWave.entities.SeguimientoHabitos;
-import pe.edu.upc.NightWave.entities.Usuario;
 import pe.edu.upc.NightWave.servicesinterfaces.ISeguimientoHabitosService;
 
 import java.util.List;

@@ -1,6 +1,8 @@
 package pe.edu.upc.NightWave.entities;
 
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -9,9 +11,9 @@ public class Actividad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idActividad;
 
-    @Column(name = "tipo_actividad", length = 50, nullable = false)
+    @Column(name = "tipoActividad", length = 50, nullable = false)
     private String tipoActividad;
 
     @Column(name = "nombre", length = 150, nullable = false)
@@ -20,47 +22,46 @@ public class Actividad {
     @Column(name = "descripcion", length = 300, nullable = false)
     private String descripcion;
 
-    @Column(name = "duracion_minutos", nullable = false)
+    @Column(name = "duracionMinutos", nullable = false)
     private int duracionMinutos;
 
     @Column(name = "intensidad", length = 20, nullable = false)
     private String intensidad;
 
-    @Column(name = "fecha_inicio", nullable = false)
-    private LocalDateTime fechaInicio;
+    @Column(name = "fechaInicio", nullable = false)
+    private LocalDate fechaInicio;
 
-    @Column(name = "fecha_fin", nullable = false)
-    private LocalDateTime fechaFin;
+    @Column(name = "fechaFin", nullable = false)
+    private LocalDate fechaFin;
 
     @Column(name = "completada", nullable = false)
     private boolean completada;
 
-    @Column(name = "nivel_estres_antes", nullable = false)
+    @Column(name = "nivelEstresAntes", nullable = false)
     private int nivelEstresAntes;
 
-    @Column(name = "nivel_estres_despues", nullable = false)
+    @Column(name = "nivelEstresDespues", nullable = false)
     private int nivelEstresDespues;
 
-    @Column(name = "puntuacion_satisfaccion", nullable = false)
+    @Column(name = "puntuacionSatisfaccion", nullable = false)
     private int puntuacionSatisfaccion;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario;
+    @JoinColumn(name = "idUsuario", nullable = false)
+    private Users idUsuario;
 
     @ManyToOne
-    @JoinColumn(name = "musica_id", nullable = false)
-    private MusicaMultimedia musica;
+    @JoinColumn(name = "idMusica", nullable = false)
+    private MusicaMultimedia idMusica;
 
     // Constructor vacío
     public Actividad() {}
 
     // Constructor completo
-    public Actividad(int id, String tipoActividad, String nombre, String descripcion, int duracionMinutos,
-                     String intensidad, LocalDateTime fechaInicio, LocalDateTime fechaFin, boolean completada,
-                     int nivelEstresAntes, int nivelEstresDespues, int puntuacionSatisfaccion,
-                     Usuario usuario, MusicaMultimedia musica) {
-        this.id = id;
+
+
+    public Actividad(int idActividad, String tipoActividad, String nombre, String descripcion, int duracionMinutos, String intensidad, LocalDate fechaInicio, LocalDate fechaFin, boolean completada, int nivelEstresAntes, int nivelEstresDespues, int puntuacionSatisfaccion, Users idUsuario, MusicaMultimedia idMusica) {
+        this.idActividad = idActividad;
         this.tipoActividad = tipoActividad;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -72,17 +73,16 @@ public class Actividad {
         this.nivelEstresAntes = nivelEstresAntes;
         this.nivelEstresDespues = nivelEstresDespues;
         this.puntuacionSatisfaccion = puntuacionSatisfaccion;
-        this.usuario = usuario;
-        this.musica = musica;
+        this.idUsuario = idUsuario;
+        this.idMusica = idMusica;
     }
 
-    // Getters y Setters
-    public int getId() {
-        return id;
+    public int getIdActividad() {
+        return idActividad;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdActividad(int idActividad) {
+        this.idActividad = idActividad;
     }
 
     public String getTipoActividad() {
@@ -125,19 +125,19 @@ public class Actividad {
         this.intensidad = intensidad;
     }
 
-    public LocalDateTime getFechaInicio() {
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(LocalDateTime fechaInicio) {
+    public void setFechaInicio(LocalDate fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public LocalDateTime getFechaFin() {
+    public LocalDate getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(LocalDateTime fechaFin) {
+    public void setFechaFin(LocalDate fechaFin) {
         this.fechaFin = fechaFin;
     }
 
@@ -173,19 +173,19 @@ public class Actividad {
         this.puntuacionSatisfaccion = puntuacionSatisfaccion;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Users getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(Users idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public MusicaMultimedia getMusica() {
-        return musica;
+    public MusicaMultimedia getIdMusica() {
+        return idMusica;
     }
 
-    public void setMusica(MusicaMultimedia musica) {
-        this.musica = musica;
+    public void setIdMusica(MusicaMultimedia idMusica) {
+        this.idMusica = idMusica;
     }
 }

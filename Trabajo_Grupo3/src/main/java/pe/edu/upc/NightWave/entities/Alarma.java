@@ -9,53 +9,49 @@ public class Alarma {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idAlarma;
 
-    @Column(name = "nombre_alarma", length = 100, nullable = false)
+    @Column(name = "nombreAlarma", length = 100, nullable = false)
     private String nombreAlarma;
 
-    @Column(name = "hora_alarma", nullable = false)
+    @Column(name = "horaAlarma", nullable = false)
     private LocalTime horaAlarma;
 
-    @Column(name = "dias_semana", length = 50, nullable = false)
+    @Column(name = "diasSemana", length = 50, nullable = false)
     private String diasSemana;
-
-    @Column(name = "volumen", nullable = false)
-    private double volumen;
 
     @Column(name = "activa", nullable = false)
     private boolean activa;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario;
+    @JoinColumn(name = "idUsuario", nullable = false)
+    private Users idUsuario;
 
     @ManyToOne
-    @JoinColumn(name = "contenido_id", nullable = false)
-    private MusicaMultimedia contenido;
+    @JoinColumn(name = "idMusicaMultimedia", nullable = false)
+    private MusicaMultimedia idMusicaMultimedia;
 
     // Constructor vacío
     public Alarma() {}
 
     // Constructor completo
-    public Alarma(int id, String nombreAlarma, LocalTime horaAlarma, String diasSemana, double volumen, boolean activa, Usuario usuario, MusicaMultimedia contenido) {
-        this.id = id;
+
+    public Alarma(int idAlarma, String nombreAlarma, LocalTime horaAlarma, String diasSemana, boolean activa, Users idUsuario, MusicaMultimedia idMusicaMultimedia) {
+        this.idAlarma = idAlarma;
         this.nombreAlarma = nombreAlarma;
         this.horaAlarma = horaAlarma;
         this.diasSemana = diasSemana;
-        this.volumen = volumen;
         this.activa = activa;
-        this.usuario = usuario;
-        this.contenido = contenido;
+        this.idUsuario = idUsuario;
+        this.idMusicaMultimedia = idMusicaMultimedia;
     }
 
-    // Getters y Setters
-    public int getId() {
-        return id;
+    public int getIdAlarma() {
+        return idAlarma;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdAlarma(int idAlarma) {
+        this.idAlarma = idAlarma;
     }
 
     public String getNombreAlarma() {
@@ -82,14 +78,6 @@ public class Alarma {
         this.diasSemana = diasSemana;
     }
 
-    public double getVolumen() {
-        return volumen;
-    }
-
-    public void setVolumen(double volumen) {
-        this.volumen = volumen;
-    }
-
     public boolean isActiva() {
         return activa;
     }
@@ -98,19 +86,19 @@ public class Alarma {
         this.activa = activa;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Users getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(Users idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public MusicaMultimedia getContenido() {
-        return contenido;
+    public MusicaMultimedia getIdMusicaMultimedia() {
+        return idMusicaMultimedia;
     }
 
-    public void setContenido(MusicaMultimedia contenido) {
-        this.contenido = contenido;
+    public void setIdMusicaMultimedia(MusicaMultimedia idMusicaMultimedia) {
+        this.idMusicaMultimedia = idMusicaMultimedia;
     }
 }

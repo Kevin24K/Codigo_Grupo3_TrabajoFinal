@@ -1,8 +1,6 @@
 package pe.edu.upc.NightWave.dtos;
 
-import jakarta.persistence.*;
 import pe.edu.upc.NightWave.entities.MusicaMultimedia;
-import pe.edu.upc.NightWave.entities.Usuario;
 
 import java.time.LocalTime;
 

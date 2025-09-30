@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.NightWave.dtos.RolDTO;
-import pe.edu.upc.NightWave.entities.Rol;
 import pe.edu.upc.NightWave.servicesinterfaces.IRolService;
 
 import java.util.List;

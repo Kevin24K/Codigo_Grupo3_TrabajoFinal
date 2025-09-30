@@ -1,7 +1,5 @@
 package pe.edu.upc.NightWave.servicesinterfaces;
 
-import pe.edu.upc.NightWave.entities.Rol;
-
 import java.util.List;
 
 

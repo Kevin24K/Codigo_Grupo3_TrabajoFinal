@@ -1,7 +1,6 @@
 package pe.edu.upc.NightWave.servicesinterfaces;
 
 import pe.edu.upc.NightWave.entities.TipoMusica;
-import pe.edu.upc.NightWave.entities.Usuario;
 
 import java.util.List;
 

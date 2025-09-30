@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.NightWave.dtos.ListaUsuariosDTO;
 import pe.edu.upc.NightWave.dtos.UsuarioDTO;
-import pe.edu.upc.NightWave.entities.Usuario;
 import pe.edu.upc.NightWave.repositories.IRolRepository;
 import pe.edu.upc.NightWave.servicesinterfaces.IUsuarioService;
 

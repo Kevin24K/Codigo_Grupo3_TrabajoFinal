@@ -2,7 +2,6 @@ package pe.edu.upc.NightWave.servicesimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pe.edu.upc.NightWave.entities.Usuario;
 import pe.edu.upc.NightWave.repositories.IUsuarioRepository;
 import pe.edu.upc.NightWave.servicesinterfaces.IUsuarioService;
 
