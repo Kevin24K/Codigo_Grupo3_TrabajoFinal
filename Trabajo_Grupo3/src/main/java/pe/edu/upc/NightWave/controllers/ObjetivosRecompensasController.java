@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.NightWave.dtos.NotificacionDTO;
 import pe.edu.upc.NightWave.dtos.ObjetivosRecompensasDTO;
+import pe.edu.upc.NightWave.entities.Notificacion;
 import pe.edu.upc.NightWave.entities.Objetivos;
 import pe.edu.upc.NightWave.entities.ObjetivosRecompensas;
 import pe.edu.upc.NightWave.entities.Recompensas;
@@ -23,19 +25,12 @@ public class ObjetivosRecompensasController {
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody ObjetivosRecompensasDTO dto) {
         ModelMapper m = new ModelMapper();
-        ObjetivosRecompensas or = m.map(dto, ObjetivosRecompensas.class);
-
-        Objetivos o = new Objetivos();
-        o.setId(dto.getId());
-        Recompensas r = new Recompensas();
-        r.setIdRecompensa(dto.getId());
-
-        or.setObjetivo(o);
-        or.setRecompensa(r);
-
-        orS.insert(or);
-        return new ResponseEntity<>("Registro exitoso", HttpStatus.CREATED);
+        ObjetivosRecompensas o = m.map(dto, ObjetivosRecompensas.class);
+        orS.insert(o);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("ObjetivoRecompensa registrado correctamente.");
     }
+
 
     @GetMapping
     public List<ObjetivosRecompensasDTO> listar() {
@@ -57,26 +52,19 @@ public class ObjetivosRecompensasController {
     }
 
     @PutMapping
-    public void modificar(@RequestBody ObjetivosRecompensasDTO dto) {
+    public ResponseEntity<String> modificar(@RequestBody ObjetivosRecompensasDTO dto) {
         ModelMapper m = new ModelMapper();
         ObjetivosRecompensas or = m.map(dto, ObjetivosRecompensas.class);
 
-        Objetivos o = new Objetivos();
-        o.setId(dto.getId());
-        Recompensas r = new Recompensas();
-        r.setIdRecompensa(dto.getId());
-
-        or.setObjetivo(o);
-        or.setRecompensa(r);
+        ObjetivosRecompensas existente = orS.listId(dto.getIdObjetivosRecompensas());
+        if (existente == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No se puede modificar. No existe Objetivo Recompensa con ID: " + dto.getIdObjetivosRecompensas());
+        }
 
         orS.update(or);
+        return ResponseEntity.ok("Objetivo Recompensa con ID " + dto.getIdObjetivosRecompensas() + " modificado correctamente.");
     }
 
-    @GetMapping("/por-objetivo/{idObjetivo}")
-    public List<ObjetivosRecompensasDTO> findByObjetivoId(@PathVariable("idObjetivo") int objetivoId) {
-        return orS.findByObjetivoId(objetivoId).stream().map(x -> {
-            ModelMapper m = new ModelMapper();
-            return m.map(x, ObjetivosRecompensasDTO.class);
-        }).collect(Collectors.toList());
-    }
+
 }

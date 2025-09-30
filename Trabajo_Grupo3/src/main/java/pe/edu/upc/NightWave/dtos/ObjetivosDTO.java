@@ -1,28 +1,32 @@
 package pe.edu.upc.NightWave.dtos;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import pe.edu.upc.NightWave.entities.Users;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class ObjetivosDTO
 {
-    private int id;
+    private int idObjetivos;
     private String nombreObjetivo;
     private String tipoObjetivo;
     private String descripcion;
     private double valorObjetivo;
     private double valorActual;
-    private String unidadMedida;
-    private LocalDateTime fechaInicio;
-    private LocalDateTime fechaFin;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
     private boolean alcanzado;
-    private LocalDateTime fechaLogro;
-    private Usuario usuario;
+    private Users idUsuario;
 
-    public int getId() {
-        return id;
+    public int getIdObjetivos() {
+        return idObjetivos;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdObjetivos(int idObjetivos) {
+        this.idObjetivos = idObjetivos;
     }
 
     public String getNombreObjetivo() {
@@ -65,27 +69,19 @@ public class ObjetivosDTO
         this.valorActual = valorActual;
     }
 
-    public String getUnidadMedida() {
-        return unidadMedida;
-    }
-
-    public void setUnidadMedida(String unidadMedida) {
-        this.unidadMedida = unidadMedida;
-    }
-
-    public LocalDateTime getFechaInicio() {
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(LocalDateTime fechaInicio) {
+    public void setFechaInicio(LocalDate fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public LocalDateTime getFechaFin() {
+    public LocalDate getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(LocalDateTime fechaFin) {
+    public void setFechaFin(LocalDate fechaFin) {
         this.fechaFin = fechaFin;
     }
 
@@ -97,20 +93,12 @@ public class ObjetivosDTO
         this.alcanzado = alcanzado;
     }
 
-    public LocalDateTime getFechaLogro() {
-        return fechaLogro;
+    public Users getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setFechaLogro(LocalDateTime fechaLogro) {
-        this.fechaLogro = fechaLogro;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(Users idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }
 

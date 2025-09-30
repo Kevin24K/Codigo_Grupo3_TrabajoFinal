@@ -1,21 +1,26 @@
 package pe.edu.upc.NightWave.dtos;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import pe.edu.upc.NightWave.entities.Users;
+
 public class HabitosDTO
 {
-    private int id;
+    private int idHabitos;
     private String nombreHabito;
     private String descripcion;
     private String categoria;
     private String momentoDia;
     private boolean activo;
-    private Usuario usuario;
+    private Users idUsuario;
 
-    public int getId() {
-        return id;
+    public int getIdHabitos() {
+        return idHabitos;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdHabitos(int idHabitos) {
+        this.idHabitos = idHabitos;
     }
 
     public String getNombreHabito() {
@@ -58,11 +63,11 @@ public class HabitosDTO
         this.activo = activo;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Users getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(Users idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }

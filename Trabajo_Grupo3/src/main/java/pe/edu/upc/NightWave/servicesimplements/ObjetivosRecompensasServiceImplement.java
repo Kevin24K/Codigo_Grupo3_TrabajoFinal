@@ -39,13 +39,6 @@ public class ObjetivosRecompensasServiceImplement implements IObjetivosRecompens
         orR.save(objetivosRecompensas);
     }
 
-    @Override
-    public List<ObjetivosRecompensas> findByObjetivoId(int objetivoId) {
-        return orR.findByObjetivoId(objetivoId);
-    }
 
-    @Override
-    public Long countByRecompensaId(int recompensaId) {
-        return orR.countByRecompensaId(recompensaId);
-    }
+
 }

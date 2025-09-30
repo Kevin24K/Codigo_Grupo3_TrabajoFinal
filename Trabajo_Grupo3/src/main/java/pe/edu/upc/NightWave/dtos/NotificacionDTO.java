@@ -1,23 +1,29 @@
 package pe.edu.upc.NightWave.dtos;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import pe.edu.upc.NightWave.entities.Users;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class NotificacionDTO
 {
-    private int id;
+    private int idNotificacion;
     private String titulo;
     private String mensaje;
     private String tipo;
-    private LocalDateTime fechaProgramada;
+    private LocalDate fechaProgramada;
     private boolean leida;
-    private Usuario usuario;
+    private Users idUsuario;
 
-    public int getId() {
-        return id;
+    public int getIdNotificacion() {
+        return idNotificacion;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdNotificacion(int idNotificacion) {
+        this.idNotificacion = idNotificacion;
     }
 
     public String getTitulo() {
@@ -44,11 +50,11 @@ public class NotificacionDTO
         this.tipo = tipo;
     }
 
-    public LocalDateTime getFechaProgramada() {
+    public LocalDate getFechaProgramada() {
         return fechaProgramada;
     }
 
-    public void setFechaProgramada(LocalDateTime fechaProgramada) {
+    public void setFechaProgramada(LocalDate fechaProgramada) {
         this.fechaProgramada = fechaProgramada;
     }
 
@@ -60,11 +66,11 @@ public class NotificacionDTO
         this.leida = leida;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Users getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(Users idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }

@@ -1,78 +1,70 @@
 package pe.edu.upc.NightWave.entities;
 
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Objetivos")
+@Table(name = "Objetivo")
 public class Objetivos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idObjetivos;
 
-    @Column(name = "nombre_objetivo", length = 200, nullable = false)
+    @Column(name = "nombreObjetivo", length = 200, nullable = false)
     private String nombreObjetivo;
 
-    @Column(name = "tipo_objetivo", length = 50, nullable = false)
+    @Column(name = "tipoObjetivo", length = 50, nullable = false)
     private String tipoObjetivo;
 
     @Column(name = "descripcion", length = 300, nullable = false)
     private String descripcion;
 
-    @Column(name = "valor_objetivo", nullable = false)
+    @Column(name = "valorObjetivo", nullable = false)
     private double valorObjetivo;
 
-    @Column(name = "valor_actual", nullable = false)
+    @Column(name = "valorActual", nullable = false)
     private double valorActual;
 
-    @Column(name = "unidad_medida", length = 20, nullable = false)
-    private String unidadMedida;
+    @Column(name = "fechaInicio", nullable = false)
+    private LocalDate fechaInicio;
 
-    @Column(name = "fecha_inicio", nullable = false)
-    private LocalDateTime fechaInicio;
-
-    @Column(name = "fecha_fin", nullable = false)
-    private LocalDateTime fechaFin;
+    @Column(name = "fechaFin", nullable = false)
+    private LocalDate fechaFin;
 
     @Column(name = "alcanzado", nullable = false)
     private boolean alcanzado;
 
-    @Column(name = "fecha_logro", nullable = false)
-    private LocalDateTime fechaLogro;
-
     @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario;
+    @JoinColumn(name = "idUsuario", nullable = false)
+    private Users idUsuario;
 
     // Constructor vacío
     public Objetivos() {}
 
     // Constructor completo
-    public Objetivos(int id, String nombreObjetivo, String tipoObjetivo, String descripcion, double valorObjetivo,
-                     double valorActual, String unidadMedida, LocalDateTime fechaInicio, LocalDateTime fechaFin,
-                     boolean alcanzado, LocalDateTime fechaLogro, Usuario usuario) {
-        this.id = id;
+
+    public Objetivos(int idObjetivos, String nombreObjetivo, String tipoObjetivo, String descripcion, double valorObjetivo, double valorActual, LocalDate fechaInicio, LocalDate fechaFin, boolean alcanzado, Users idUsuario) {
+        this.idObjetivos = idObjetivos;
         this.nombreObjetivo = nombreObjetivo;
         this.tipoObjetivo = tipoObjetivo;
         this.descripcion = descripcion;
         this.valorObjetivo = valorObjetivo;
         this.valorActual = valorActual;
-        this.unidadMedida = unidadMedida;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.alcanzado = alcanzado;
-        this.fechaLogro = fechaLogro;
-        this.usuario = usuario;
+        this.idUsuario = idUsuario;
     }
 
-    // Getters y Setters
-    public int getId() {
-        return id;
+    public int getIdObjetivos() {
+        return idObjetivos;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdObjetivos(int idObjetivos) {
+        this.idObjetivos = idObjetivos;
     }
 
     public String getNombreObjetivo() {
@@ -115,27 +107,19 @@ public class Objetivos {
         this.valorActual = valorActual;
     }
 
-    public String getUnidadMedida() {
-        return unidadMedida;
-    }
-
-    public void setUnidadMedida(String unidadMedida) {
-        this.unidadMedida = unidadMedida;
-    }
-
-    public LocalDateTime getFechaInicio() {
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(LocalDateTime fechaInicio) {
+    public void setFechaInicio(LocalDate fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public LocalDateTime getFechaFin() {
+    public LocalDate getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(LocalDateTime fechaFin) {
+    public void setFechaFin(LocalDate fechaFin) {
         this.fechaFin = fechaFin;
     }
 
@@ -147,19 +131,11 @@ public class Objetivos {
         this.alcanzado = alcanzado;
     }
 
-    public LocalDateTime getFechaLogro() {
-        return fechaLogro;
+    public Users getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setFechaLogro(LocalDateTime fechaLogro) {
-        this.fechaLogro = fechaLogro;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(Users idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }

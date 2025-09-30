@@ -13,6 +13,4 @@ public interface INotificacionService
     public Notificacion  listId(int id);
     public void update(Notificacion notificacion);
 
-    List<Notificacion> findByUsuarioId(int usuarioId);
-    List<Notificacion> findByUsuarioIdAndLeidaFalse(int usuarioId);
 }

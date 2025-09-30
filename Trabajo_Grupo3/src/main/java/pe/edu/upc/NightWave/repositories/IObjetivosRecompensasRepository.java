@@ -10,12 +10,6 @@ import java.util.List;
 
 @Repository
 public interface IObjetivosRecompensasRepository extends JpaRepository<ObjetivosRecompensas,Integer> {
-    // Query para listar todas las recompensas obtenidas por un objetivo específico
-    @Query("SELECT or FROM ObjetivosRecompensas or WHERE or.objetivo.id = :objetivoId")
-    List<ObjetivosRecompensas> findByObjetivoId(@Param("objetivoId") int objetivoId);
 
-    // Query para contar el número de veces que se ha obtenido una recompensa
-    @Query("SELECT COUNT(or) FROM ObjetivosRecompensas or WHERE or.recompensa.idRecompensa = :recompensaId")
-    Long countByRecompensaId(@Param("recompensaId") int recompensaId);
 
 }

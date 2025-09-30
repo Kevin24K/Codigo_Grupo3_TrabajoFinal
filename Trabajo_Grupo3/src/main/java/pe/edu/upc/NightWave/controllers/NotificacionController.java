@@ -62,14 +62,14 @@ public class NotificacionController {
         ModelMapper m = new ModelMapper();
         Notificacion no = m.map(dto, Notificacion.class);
 
-        Notificacion existente = nS.listId(dto.getId());
+        Notificacion existente = nS.listId(dto.getIdNotificacion());
         if (existente == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No se puede modificar. No existe notificaicones con ID: " + dto.getId());
+                    .body("No se puede modificar. No existe notificaicones con ID: " + dto.getIdNotificacion());
         }
 
         nS.update(no);
-        return ResponseEntity.ok("Control parental con ID " + dto.getId() + " modificado correctamente.");
+        return ResponseEntity.ok("Control parental con ID " + dto.getIdNotificacion() + " modificado correctamente.");
     }
 
     @DeleteMapping("/{id}")
@@ -82,21 +82,5 @@ public class NotificacionController {
         nS.delete(id);
         return ResponseEntity.ok("Registro con ID " + id + " eliminado correctamente.");
     }
-    // Endpoint para la query personalizada: Notificaciones de un usuario
-    @GetMapping("/por-usuario/{usuarioId}")
-    public List<NotificacionDTO> findByUsuarioId(@PathVariable("usuarioId") int usuarioId) {
-        return nS.findByUsuarioId(usuarioId).stream().map(x -> {
-            ModelMapper m = new ModelMapper();
-            return m.map(x, NotificacionDTO.class);
-        }).collect(Collectors.toList());
-    }
 
-    // Endpoint para la query personalizada: Notificaciones no leídas de un usuario
-    @GetMapping("/por-usuario/no-leidas/{usuarioId}")
-    public List<NotificacionDTO> findByUsuarioIdAndLeidaFalse(@PathVariable("usuarioId") int usuarioId) {
-        return nS.findByUsuarioIdAndLeidaFalse(usuarioId).stream().map(x -> {
-            ModelMapper m = new ModelMapper();
-            return m.map(x, NotificacionDTO.class);
-        }).collect(Collectors.toList());
-    }
 }

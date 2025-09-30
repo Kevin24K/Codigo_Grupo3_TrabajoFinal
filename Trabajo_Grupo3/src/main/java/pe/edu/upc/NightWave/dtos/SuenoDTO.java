@@ -1,51 +1,54 @@
 package pe.edu.upc.NightWave.dtos;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import pe.edu.upc.NightWave.entities.Users;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class SuenoDTO
 {
-    private int id;
-    private LocalDateTime fechaRegistro;
-    private LocalDateTime horaAcostarse;
-    private LocalDateTime horaDespertar;
+    private int idSueno;
+    private LocalDate fechaRegistro;
+    private LocalDate horaAcostarse;
+    private LocalDate horaDespertar;
     private int calidadSueno;
     private int interrupciones;
     private boolean cafeinaConsumida;
-    private boolean ejercicioRealizado;
-    private boolean pantallasAntesDormir;
-    private int nivelEstresDia;
     private String notas;
-    private Usuario usuario;
+    private Users idUsuario;
 
-    public int getId() {
-        return id;
+    public int getIdSueno() {
+        return idSueno;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdSueno(int idSueno) {
+        this.idSueno = idSueno;
     }
 
-    public LocalDateTime getFechaRegistro() {
+    public LocalDate getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(LocalDateTime fechaRegistro) {
+    public void setFechaRegistro(LocalDate fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 
-    public LocalDateTime getHoraAcostarse() {
+    public LocalDate getHoraAcostarse() {
         return horaAcostarse;
     }
 
-    public void setHoraAcostarse(LocalDateTime horaAcostarse) {
+    public void setHoraAcostarse(LocalDate horaAcostarse) {
         this.horaAcostarse = horaAcostarse;
     }
 
-    public LocalDateTime getHoraDespertar() {
+    public LocalDate getHoraDespertar() {
         return horaDespertar;
     }
 
-    public void setHoraDespertar(LocalDateTime horaDespertar) {
+    public void setHoraDespertar(LocalDate horaDespertar) {
         this.horaDespertar = horaDespertar;
     }
 
@@ -73,30 +76,6 @@ public class SuenoDTO
         this.cafeinaConsumida = cafeinaConsumida;
     }
 
-    public boolean isEjercicioRealizado() {
-        return ejercicioRealizado;
-    }
-
-    public void setEjercicioRealizado(boolean ejercicioRealizado) {
-        this.ejercicioRealizado = ejercicioRealizado;
-    }
-
-    public boolean isPantallasAntesDormir() {
-        return pantallasAntesDormir;
-    }
-
-    public void setPantallasAntesDormir(boolean pantallasAntesDormir) {
-        this.pantallasAntesDormir = pantallasAntesDormir;
-    }
-
-    public int getNivelEstresDia() {
-        return nivelEstresDia;
-    }
-
-    public void setNivelEstresDia(int nivelEstresDia) {
-        this.nivelEstresDia = nivelEstresDia;
-    }
-
     public String getNotas() {
         return notas;
     }
@@ -105,11 +84,11 @@ public class SuenoDTO
         this.notas = notas;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Users getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(Users idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }

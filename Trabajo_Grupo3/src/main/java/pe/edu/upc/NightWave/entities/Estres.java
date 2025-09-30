@@ -1,6 +1,8 @@
 package pe.edu.upc.NightWave.entities;
 
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -9,52 +11,52 @@ public class Estres {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idEstres;
 
-    @Column(name = "nivel_estres", nullable = false)
+    @Column(name = "nivelEstres", nullable = false)
     private int nivelEstres;
 
-    @Column(name = "nivel_ansiedad", nullable = false)
+    @Column(name = "nivelAnsiedad", nullable = false)
     private int nivelAnsiedad;
 
-    @Column(name = "factores_estimulantes", length = 200, nullable = false)
+    @Column(name = "factoresEstimulantes", length = 200, nullable = false)
     private String factoresEstimulantes;
 
-    @Column(name = "sintomas_fisicos", length = 200, nullable = false)
+    @Column(name = "sintomasFisicos", length = 200, nullable = false)
     private String sintomasFisicos;
 
-    @Column(name = "sintomas_emocionales", length = 200, nullable = false)
+    @Column(name = "sintomasEmocionales", length = 200, nullable = false)
     private String sintomasEmocionales;
 
-    @Column(name = "fecha_registro", nullable = false)
-    private LocalDateTime fechaRegistro;
+    @Column(name = "fechaRegistro", nullable = false)
+    private LocalDate fechaRegistro;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario;
+    @JoinColumn(name = "idUsuario", nullable = false)
+    private Users idUsuario;
 
     // Constructor vacío
     public Estres() {}
 
     // Constructor completo
-    public Estres(int id, int nivelEstres, int nivelAnsiedad, String factoresEstimulantes, String sintomasFisicos, String sintomasEmocionales, LocalDateTime fechaRegistro, Usuario usuario) {
-        this.id = id;
+
+    public Estres(int idEstres, int nivelEstres, int nivelAnsiedad, String factoresEstimulantes, String sintomasFisicos, String sintomasEmocionales, LocalDate fechaRegistro, Users idUsuario) {
+        this.idEstres = idEstres;
         this.nivelEstres = nivelEstres;
         this.nivelAnsiedad = nivelAnsiedad;
         this.factoresEstimulantes = factoresEstimulantes;
         this.sintomasFisicos = sintomasFisicos;
         this.sintomasEmocionales = sintomasEmocionales;
         this.fechaRegistro = fechaRegistro;
-        this.usuario = usuario;
+        this.idUsuario = idUsuario;
     }
 
-    // Getters y Setters
-    public int getId() {
-        return id;
+    public int getIdEstres() {
+        return idEstres;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdEstres(int idEstres) {
+        this.idEstres = idEstres;
     }
 
     public int getNivelEstres() {
@@ -97,19 +99,19 @@ public class Estres {
         this.sintomasEmocionales = sintomasEmocionales;
     }
 
-    public LocalDateTime getFechaRegistro() {
+    public LocalDate getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(LocalDateTime fechaRegistro) {
+    public void setFechaRegistro(LocalDate fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Users getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(Users idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }

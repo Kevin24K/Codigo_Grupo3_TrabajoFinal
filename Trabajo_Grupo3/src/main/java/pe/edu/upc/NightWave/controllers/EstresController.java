@@ -61,14 +61,14 @@ public class EstresController {
         ModelMapper m = new ModelMapper();
         Estres es = m.map(dto, Estres.class);
 
-        Estres existente = eS.listId(dto.getId());
+        Estres existente = eS.listId(dto.getIdEstres());
         if (existente == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No se puede modificar. No existe control parental con ID: " + dto.getId());
+                    .body("No se puede modificar. No existe estres con ID: " + dto.getIdEstres());
         }
 
         eS.update(es);
-        return ResponseEntity.ok("Control parental con ID " + dto.getId() + " modificado correctamente.");
+        return ResponseEntity.ok("Estres con ID " + dto.getIdEstres() + " modificado correctamente.");
     }
 
     @DeleteMapping("/{id}")

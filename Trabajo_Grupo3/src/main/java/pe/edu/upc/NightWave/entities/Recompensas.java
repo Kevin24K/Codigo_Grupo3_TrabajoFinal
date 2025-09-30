@@ -5,23 +5,23 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Recompensas")
+@Table(name = "Recompensa")
 public class Recompensas
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRecompensa;
 
-    @Column(name = "nombre_recompensa", nullable = false, length = 100)
+    @Column(name = "nombreRecompensa", nullable = false, length = 100)
     private String nombreRecompensa;
 
     @Column(name = "descripcion",  nullable = false, length = 500)
     private String descripcion;
 
-    @Column(name = "tipo_recompensa", nullable = false, length = 100)
+    @Column(name = "tipoRecompensa", nullable = false, length = 100)
     private String tipoRecompensa;
 
-    @Column(name = "puntos_valor", nullable = false)
+    @Column(name = "puntosValor", nullable = false)
     private int puntosValor;
 
     public Recompensas () {}

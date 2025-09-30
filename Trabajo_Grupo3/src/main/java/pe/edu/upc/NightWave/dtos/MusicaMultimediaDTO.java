@@ -5,25 +5,25 @@ import pe.edu.upc.NightWave.entities.TipoMusica;
 
 public class MusicaMultimediaDTO
 {
-    private int id;
-    private String nombre;
+    private int idMusicaMultimedia;
+    private String nombreMusica;
     private String linkArchivo;
-    private TipoMusica tipoMusica;
+    private TipoMusica idTipoMusica;
 
-    public int getId() {
-        return id;
+    public int getIdMusicaMultimedia() {
+        return idMusicaMultimedia;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdMusicaMultimedia(int idMusicaMultimedia) {
+        this.idMusicaMultimedia = idMusicaMultimedia;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreMusica() {
+        return nombreMusica;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreMusica(String nombreMusica) {
+        this.nombreMusica = nombreMusica;
     }
 
     public String getLinkArchivo() {
@@ -34,11 +34,11 @@ public class MusicaMultimediaDTO
         this.linkArchivo = linkArchivo;
     }
 
-    public TipoMusica getTipoMusica() {
-        return tipoMusica;
+    public TipoMusica getIdTipoMusica() {
+        return idTipoMusica;
     }
 
-    public void setTipoMusica(TipoMusica tipoMusica) {
-        this.tipoMusica = tipoMusica;
+    public void setIdTipoMusica(TipoMusica idTipoMusica) {
+        this.idTipoMusica = idTipoMusica;
     }
 }

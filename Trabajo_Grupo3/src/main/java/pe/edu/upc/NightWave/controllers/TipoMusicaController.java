@@ -5,84 +5,81 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.NightWave.dtos.RecompensasDTO;
-import pe.edu.upc.NightWave.entities.Recompensas;
-import pe.edu.upc.NightWave.servicesinterfaces.IRecompensasService;
+import pe.edu.upc.NightWave.dtos.TipoMusicaDTO;
+import pe.edu.upc.NightWave.entities.TipoMusica;
+import pe.edu.upc.NightWave.servicesinterfaces.ITipoMusicaService;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/recompensas")
-public class RecompensaController
-{
+@RequestMapping("/tipoMusica")
+public class TipoMusicaController {
     @Autowired
-    private IRecompensasService rS;
+    private ITipoMusicaService tmS;
 
     @GetMapping
     public ResponseEntity<?> listar() {
-        List<RecompensasDTO> lista = rS.list().stream().map(x -> {
+        List<TipoMusicaDTO> lista = tmS.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
-            return m.map(x, RecompensasDTO.class);
+            return m.map(x, TipoMusicaDTO.class);
         }).collect(Collectors.toList());
 
         if (lista.isEmpty()) {
             return ResponseEntity.status(HttpStatus.OK)
-                    .body("No existen notificaciones registrados.");
+                    .body("No existen tipo de musica registrados.");
         }
         return ResponseEntity.ok(lista);
     }
 
     @PostMapping
-    public ResponseEntity<String> registrar(@RequestBody RecompensasDTO dto) {
+    public ResponseEntity<String> registrar(@RequestBody TipoMusicaDTO dto) {
         ModelMapper m = new ModelMapper();
-        Recompensas r = m.map(dto, Recompensas.class);
-        rS.insert(r);
+        TipoMusica tm = m.map(dto, TipoMusica.class);
+        tmS.insert(tm);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body("Recompensa registrado correctamente.");
+                .body("Tipo musica registrado correctamente.");
     }
 
 
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable("id") Integer id) {
-        Recompensas recompensas = rS.listId(id);
-        if (recompensas == null) {
+        TipoMusica tipoMusica = tmS.listId(id);
+        if (tipoMusica == null) {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
-                    .body("No existe recompensa con ID: " + id);
+                    .body("No existe sueños con ID: " + id);
         }
         ModelMapper m = new ModelMapper();
-        RecompensasDTO dto = m.map(recompensas, RecompensasDTO.class);
+        TipoMusicaDTO dto = m.map(tipoMusica, TipoMusicaDTO.class);
         return ResponseEntity.ok(dto);
     }
 
 
     @PutMapping
-    public ResponseEntity<String> modificar(@RequestBody RecompensasDTO dto) {
+    public ResponseEntity<String> modificar(@RequestBody TipoMusicaDTO dto) {
         ModelMapper m = new ModelMapper();
-        Recompensas r = m.map(dto, Recompensas.class);
+        TipoMusica tm = m.map(dto, TipoMusica.class);
 
-        Recompensas existente = rS.listId(dto.getIdRecompensa());
+        TipoMusica existente = tmS.listId(dto.getIdTipoMusica());
         if (existente == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No se puede modificar. No existe notificaicones con ID: " + dto.getIdRecompensa());
+                    .body("No se puede modificar. No existe tipo musica con ID: " + dto.getIdTipoMusica());
         }
 
-        rS.update(r);
-        return ResponseEntity.ok("Recompensa con ID " + dto.getIdRecompensa() + " modificado correctamente.");
+        tmS.update(tm);
+        return ResponseEntity.ok("Tipo musica con ID " + dto.getIdTipoMusica() + " modificado correctamente.");
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id) {
-        Recompensas recompensas = rS.listId(id);
-        if (recompensas == null) {
+        TipoMusica tipoMusica = tmS.listId(id);
+        if (tipoMusica == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No existe una recompensa con el ID: " + id);
+                    .body("No existe un tipo musica con el ID: " + id);
         }
-        rS.delete(id);
+        tmS.delete(id);
         return ResponseEntity.ok("Registro con ID " + id + " eliminado correctamente.");
     }
-
-
 
 }

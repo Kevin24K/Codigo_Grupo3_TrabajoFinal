@@ -1,6 +1,8 @@
 package pe.edu.upc.NightWave.entities;
 
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -9,94 +11,79 @@ public class Sueno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idSueno;
 
-    @Column(name = "fecha_registro", nullable = false)
-    private LocalDateTime fechaRegistro;
+    @Column(name = "fechaRegistro", nullable = false)
+    private LocalDate fechaRegistro;
 
-    @Column(name = "hora_acostarse", nullable = false)
-    private LocalDateTime horaAcostarse;
+    @Column(name = "horaAcostarse", nullable = false)
+    private LocalDate horaAcostarse;
 
-    @Column(name = "hora_despertar", nullable = false)
-    private LocalDateTime horaDespertar;
+    @Column(name = "horaDespertar", nullable = false)
+    private LocalDate horaDespertar;
 
-    @Column(name = "calidad_sueno", nullable = false)
+    @Column(name = "calidadSueno", nullable = false)
     private int calidadSueno;
 
     @Column(name = "interrupciones", nullable = false)
     private int interrupciones;
 
-    @Column(name = "cafeina_consumida", nullable = false)
+    @Column(name = "cafeinaConsumida", nullable = false)
     private boolean cafeinaConsumida;
-
-    @Column(name = "ejercicio_realizado", nullable = false)
-    private boolean ejercicioRealizado;
-
-    @Column(name = "pantallas_antes_dormir", nullable = false)
-    private boolean pantallasAntesDormir;
-
-    @Column(name = "nivel_estres_dia", nullable = false)
-    private int nivelEstresDia;
 
     @Column(name = "notas", length = 300, nullable = false)
     private String notas;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario;
+    @JoinColumn(name = "idUsuario", nullable = false)
+    private Users idUsuario;
 
     // Constructor vacío
     public Sueno() {}
 
     // Constructor completo
-    public Sueno(int id, LocalDateTime fechaRegistro, LocalDateTime horaAcostarse, LocalDateTime horaDespertar,
-                 int calidadSueno, int interrupciones, boolean cafeinaConsumida,
-                 boolean ejercicioRealizado, boolean pantallasAntesDormir, int nivelEstresDia, String notas,
-                 Usuario usuario) {
-        this.id = id;
+
+    public Sueno(int idSueno, LocalDate fechaRegistro, LocalDate horaAcostarse, LocalDate horaDespertar, int calidadSueno, int interrupciones, boolean cafeinaConsumida, String notas, Users idUsuario) {
+        this.idSueno = idSueno;
         this.fechaRegistro = fechaRegistro;
         this.horaAcostarse = horaAcostarse;
         this.horaDespertar = horaDespertar;
         this.calidadSueno = calidadSueno;
         this.interrupciones = interrupciones;
         this.cafeinaConsumida = cafeinaConsumida;
-        this.ejercicioRealizado = ejercicioRealizado;
-        this.pantallasAntesDormir = pantallasAntesDormir;
-        this.nivelEstresDia = nivelEstresDia;
         this.notas = notas;
-        this.usuario = usuario;
+        this.idUsuario = idUsuario;
     }
 
-    // Getters y Setters
-    public int getId() {
-        return id;
+    public int getIdSueno() {
+        return idSueno;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdSueno(int idSueno) {
+        this.idSueno = idSueno;
     }
 
-    public LocalDateTime getFechaRegistro() {
+    public LocalDate getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(LocalDateTime fechaRegistro) {
+    public void setFechaRegistro(LocalDate fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 
-    public LocalDateTime getHoraAcostarse() {
+    public LocalDate getHoraAcostarse() {
         return horaAcostarse;
     }
 
-    public void setHoraAcostarse(LocalDateTime horaAcostarse) {
+    public void setHoraAcostarse(LocalDate horaAcostarse) {
         this.horaAcostarse = horaAcostarse;
     }
 
-    public LocalDateTime getHoraDespertar() {
+    public LocalDate getHoraDespertar() {
         return horaDespertar;
     }
 
-    public void setHoraDespertar(LocalDateTime horaDespertar) {
+    public void setHoraDespertar(LocalDate horaDespertar) {
         this.horaDespertar = horaDespertar;
     }
 
@@ -124,30 +111,6 @@ public class Sueno {
         this.cafeinaConsumida = cafeinaConsumida;
     }
 
-    public boolean isEjercicioRealizado() {
-        return ejercicioRealizado;
-    }
-
-    public void setEjercicioRealizado(boolean ejercicioRealizado) {
-        this.ejercicioRealizado = ejercicioRealizado;
-    }
-
-    public boolean isPantallasAntesDormir() {
-        return pantallasAntesDormir;
-    }
-
-    public void setPantallasAntesDormir(boolean pantallasAntesDormir) {
-        this.pantallasAntesDormir = pantallasAntesDormir;
-    }
-
-    public int getNivelEstresDia() {
-        return nivelEstresDia;
-    }
-
-    public void setNivelEstresDia(int nivelEstresDia) {
-        this.nivelEstresDia = nivelEstresDia;
-    }
-
     public String getNotas() {
         return notas;
     }
@@ -156,11 +119,11 @@ public class Sueno {
         this.notas = notas;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Users getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(Users idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }

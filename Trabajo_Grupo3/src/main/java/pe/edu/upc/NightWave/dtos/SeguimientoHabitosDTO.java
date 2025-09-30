@@ -1,26 +1,30 @@
 package pe.edu.upc.NightWave.dtos;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import pe.edu.upc.NightWave.entities.Habitos;
+import pe.edu.upc.NightWave.entities.Users;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class SeguimientoHabitosDTO
 {
-
-    private int id;
+    private int idSeguimientoHabitos;
     private boolean completado;
     private int calidadEjecucion;
     private String notas;
-    private LocalDateTime fechaSeguimiento;
-    private Usuario usuario;
-    private Habitos habito;
+    private LocalDate fechaSeguimiento;
+    private Users idUsuario;
+    private Habitos idHabito;
 
-    public int getId() {
-        return id;
+    public int getIdSeguimientoHabitos() {
+        return idSeguimientoHabitos;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdSeguimientoHabitos(int idSeguimientoHabitos) {
+        this.idSeguimientoHabitos = idSeguimientoHabitos;
     }
 
     public boolean isCompletado() {
@@ -47,27 +51,27 @@ public class SeguimientoHabitosDTO
         this.notas = notas;
     }
 
-    public LocalDateTime getFechaSeguimiento() {
+    public LocalDate getFechaSeguimiento() {
         return fechaSeguimiento;
     }
 
-    public void setFechaSeguimiento(LocalDateTime fechaSeguimiento) {
+    public void setFechaSeguimiento(LocalDate fechaSeguimiento) {
         this.fechaSeguimiento = fechaSeguimiento;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Users getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(Users idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public Habitos getHabito() {
-        return habito;
+    public Habitos getIdHabito() {
+        return idHabito;
     }
 
-    public void setHabito(Habitos habito) {
-        this.habito = habito;
+    public void setIdHabito(Habitos idHabito) {
+        this.idHabito = idHabito;
     }
 }

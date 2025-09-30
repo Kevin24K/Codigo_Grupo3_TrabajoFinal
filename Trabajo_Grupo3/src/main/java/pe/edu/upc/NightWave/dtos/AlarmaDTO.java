@@ -1,26 +1,29 @@
 package pe.edu.upc.NightWave.dtos;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import pe.edu.upc.NightWave.entities.MusicaMultimedia;
+import pe.edu.upc.NightWave.entities.Users;
 
 import java.time.LocalTime;
 
 public class AlarmaDTO
 {
-    private int id;
+    private int idAlarma;
     private String nombreAlarma;
     private LocalTime horaAlarma;
     private String diasSemana;
-    private double volumen;
     private boolean activa;
-    private Usuario usuario;
-    private MusicaMultimedia contenido;
+    private Users idUsuario;
+    private MusicaMultimedia idMusicaMultimedia;
 
-    public int getId() {
-        return id;
+    public int getIdAlarma() {
+        return idAlarma;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdAlarma(int idAlarma) {
+        this.idAlarma = idAlarma;
     }
 
     public String getNombreAlarma() {
@@ -47,14 +50,6 @@ public class AlarmaDTO
         this.diasSemana = diasSemana;
     }
 
-    public double getVolumen() {
-        return volumen;
-    }
-
-    public void setVolumen(double volumen) {
-        this.volumen = volumen;
-    }
-
     public boolean isActiva() {
         return activa;
     }
@@ -63,19 +58,19 @@ public class AlarmaDTO
         this.activa = activa;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Users getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(Users idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public MusicaMultimedia getContenido() {
-        return contenido;
+    public MusicaMultimedia getIdMusicaMultimedia() {
+        return idMusicaMultimedia;
     }
 
-    public void setContenido(MusicaMultimedia contenido) {
-        this.contenido = contenido;
+    public void setIdMusicaMultimedia(MusicaMultimedia idMusicaMultimedia) {
+        this.idMusicaMultimedia = idMusicaMultimedia;
     }
 }

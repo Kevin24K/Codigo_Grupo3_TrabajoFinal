@@ -11,10 +11,4 @@ import java.util.List;
 @Repository
 public interface INotificacionRepository extends JpaRepository<Notificacion, Integer>
 {
-    @Query("SELECT n FROM Notificacion n WHERE n.usuario.id = :usuarioId")
-    List<Notificacion> findByUsuarioId(@Param("usuarioId") int usuarioId);
-
-    // Query para listar notificaciones no leídas de un usuario
-    @Query("SELECT n FROM Notificacion n WHERE n.usuario.id = :usuarioId AND n.leida = false")
-    List<Notificacion> findByUsuarioIdAndLeidaFalse(@Param("usuarioId") int usuarioId);
 }

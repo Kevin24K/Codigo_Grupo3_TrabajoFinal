@@ -39,23 +39,4 @@ public class SuenoServiceImplement implements ISuenoService
         sR.save(sueno);
     }
 
-    @Override
-    public List<Sueno> BuscarPorCalidadDeSueno(int calidadSueno) {
-        return sR.findByCalidadSueno(calidadSueno);
-    }
-
-    @Override
-    public Double promedioHorasDormidasPorUsuario(int usuarioId) {
-        return sR.promedioHorasDormidasPorUsuario(usuarioId);
-    }
-
-    @Override
-    public List<Object[]> promedioHorasDormidasTodosUsuarios() {
-        return sR.promedioHorasDormidasTodosUsuarios();
-    }
-
-    @Override
-    public Object[] relacionEstresCalidadPorUsuario(int usuarioId) {
-        return sR.relacionEstresCalidadPorUsuario(usuarioId);
-    }
 }

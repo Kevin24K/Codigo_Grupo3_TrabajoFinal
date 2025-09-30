@@ -3,47 +3,47 @@ package pe.edu.upc.NightWave.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Musica_Multimedia")
+@Table(name = "MusicaMultimedia")
 public class MusicaMultimedia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idMusicaMultimedia;
 
-    @Column(name = "nombre", length = 200, nullable = false)
-    private String nombre;
+    @Column(name = "nombreMusica", length = 200, nullable = false)
+    private String nombreMusica;
 
-    @Column(name = "link_archivo", length = 500, nullable = false)
+    @Column(name = "linkArchivo", length = 500, nullable = false)
     private String linkArchivo;
 
     @ManyToOne
-    @JoinColumn(name = "tipo_musica_id", nullable = false)
-    private TipoMusica tipoMusica;
+    @JoinColumn(name = "idTipoMusica", nullable = false)
+    private TipoMusica idTipoMusica;
 
     // Constructor vacío
     public MusicaMultimedia() {}
 
-    public MusicaMultimedia(int id, String nombre, String linkArchivo, TipoMusica tipoMusica) {
-        this.id = id;
-        this.nombre = nombre;
+    public MusicaMultimedia(int idMusicaMultimedia, String nombreMusica, String linkArchivo, TipoMusica idTipoMusica) {
+        this.idMusicaMultimedia = idMusicaMultimedia;
+        this.nombreMusica = nombreMusica;
         this.linkArchivo = linkArchivo;
-        this.tipoMusica = tipoMusica;
+        this.idTipoMusica = idTipoMusica;
     }
 
-    public int getId() {
-        return id;
+    public int getIdMusicaMultimedia() {
+        return idMusicaMultimedia;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdMusicaMultimedia(int idMusicaMultimedia) {
+        this.idMusicaMultimedia = idMusicaMultimedia;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreMusica() {
+        return nombreMusica;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreMusica(String nombreMusica) {
+        this.nombreMusica = nombreMusica;
     }
 
     public String getLinkArchivo() {
@@ -54,11 +54,11 @@ public class MusicaMultimedia {
         this.linkArchivo = linkArchivo;
     }
 
-    public TipoMusica getTipoMusica() {
-        return tipoMusica;
+    public TipoMusica getIdTipoMusica() {
+        return idTipoMusica;
     }
 
-    public void setTipoMusica(TipoMusica tipoMusica) {
-        this.tipoMusica = tipoMusica;
+    public void setIdTipoMusica(TipoMusica idTipoMusica) {
+        this.idTipoMusica = idTipoMusica;
     }
 }

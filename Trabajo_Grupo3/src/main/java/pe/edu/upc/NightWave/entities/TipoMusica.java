@@ -4,14 +4,14 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Tipo_Musica")
+@Table(name = "TipoMusica")
 public class TipoMusica {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idTipoMusica;
 
-    @Column(name = "nombre_tipo", length = 50, nullable = false)
+    @Column(name = "nombreTipo", length = 50, nullable = false)
     private String nombreTipo;
 
     @Column(name = "categoria", length = 30, nullable = false)
@@ -23,19 +23,19 @@ public class TipoMusica {
     // Constructor vacío
     public TipoMusica() {}
 
-    public TipoMusica(int id, String nombreTipo, String categoria, String descripcion) {
-        this.id = id;
+    public TipoMusica(int idTipoMusica, String nombreTipo, String categoria, String descripcion) {
+        this.idTipoMusica = idTipoMusica;
         this.nombreTipo = nombreTipo;
         this.categoria = categoria;
         this.descripcion = descripcion;
     }
 
-    public int getId() {
-        return id;
+    public int getIdTipoMusica() {
+        return idTipoMusica;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdTipoMusica(int idTipoMusica) {
+        this.idTipoMusica = idTipoMusica;
     }
 
     public String getNombreTipo() {

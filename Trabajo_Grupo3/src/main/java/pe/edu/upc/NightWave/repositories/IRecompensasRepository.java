@@ -7,6 +7,5 @@ import java.util.List;
 
 @Repository
 public interface IRecompensasRepository extends JpaRepository<Recompensas, Integer> {
-    List<Recompensas> findByTipoRecompensa(String tipoRecompensa);
 }
 

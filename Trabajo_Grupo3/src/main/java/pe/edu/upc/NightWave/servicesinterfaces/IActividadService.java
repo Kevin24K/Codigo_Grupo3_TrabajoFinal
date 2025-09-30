@@ -1,7 +1,6 @@
 package pe.edu.upc.NightWave.servicesinterfaces;
 
 import pe.edu.upc.NightWave.entities.Actividad;
-import pe.edu.upc.NightWave.entities.ControlParental;
 
 import java.util.List;
 

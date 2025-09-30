@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.NightWave.dtos.NotificacionDTO;
 import pe.edu.upc.NightWave.dtos.SeguimientoHabitosDTO;
+import pe.edu.upc.NightWave.entities.Notificacion;
 import pe.edu.upc.NightWave.entities.SeguimientoHabitos;
 import pe.edu.upc.NightWave.servicesinterfaces.ISeguimientoHabitosService;
 
@@ -22,13 +24,9 @@ public class SeguimientosHabitosController {
     public ResponseEntity<String> registrar(@RequestBody SeguimientoHabitosDTO dto) {
         ModelMapper m = new ModelMapper();
         SeguimientoHabitos sh = m.map(dto, SeguimientoHabitos.class);
-
-        Usuario usuario = new Usuario();
-        usuario.setId(dto.getId());
-        sh.setUsuario(usuario);
-
         shS.insert(sh);
-        return new ResponseEntity<>("Registro exitoso", HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Seguimiento registrado correctamente.");
     }
 
     @GetMapping
@@ -51,33 +49,19 @@ public class SeguimientosHabitosController {
     }
 
     @PutMapping
-    public void modificar(@RequestBody SeguimientoHabitosDTO dto) {
+    public ResponseEntity<String> modificar(@RequestBody SeguimientoHabitosDTO dto) {
         ModelMapper m = new ModelMapper();
         SeguimientoHabitos sh = m.map(dto, SeguimientoHabitos.class);
 
-        // Asignar el usuario
-        Usuario usuario = new Usuario();
-        usuario.setId(dto.getId());
-        sh.setUsuario(usuario);
+        SeguimientoHabitos existente = shS.listId(dto.getIdSeguimientoHabitos());
+        if (existente == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No se puede modificar. No existe notificaicones con ID: " + dto.getIdSeguimientoHabitos());
+        }
 
         shS.update(sh);
+        return ResponseEntity.ok("Control parental con ID " + dto.getIdSeguimientoHabitos() + " modificado correctamente.");
     }
 
-    // Endpoint para la query personalizada: Seguimiento de hábitos por usuario
-    @GetMapping("/por-usuario/{usuarioId}")
-    public List<SeguimientoHabitosDTO> findByUsuarioId(@PathVariable("usuarioId") int usuarioId) {
-        return shS.findByUsuarioId(usuarioId).stream().map(x -> {
-            ModelMapper m = new ModelMapper();
-            return m.map(x, SeguimientoHabitosDTO.class);
-        }).collect(Collectors.toList());
-    }
 
-    // Endpoint para la query personalizada: Hábitos completados por usuario
-    @GetMapping("/por-usuario/completados/{usuarioId}")
-    public List<SeguimientoHabitosDTO> findByUsuarioIdAndEstadoCumplimientoTrue(@PathVariable("usuarioId") int usuarioId) {
-        return shS.findByUsuarioIdAndEstadoCumplimientoTrue(usuarioId).stream().map(x -> {
-            ModelMapper m = new ModelMapper();
-            return m.map(x, SeguimientoHabitosDTO.class);
-        }).collect(Collectors.toList());
-    }
 }

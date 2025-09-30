@@ -21,20 +21,20 @@ public class RecompensasDTO
         this.idRecompensa = idRecompensa;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public String getNombreRecompensa() {
         return nombreRecompensa;
     }
 
     public void setNombreRecompensa(String nombreRecompensa) {
         this.nombreRecompensa = nombreRecompensa;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public String getTipoRecompensa() {

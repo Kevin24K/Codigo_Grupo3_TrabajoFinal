@@ -40,23 +40,5 @@ public class SeguimientoHabitosServiceImplement implements ISeguimientoHabitosSe
         shR.save(seguimientoHabitos);
     }
 
-    @Override
-    public List<SeguimientoHabitos> findByUsuarioId(int usuarioId) {
-        return shR.findByUsuarioId(usuarioId);
-    }
 
-    @Override
-    public List<SeguimientoHabitos> findByUsuarioIdAndEstadoCumplimientoTrue(int usuarioId) {
-        return shR.findByUsuarioIdAndEstadoCumplimientoTrue(usuarioId);
-    }
-
-    @Override
-    public List<SeguimientoHabitos> findByUsuarioIdAndEstadoCumplimientoFalse(int usuarioId) {
-        return shR.findByUsuarioIdAndEstadoCumplimientoFalse(usuarioId);
-    }
-
-    @Override
-    public List<SeguimientoHabitos> findByUsuarioIdAndFechaRegistro(int usuarioId, LocalDate fecha) {
-        return shR.findByUsuarioIdAndFechaRegistro(usuarioId, fecha);
-    }
 }

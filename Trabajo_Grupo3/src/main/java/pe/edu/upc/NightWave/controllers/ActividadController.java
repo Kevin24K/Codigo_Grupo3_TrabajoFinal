@@ -5,84 +5,83 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.NightWave.dtos.RecompensasDTO;
-import pe.edu.upc.NightWave.entities.Recompensas;
-import pe.edu.upc.NightWave.servicesinterfaces.IRecompensasService;
+import pe.edu.upc.NightWave.dtos.ActividadDTO;
+import pe.edu.upc.NightWave.entities.Actividad;
+import pe.edu.upc.NightWave.servicesinterfaces.IActividadService;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/recompensas")
-public class RecompensaController
-{
+@RequestMapping("/actividades")
+public class ActividadController {
+
     @Autowired
-    private IRecompensasService rS;
+    private IActividadService aS;
 
     @GetMapping
     public ResponseEntity<?> listar() {
-        List<RecompensasDTO> lista = rS.list().stream().map(x -> {
+        List<ActividadDTO> lista = aS.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
-            return m.map(x, RecompensasDTO.class);
+            return m.map(x, ActividadDTO.class);
         }).collect(Collectors.toList());
 
         if (lista.isEmpty()) {
             return ResponseEntity.status(HttpStatus.OK)
-                    .body("No existen notificaciones registrados.");
+                    .body("No existen activiades registradas.");
         }
         return ResponseEntity.ok(lista);
     }
 
     @PostMapping
-    public ResponseEntity<String> registrar(@RequestBody RecompensasDTO dto) {
+    public ResponseEntity<String> registrar(@RequestBody ActividadDTO dto) {
         ModelMapper m = new ModelMapper();
-        Recompensas r = m.map(dto, Recompensas.class);
-        rS.insert(r);
+        Actividad a = m.map(dto, Actividad.class);
+        aS.insert(a);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body("Recompensa registrado correctamente.");
+                .body("Actividad registrado correctamente.");
     }
 
 
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable("id") Integer id) {
-        Recompensas recompensas = rS.listId(id);
-        if (recompensas == null) {
+        Actividad actividad = aS.listId(id);
+        if (actividad == null) {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
-                    .body("No existe recompensa con ID: " + id);
+                    .body("No existe actividades con ID: " + id);
         }
         ModelMapper m = new ModelMapper();
-        RecompensasDTO dto = m.map(recompensas, RecompensasDTO.class);
+        ActividadDTO dto = m.map(actividad, ActividadDTO.class);
         return ResponseEntity.ok(dto);
     }
 
 
     @PutMapping
-    public ResponseEntity<String> modificar(@RequestBody RecompensasDTO dto) {
+    public ResponseEntity<String> modificar(@RequestBody ActividadDTO dto) {
         ModelMapper m = new ModelMapper();
-        Recompensas r = m.map(dto, Recompensas.class);
+        Actividad ac = m.map(dto, Actividad.class);
 
-        Recompensas existente = rS.listId(dto.getIdRecompensa());
+        Actividad existente = aS.listId(dto.getIdActividad());
         if (existente == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No se puede modificar. No existe notificaicones con ID: " + dto.getIdRecompensa());
+                    .body("No se puede modificar. No existe actividad con ID: " + dto.getIdActividad());
         }
 
-        rS.update(r);
-        return ResponseEntity.ok("Recompensa con ID " + dto.getIdRecompensa() + " modificado correctamente.");
+        aS.update(ac);
+        return ResponseEntity.ok("Actividad con ID " + dto.getIdActividad() + " modificado correctamente.");
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id) {
-        Recompensas recompensas = rS.listId(id);
-        if (recompensas == null) {
+        Actividad actividad = aS.listId(id);
+        if (actividad == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No existe una recompensa con el ID: " + id);
+                    .body("No existe una actividad con el ID: " + id);
         }
-        rS.delete(id);
+        aS.delete(id);
         return ResponseEntity.ok("Registro con ID " + id + " eliminado correctamente.");
     }
-
 
 
 }

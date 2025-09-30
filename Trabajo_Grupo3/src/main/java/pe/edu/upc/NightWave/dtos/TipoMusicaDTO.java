@@ -7,17 +7,17 @@ import jakarta.persistence.Id;
 
 public class TipoMusicaDTO
 {
-    private int id;
+    private int idTipoMusica;
     private String nombreTipo;
     private String categoria;
     private String descripcion;
 
-    public int getId() {
-        return id;
+    public int getIdTipoMusica() {
+        return idTipoMusica;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdTipoMusica(int idTipoMusica) {
+        this.idTipoMusica = idTipoMusica;
     }
 
     public String getNombreTipo() {

@@ -1,7 +1,8 @@
 package pe.edu.upc.NightWave.entities;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
+
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "Notificacion")
@@ -9,7 +10,7 @@ public class Notificacion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idNotificacion;
 
     @Column(name = "titulo", length = 150, nullable = false)
     private String titulo;
@@ -20,37 +21,37 @@ public class Notificacion {
     @Column(name = "tipo", length = 30, nullable = false)
     private String tipo;
 
-    @Column(name = "fecha_programada", nullable = false)
-    private LocalDateTime fechaProgramada;
+    @Column(name = "fechaProgramada", nullable = false)
+    private LocalDate fechaProgramada;
 
     @Column(name = "leida", nullable = false)
     private boolean leida;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario;
+    @JoinColumn(name = "idUsuario", nullable = false)
+    private Users idUsuario;
 
     // Constructor vacío
     public Notificacion() {}
 
     // Constructor completo
-    public Notificacion(int id, String titulo, String mensaje, String tipo, LocalDateTime fechaProgramada, boolean leida, Usuario usuario) {
-        this.id = id;
+
+    public Notificacion(int idNotificacion, String titulo, String mensaje, String tipo, LocalDate fechaProgramada, boolean leida, Users idUsuario) {
+        this.idNotificacion = idNotificacion;
         this.titulo = titulo;
         this.mensaje = mensaje;
         this.tipo = tipo;
         this.fechaProgramada = fechaProgramada;
         this.leida = leida;
-        this.usuario = usuario;
+        this.idUsuario = idUsuario;
     }
 
-    // Getters y Setters
-    public int getId() {
-        return id;
+    public int getIdNotificacion() {
+        return idNotificacion;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdNotificacion(int idNotificacion) {
+        this.idNotificacion = idNotificacion;
     }
 
     public String getTitulo() {
@@ -77,11 +78,11 @@ public class Notificacion {
         this.tipo = tipo;
     }
 
-    public LocalDateTime getFechaProgramada() {
+    public LocalDate getFechaProgramada() {
         return fechaProgramada;
     }
 
-    public void setFechaProgramada(LocalDateTime fechaProgramada) {
+    public void setFechaProgramada(LocalDate fechaProgramada) {
         this.fechaProgramada = fechaProgramada;
     }
 
@@ -93,11 +94,11 @@ public class Notificacion {
         this.leida = leida;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Users getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(Users idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }

@@ -4,45 +4,46 @@ import jakarta.persistence.*;
 import pe.edu.upc.NightWave.entities.Objetivos;
 import pe.edu.upc.NightWave.entities.Recompensas;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class ObjetivosRecompensasDTO
 {
-    private int id;
-    private LocalDateTime fechaObtencion;
-    private Recompensas recompensa;
-    private Objetivos objetivo;
+    private int idObjetivosRecompensas;
+    private LocalDate fechaObtencion;
+    private Recompensas idRecompensa;
+    private Objetivos idObjetivo;
 
-    public int getId() {
-        return id;
+    public int getIdObjetivosRecompensas() {
+        return idObjetivosRecompensas;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdObjetivosRecompensas(int idObjetivosRecompensas) {
+        this.idObjetivosRecompensas = idObjetivosRecompensas;
     }
 
-    public LocalDateTime getFechaObtencion() {
+    public LocalDate getFechaObtencion() {
         return fechaObtencion;
     }
 
-    public void setFechaObtencion(LocalDateTime fechaObtencion) {
+    public void setFechaObtencion(LocalDate fechaObtencion) {
         this.fechaObtencion = fechaObtencion;
     }
 
-    public Recompensas getRecompensa() {
-        return recompensa;
+    public Recompensas getIdRecompensa() {
+        return idRecompensa;
     }
 
-    public void setRecompensa(Recompensas recompensa) {
-        this.recompensa = recompensa;
+    public void setIdRecompensa(Recompensas idRecompensa) {
+        this.idRecompensa = idRecompensa;
     }
 
-    public Objetivos getObjetivo() {
-        return objetivo;
+    public Objetivos getIdObjetivo() {
+        return idObjetivo;
     }
 
-    public void setObjetivo(Objetivos objetivo) {
-        this.objetivo = objetivo;
+    public void setIdObjetivo(Objetivos idObjetivo) {
+        this.idObjetivo = idObjetivo;
     }
 }
 

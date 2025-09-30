@@ -1,68 +1,70 @@
 package pe.edu.upc.NightWave.entities;
 
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Objetivos_Recompensas")
+@Table(name = "ObjetivosRecompensa")
 public class ObjetivosRecompensas {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idObjetivosRecompensas;
 
-    @Column(name = "fecha_obtencion", nullable = false)
-    private LocalDateTime fechaObtencion;
-
-    @ManyToOne
-    @JoinColumn(name = "recompensa_id", nullable = false)
-    private Recompensas recompensa;
+    @Column(name = "fechaObtencion", nullable = false)
+    private LocalDate fechaObtencion;
 
     @ManyToOne
-    @JoinColumn(name = "objetivo_id", nullable = false)
-    private Objetivos objetivo;
+    @JoinColumn(name = "idRecompensa", nullable = false)
+    private Recompensas idRecompensa;
+
+    @ManyToOne
+    @JoinColumn(name = "idObjetivo", nullable = false)
+    private Objetivos idObjetivo;
 
     // Constructor vacío
     public ObjetivosRecompensas() {}
 
     // Constructor completo
-    public ObjetivosRecompensas(int id, LocalDateTime fechaObtencion, Recompensas recompensa, Objetivos objetivo) {
-        this.id = id;
+
+    public ObjetivosRecompensas(int idObjetivosRecompensas, LocalDate fechaObtencion, Recompensas idRecompensa, Objetivos idObjetivo) {
+        this.idObjetivosRecompensas = idObjetivosRecompensas;
         this.fechaObtencion = fechaObtencion;
-        this.recompensa = recompensa;
-        this.objetivo = objetivo;
+        this.idRecompensa = idRecompensa;
+        this.idObjetivo = idObjetivo;
     }
 
-    // Getters y Setters
-    public int getId() {
-        return id;
+    public int getIdObjetivosRecompensas() {
+        return idObjetivosRecompensas;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdObjetivosRecompensas(int idObjetivosRecompensas) {
+        this.idObjetivosRecompensas = idObjetivosRecompensas;
     }
 
-    public LocalDateTime getFechaObtencion() {
+    public LocalDate getFechaObtencion() {
         return fechaObtencion;
     }
 
-    public void setFechaObtencion(LocalDateTime fechaObtencion) {
+    public void setFechaObtencion(LocalDate fechaObtencion) {
         this.fechaObtencion = fechaObtencion;
     }
 
-    public Recompensas getRecompensa() {
-        return recompensa;
+    public Recompensas getIdRecompensa() {
+        return idRecompensa;
     }
 
-    public void setRecompensa(Recompensas recompensa) {
-        this.recompensa = recompensa;
+    public void setIdRecompensa(Recompensas idRecompensa) {
+        this.idRecompensa = idRecompensa;
     }
 
-    public Objetivos getObjetivo() {
-        return objetivo;
+    public Objetivos getIdObjetivo() {
+        return idObjetivo;
     }
 
-    public void setObjetivo(Objetivos objetivo) {
-        this.objetivo = objetivo;
+    public void setIdObjetivo(Objetivos idObjetivo) {
+        this.idObjetivo = idObjetivo;
     }
 }

@@ -3,14 +3,14 @@ package pe.edu.upc.NightWave.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Habitos")
+@Table(name = "Habito")
 public class Habitos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idHabitos;
 
-    @Column(name = "nombre_habito", length = 100, nullable = false)
+    @Column(name = "nombreHabito", length = 100, nullable = false)
     private String nombreHabito;
 
     @Column(name = "descripcion", length = 300, nullable = false)
@@ -19,37 +19,37 @@ public class Habitos {
     @Column(name = "categoria", length = 30, nullable = false)
     private String categoria;
 
-    @Column(name = "momento_dia", length = 20, nullable = false)
+    @Column(name = "momentoDia", length = 20, nullable = false)
     private String momentoDia;
 
     @Column(name = "activo", nullable = false)
     private boolean activo;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario;
+    @JoinColumn(name = "idUsuario", nullable = false)
+    private Users idUsuario;
 
     // Constructor vacío
     public Habitos() {}
 
     // Constructor completo
-    public Habitos(int id, String nombreHabito, String descripcion, String categoria, String momentoDia, boolean activo, Usuario usuario) {
-        this.id = id;
+
+    public Habitos(int idHabitos, String nombreHabito, String descripcion, String categoria, String momentoDia, boolean activo, Users idUsuario) {
+        this.idHabitos = idHabitos;
         this.nombreHabito = nombreHabito;
         this.descripcion = descripcion;
         this.categoria = categoria;
         this.momentoDia = momentoDia;
         this.activo = activo;
-        this.usuario = usuario;
+        this.idUsuario = idUsuario;
     }
 
-    // Getters y Setters
-    public int getId() {
-        return id;
+    public int getIdHabitos() {
+        return idHabitos;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdHabitos(int idHabitos) {
+        this.idHabitos = idHabitos;
     }
 
     public String getNombreHabito() {
@@ -92,11 +92,11 @@ public class Habitos {
         this.activo = activo;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Users getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(Users idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }

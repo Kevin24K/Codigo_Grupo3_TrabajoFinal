@@ -14,7 +14,6 @@ public class RecompensasServiceImplement implements IRecompensasService
     @Autowired
     private IRecompensasRepository rR;
 
-
     @Override
     public void insert(Recompensas recompensas) {
         rR.save(recompensas);
@@ -40,8 +39,4 @@ public class RecompensasServiceImplement implements IRecompensasService
         rR.save(recompensas);
     }
 
-    @Override
-    public List<Recompensas> listarPorTipoRecompensa(String tipoRecompensa) {
-        return rR.findByTipoRecompensa(tipoRecompensa);
-    }
 }

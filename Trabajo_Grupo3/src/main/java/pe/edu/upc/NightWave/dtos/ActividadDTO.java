@@ -1,32 +1,37 @@
 package pe.edu.upc.NightWave.dtos;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import pe.edu.upc.NightWave.entities.MusicaMultimedia;
+import pe.edu.upc.NightWave.entities.Users;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class ActividadDTO
 {
-    private int id;
+    private int idActividad;
     private String tipoActividad;
     private String nombre;
     private String descripcion;
     private int duracionMinutos;
     private String intensidad;
-    private LocalDateTime fechaInicio;
-    private LocalDateTime fechaFin;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
     private boolean completada;
     private int nivelEstresAntes;
     private int nivelEstresDespues;
     private int puntuacionSatisfaccion;
-    private Usuario usuario;
-    private MusicaMultimedia musica;
+    private Users idUsuario;
+    private MusicaMultimedia idMusica;
 
-    public int getId() {
-        return id;
+    public int getIdActividad() {
+        return idActividad;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdActividad(int idActividad) {
+        this.idActividad = idActividad;
     }
 
     public String getTipoActividad() {
@@ -69,19 +74,19 @@ public class ActividadDTO
         this.intensidad = intensidad;
     }
 
-    public LocalDateTime getFechaInicio() {
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(LocalDateTime fechaInicio) {
+    public void setFechaInicio(LocalDate fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public LocalDateTime getFechaFin() {
+    public LocalDate getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(LocalDateTime fechaFin) {
+    public void setFechaFin(LocalDate fechaFin) {
         this.fechaFin = fechaFin;
     }
 
@@ -117,19 +122,19 @@ public class ActividadDTO
         this.puntuacionSatisfaccion = puntuacionSatisfaccion;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Users getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(Users idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public MusicaMultimedia getMusica() {
-        return musica;
+    public MusicaMultimedia getIdMusica() {
+        return idMusica;
     }
 
-    public void setMusica(MusicaMultimedia musica) {
-        this.musica = musica;
+    public void setIdMusica(MusicaMultimedia idMusica) {
+        this.idMusica = idMusica;
     }
 }

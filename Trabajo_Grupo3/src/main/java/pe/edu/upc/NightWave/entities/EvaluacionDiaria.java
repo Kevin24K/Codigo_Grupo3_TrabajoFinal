@@ -1,52 +1,54 @@
 package pe.edu.upc.NightWave.entities;
 
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Evaluacion_Diaria")
+@Table(name = "EvaluacionDiaria")
 public class EvaluacionDiaria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idEvaluacionDiaria;
 
-    @Column(name = "estado_animo", length = 30, nullable = false)
+    @Column(name = "estadoAnimo", length = 30, nullable = false)
     private String estadoAnimo;
 
-    @Column(name = "nivel_energia", nullable = false)
+    @Column(name = "nivelEnergia", nullable = false)
     private int nivelEnergia;
 
     @Column(name = "recomendaciones", length = 500, nullable = false)
     private String recomendaciones;
 
-    @Column(name = "fecha_evaluacion", nullable = false)
-    private LocalDateTime fechaEvaluacion;
+    @Column(name = "fechaEvaluacion", nullable = false)
+    private LocalDate fechaEvaluacion;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario;
+    @JoinColumn(name = "idUsuario", nullable = false)
+    private Users idUsuario;
 
     // Constructor vacío
     public EvaluacionDiaria() {}
 
     // Constructor completo
-    public EvaluacionDiaria(int id, String estadoAnimo, int nivelEnergia, String recomendaciones, LocalDateTime fechaEvaluacion, Usuario usuario) {
-        this.id = id;
+
+    public EvaluacionDiaria(int idEvaluacionDiaria, String estadoAnimo, int nivelEnergia, String recomendaciones, LocalDate fechaEvaluacion, Users idUsuario) {
+        this.idEvaluacionDiaria = idEvaluacionDiaria;
         this.estadoAnimo = estadoAnimo;
         this.nivelEnergia = nivelEnergia;
         this.recomendaciones = recomendaciones;
         this.fechaEvaluacion = fechaEvaluacion;
-        this.usuario = usuario;
+        this.idUsuario = idUsuario;
     }
 
-    // Getters y Setters
-    public int getId() {
-        return id;
+    public int getIdEvaluacionDiaria() {
+        return idEvaluacionDiaria;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdEvaluacionDiaria(int idEvaluacionDiaria) {
+        this.idEvaluacionDiaria = idEvaluacionDiaria;
     }
 
     public String getEstadoAnimo() {
@@ -73,19 +75,19 @@ public class EvaluacionDiaria {
         this.recomendaciones = recomendaciones;
     }
 
-    public LocalDateTime getFechaEvaluacion() {
+    public LocalDate getFechaEvaluacion() {
         return fechaEvaluacion;
     }
 
-    public void setFechaEvaluacion(LocalDateTime fechaEvaluacion) {
+    public void setFechaEvaluacion(LocalDate fechaEvaluacion) {
         this.fechaEvaluacion = fechaEvaluacion;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Users getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(Users idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }

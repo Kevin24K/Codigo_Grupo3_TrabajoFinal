@@ -1,57 +1,59 @@
 package pe.edu.upc.NightWave.entities;
 
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Seguimiento_Habitos")
+@Table(name = "SeguimientoHabito")
 public class SeguimientoHabitos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idSeguimientoHabitos;
 
     @Column(name = "completado", nullable = false)
     private boolean completado;
 
-    @Column(name = "calidad_ejecucion", nullable = false)
+    @Column(name = "calidadEjecucion", nullable = false)
     private int calidadEjecucion;
 
     @Column(name = "notas", length = 200, nullable = false)
     private String notas;
 
-    @Column(name = "fecha_seguimiento", nullable = false)
-    private LocalDateTime fechaSeguimiento;
+    @Column(name = "fechaSeguimiento", nullable = false)
+    private LocalDate fechaSeguimiento;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuario;
+    @JoinColumn(name = "idUsuario", nullable = false)
+    private Users idUsuario;
 
     @ManyToOne
-    @JoinColumn(name = "habito_id", nullable = false)
-    private Habitos habito;
+    @JoinColumn(name = "idHabito", nullable = false)
+    private Habitos idHabito;
 
     // Constructor vacío
     public SeguimientoHabitos() {}
 
     // Constructor completo
-    public SeguimientoHabitos(int id, boolean completado, int calidadEjecucion, String notas, LocalDateTime fechaSeguimiento, Usuario usuario, Habitos habito) {
-        this.id = id;
+
+    public SeguimientoHabitos(int idSeguimientoHabitos, boolean completado, int calidadEjecucion, String notas, LocalDate fechaSeguimiento, Users idUsuario, Habitos idHabito) {
+        this.idSeguimientoHabitos = idSeguimientoHabitos;
         this.completado = completado;
         this.calidadEjecucion = calidadEjecucion;
         this.notas = notas;
         this.fechaSeguimiento = fechaSeguimiento;
-        this.usuario = usuario;
-        this.habito = habito;
+        this.idUsuario = idUsuario;
+        this.idHabito = idHabito;
     }
 
-    // Getters y Setters
-    public int getId() {
-        return id;
+    public int getIdSeguimientoHabitos() {
+        return idSeguimientoHabitos;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdSeguimientoHabitos(int idSeguimientoHabitos) {
+        this.idSeguimientoHabitos = idSeguimientoHabitos;
     }
 
     public boolean isCompletado() {
@@ -78,27 +80,27 @@ public class SeguimientoHabitos {
         this.notas = notas;
     }
 
-    public LocalDateTime getFechaSeguimiento() {
+    public LocalDate getFechaSeguimiento() {
         return fechaSeguimiento;
     }
 
-    public void setFechaSeguimiento(LocalDateTime fechaSeguimiento) {
+    public void setFechaSeguimiento(LocalDate fechaSeguimiento) {
         this.fechaSeguimiento = fechaSeguimiento;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Users getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(Users idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public Habitos getHabito() {
-        return habito;
+    public Habitos getIdHabito() {
+        return idHabito;
     }
 
-    public void setHabito(Habitos habito) {
-        this.habito = habito;
+    public void setIdHabito(Habitos idHabito) {
+        this.idHabito = idHabito;
     }
 }

@@ -12,19 +12,6 @@ import java.util.List;
 @Repository
 public interface ISeguimientoHabitosRepository extends JpaRepository<SeguimientoHabitos,Integer>
 {
-    // Query para encontrar el seguimiento de un hábito por usuario
-    @Query("SELECT sh FROM SeguimientoHabitos sh WHERE sh.usuario.id = :usuarioId")
-    List<SeguimientoHabitos> findByUsuarioId(@Param("usuarioId") int usuarioId);
 
-    // Query para encontrar los hábitos completados por usuario
-    @Query("SELECT sh FROM SeguimientoHabitos sh WHERE sh.usuario.id = :usuarioId AND sh.completado = true")
-    List<SeguimientoHabitos> findByUsuarioIdAndEstadoCumplimientoTrue(@Param("usuarioId") int usuarioId);
 
-    // Query para encontrar los hábitos no completados por usuario
-    @Query("SELECT sh FROM SeguimientoHabitos sh WHERE sh.usuario.id = :usuarioId AND sh.completado = false")
-    List<SeguimientoHabitos> findByUsuarioIdAndEstadoCumplimientoFalse(@Param("usuarioId") int usuarioId);
-
-    // Query para encontrar los hábitos de un usuario en una fecha específica
-    @Query("SELECT sh FROM SeguimientoHabitos sh WHERE sh.usuario.id = :usuarioId AND sh.fechaSeguimiento = :fecha")
-    List<SeguimientoHabitos> findByUsuarioIdAndFechaRegistro(@Param("usuarioId") int usuarioId, @Param("fecha") LocalDate fecha);
 }
