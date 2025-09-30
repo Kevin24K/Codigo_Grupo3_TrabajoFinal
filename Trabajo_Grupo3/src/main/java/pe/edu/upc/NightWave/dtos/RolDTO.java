@@ -5,7 +5,6 @@ public class RolDTO
 
     private int idRol;
     private String nombre;
-    private String descripcion;
 
     public int getIdRol() {
         return idRol;
@@ -23,11 +22,4 @@ public class RolDTO
         this.nombre = nombre;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
 }

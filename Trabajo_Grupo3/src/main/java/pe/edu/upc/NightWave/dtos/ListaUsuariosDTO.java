@@ -1,5 +1,6 @@
 package pe.edu.upc.NightWave.dtos;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class ListaUsuariosDTO
@@ -8,7 +9,7 @@ public class ListaUsuariosDTO
     private String nombre;
     private String apellido;
     private String email;
-    private LocalDateTime fechaNacimiento;
+    private LocalDate fechaNacimiento;
     private String genero;
     private int rolId;
 
@@ -45,11 +46,11 @@ public class ListaUsuariosDTO
         this.email = email;
     }
 
-    public LocalDateTime getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
