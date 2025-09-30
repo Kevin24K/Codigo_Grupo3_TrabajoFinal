@@ -1,6 +1,5 @@
 package pe.edu.upc.NightWave.dtos;
 
-import jakarta.persistence.*;
 import pe.edu.upc.NightWave.entities.Usuario;
 
 import java.time.LocalDateTime;
@@ -18,7 +17,7 @@ public class ObjetivosDTO
     private LocalDateTime fechaFin;
     private boolean alcanzado;
     private LocalDateTime fechaLogro;
-    private Usuario usuario;
+    private int IdUsuario;
 
     public int getId() {
         return id;
@@ -108,13 +107,14 @@ public class ObjetivosDTO
         this.fechaLogro = fechaLogro;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public int getIdUsuario() {
+        return IdUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(int idUsuario) {
+        IdUsuario = idUsuario;
     }
+
 }
 
 

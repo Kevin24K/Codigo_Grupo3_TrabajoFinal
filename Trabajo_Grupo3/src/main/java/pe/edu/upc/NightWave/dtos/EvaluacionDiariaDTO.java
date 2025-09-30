@@ -1,9 +1,7 @@
 package pe.edu.upc.NightWave.dtos;
 
-import jakarta.persistence.*;
-import pe.edu.upc.NightWave.entities.Usuario;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class EvaluacionDiariaDTO
 {
@@ -12,8 +10,8 @@ public class EvaluacionDiariaDTO
     private String estadoAnimo;
     private int nivelEnergia;
     private String recomendaciones;
-    private LocalDateTime fechaEvaluacion;
-    private Usuario usuario;
+    private LocalDate fechaEvaluacion;
+    private int IdUsuario;
 
     public int getId() {
         return id;
@@ -21,6 +19,14 @@ public class EvaluacionDiariaDTO
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getIdUsuario() {
+        return IdUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        IdUsuario = idUsuario;
     }
 
     public String getEstadoAnimo() {
@@ -47,20 +53,13 @@ public class EvaluacionDiariaDTO
         this.recomendaciones = recomendaciones;
     }
 
-    public LocalDateTime getFechaEvaluacion() {
+    public LocalDate getFechaEvaluacion() {
         return fechaEvaluacion;
     }
 
-    public void setFechaEvaluacion(LocalDateTime fechaEvaluacion) {
+    public void setFechaEvaluacion(LocalDate fechaEvaluacion) {
         this.fechaEvaluacion = fechaEvaluacion;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
 }
 

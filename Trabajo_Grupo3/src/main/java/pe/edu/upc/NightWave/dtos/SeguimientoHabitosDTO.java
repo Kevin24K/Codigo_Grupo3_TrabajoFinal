@@ -1,6 +1,5 @@
 package pe.edu.upc.NightWave.dtos;
 
-import jakarta.persistence.*;
 import pe.edu.upc.NightWave.entities.Habitos;
 import pe.edu.upc.NightWave.entities.Usuario;
 
@@ -14,8 +13,8 @@ public class SeguimientoHabitosDTO
     private int calidadEjecucion;
     private String notas;
     private LocalDateTime fechaSeguimiento;
-    private Usuario usuario;
-    private Habitos habito;
+    private int IdUsuario;
+    private int IdHabito;
 
     public int getId() {
         return id;
@@ -57,19 +56,20 @@ public class SeguimientoHabitosDTO
         this.fechaSeguimiento = fechaSeguimiento;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public int getIdUsuario() {
+        return IdUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(int idUsuario) {
+        IdUsuario = idUsuario;
     }
 
-    public Habitos getHabito() {
-        return habito;
+    public int getIdHabito() {
+        return IdHabito;
     }
 
-    public void setHabito(Habitos habito) {
-        this.habito = habito;
+    public void setIdHabito(int idHabito) {
+        IdHabito = idHabito;
     }
+
 }

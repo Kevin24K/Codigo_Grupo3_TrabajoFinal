@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/estres")
 public class EstresController {
+
     @Autowired
     private IEstresService eS;
 
@@ -27,7 +28,7 @@ public class EstresController {
 
         if (lista.isEmpty()) {
             return ResponseEntity.status(HttpStatus.OK)
-                    .body("No existen estres registrados.");
+                    .body("No existen registros de estrés.");
         }
         return ResponseEntity.ok(lista);
     }
@@ -35,40 +36,37 @@ public class EstresController {
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody EstresDTO dto) {
         ModelMapper m = new ModelMapper();
-        Estres e = m.map(dto, Estres.class);
-        eS.insert(e);
+        Estres estres = m.map(dto, Estres.class);
+        eS.insert(estres);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body("Estres registrado correctamente.");
+                .body("Registro de estrés creado correctamente.");
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable("id") Integer id) {
         Estres estres = eS.listId(id);
         if (estres == null) {
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body("No existe estres con ID: " + id);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No existe registro de estrés con ID: " + id);
         }
         ModelMapper m = new ModelMapper();
         EstresDTO dto = m.map(estres, EstresDTO.class);
         return ResponseEntity.ok(dto);
     }
 
-
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody EstresDTO dto) {
         ModelMapper m = new ModelMapper();
-        Estres es = m.map(dto, Estres.class);
+        Estres estres = m.map(dto, Estres.class);
 
         Estres existente = eS.listId(dto.getId());
         if (existente == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No se puede modificar. No existe control parental con ID: " + dto.getId());
+                    .body("No se puede modificar. No existe registro de estrés con ID: " + dto.getId());
         }
 
-        eS.update(es);
-        return ResponseEntity.ok("Control parental con ID " + dto.getId() + " modificado correctamente.");
+        eS.update(estres);
+        return ResponseEntity.ok("Registro de estrés con ID " + dto.getId() + " modificado correctamente.");
     }
 
     @DeleteMapping("/{id}")
@@ -76,12 +74,9 @@ public class EstresController {
         Estres estres = eS.listId(id);
         if (estres == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No existe un estres con el ID: " + id);
+                    .body("No existe registro de estrés con ID: " + id);
         }
         eS.delete(id);
-        return ResponseEntity.ok("Registro con ID " + id + " eliminado correctamente.");
+        return ResponseEntity.ok("Registro de estrés con ID " + id + " eliminado correctamente.");
     }
-
-
-
 }

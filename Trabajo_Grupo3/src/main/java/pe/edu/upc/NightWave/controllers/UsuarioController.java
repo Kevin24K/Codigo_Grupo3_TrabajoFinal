@@ -23,9 +23,9 @@ public class UsuarioController {
 
     @GetMapping
     public ResponseEntity<?> listar() {
-        List<ListaUsuariosDTO> lista = uS.list().stream().map(x -> {
+        List<UsuarioDTO> lista = uS.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
-            return m.map(x, ListaUsuariosDTO.class);
+            return m.map(x, UsuarioDTO.class);
         }).collect(Collectors.toList());
 
         if (lista.isEmpty()) {

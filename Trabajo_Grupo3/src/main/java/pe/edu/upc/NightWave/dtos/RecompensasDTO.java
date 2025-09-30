@@ -1,10 +1,5 @@
 package pe.edu.upc.NightWave.dtos;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
 public class RecompensasDTO
 {
     private int idRecompensa;
@@ -52,4 +47,5 @@ public class RecompensasDTO
     public void setPuntosValor(int puntosValor) {
         this.puntosValor = puntosValor;
     }
+
 }

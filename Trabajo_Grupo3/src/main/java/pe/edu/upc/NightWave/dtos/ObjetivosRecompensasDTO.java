@@ -1,17 +1,13 @@
 package pe.edu.upc.NightWave.dtos;
 
-import jakarta.persistence.*;
-import pe.edu.upc.NightWave.entities.Objetivos;
-import pe.edu.upc.NightWave.entities.Recompensas;
-
 import java.time.LocalDateTime;
 
 public class ObjetivosRecompensasDTO
 {
     private int id;
     private LocalDateTime fechaObtencion;
-    private Recompensas recompensa;
-    private Objetivos objetivo;
+    private int IdRecompensa;
+    private int IdOjetivo;
 
     public int getId() {
         return id;
@@ -29,20 +25,21 @@ public class ObjetivosRecompensasDTO
         this.fechaObtencion = fechaObtencion;
     }
 
-    public Recompensas getRecompensa() {
-        return recompensa;
+    public int getIdOjetivo() {
+        return IdOjetivo;
     }
 
-    public void setRecompensa(Recompensas recompensa) {
-        this.recompensa = recompensa;
+    public void setIdOjetivo(int idOjetivo) {
+        IdOjetivo = idOjetivo;
     }
 
-    public Objetivos getObjetivo() {
-        return objetivo;
+    public int getIdRecompensa() {
+        return IdRecompensa;
     }
 
-    public void setObjetivo(Objetivos objetivo) {
-        this.objetivo = objetivo;
+    public void setIdRecompensa(int idRecompensa) {
+        IdRecompensa = idRecompensa;
     }
+
 }
 

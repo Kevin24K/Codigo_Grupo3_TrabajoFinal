@@ -1,8 +1,5 @@
 package pe.edu.upc.NightWave.dtos;
 
-import jakarta.persistence.*;
-import pe.edu.upc.NightWave.entities.Usuario;
-
 import java.time.LocalDateTime;
 
 public class EstresDTO
@@ -15,7 +12,7 @@ public class EstresDTO
     private String sintomasFisicos;
     private String sintomasEmocionales;
     private LocalDateTime fechaRegistro;
-    private Usuario usuario;
+    private int IdUsuario;
 
 
     public int getId() {
@@ -26,16 +23,16 @@ public class EstresDTO
         this.id = id;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
     public LocalDateTime getFechaRegistro() {
         return fechaRegistro;
+    }
+
+    public int getIdUsuario() {
+        return IdUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        IdUsuario = idUsuario;
     }
 
     public void setFechaRegistro(LocalDateTime fechaRegistro) {

@@ -1,8 +1,5 @@
 package pe.edu.upc.NightWave.dtos;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import pe.edu.upc.NightWave.entities.MusicaMultimedia;
 import pe.edu.upc.NightWave.entities.Usuario;
 
@@ -22,8 +19,8 @@ public class ActividadDTO
     private int nivelEstresAntes;
     private int nivelEstresDespues;
     private int puntuacionSatisfaccion;
-    private Usuario usuario;
-    private MusicaMultimedia musica;
+    private int IdUsuario;
+    private int IdMusica;
 
     public int getId() {
         return id;
@@ -121,19 +118,19 @@ public class ActividadDTO
         this.puntuacionSatisfaccion = puntuacionSatisfaccion;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public int getIdUsuario() {
+        return IdUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(int idUsuario) {
+        IdUsuario = idUsuario;
     }
 
-    public MusicaMultimedia getMusica() {
-        return musica;
+    public int getIdMusica() {
+        return IdMusica;
     }
 
-    public void setMusica(MusicaMultimedia musica) {
-        this.musica = musica;
+    public void setIdMusica(int idMusica) {
+        IdMusica = idMusica;
     }
 }

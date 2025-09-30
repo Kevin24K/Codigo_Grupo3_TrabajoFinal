@@ -1,9 +1,5 @@
 package pe.edu.upc.NightWave.dtos;
 
-import jakarta.persistence.*;
-import pe.edu.upc.NightWave.entities.MusicaMultimedia;
-import pe.edu.upc.NightWave.entities.Usuario;
-
 import java.time.LocalTime;
 
 public class AlarmaDTO
@@ -14,8 +10,8 @@ public class AlarmaDTO
     private String diasSemana;
     private double volumen;
     private boolean activa;
-    private Usuario usuario;
-    private MusicaMultimedia contenido;
+    private int IdUsuario;
+    private int IdContenido;
 
     public int getId() {
         return id;
@@ -65,19 +61,19 @@ public class AlarmaDTO
         this.activa = activa;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public int getIdUsuario() {
+        return IdUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(int idUsuario) {
+        IdUsuario = idUsuario;
     }
 
-    public MusicaMultimedia getContenido() {
-        return contenido;
+    public int getIdContenido() {
+        return IdContenido;
     }
 
-    public void setContenido(MusicaMultimedia contenido) {
-        this.contenido = contenido;
+    public void setIdContenido(int idContenido) {
+        IdContenido = idContenido;
     }
 }

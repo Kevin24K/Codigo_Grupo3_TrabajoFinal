@@ -1,9 +1,5 @@
 package pe.edu.upc.NightWave.dtos;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
 public class TipoMusicaDTO
 {
@@ -43,4 +39,5 @@ public class TipoMusicaDTO
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
 }

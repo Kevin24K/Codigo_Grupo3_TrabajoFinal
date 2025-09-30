@@ -1,5 +1,7 @@
 package pe.edu.upc.NightWave.dtos;
 
+import pe.edu.upc.NightWave.entities.Rol;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -11,7 +13,7 @@ public class ListaUsuariosDTO
     private String email;
     private LocalDate fechaNacimiento;
     private String genero;
-    private int rolId;
+    private int RolId;
 
 
     public int getId() {
@@ -63,10 +65,10 @@ public class ListaUsuariosDTO
     }
 
     public int getRolId() {
-        return rolId;
+        return RolId;
     }
 
     public void setRolId(int rolId) {
-        this.rolId = rolId;
+        RolId = rolId;
     }
 }

@@ -67,7 +67,7 @@ public class SuenoController {
         Sueno existente = sS.listId(dto.getId());
         if (existente == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No se puede modificar. No existe notificaicones con ID: " + dto.getId());
+                    .body("No se puede modificar. No existe sueños con ID: " + dto.getId());
         }
 
         sS.update(su);

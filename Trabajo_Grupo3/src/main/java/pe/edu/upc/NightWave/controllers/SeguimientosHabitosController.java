@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.NightWave.dtos.SeguimientoHabitosDTO;
 import pe.edu.upc.NightWave.entities.SeguimientoHabitos;
-import pe.edu.upc.NightWave.entities.Usuario;
 import pe.edu.upc.NightWave.servicesinterfaces.ISeguimientoHabitosService;
 
 import java.util.List;
@@ -19,49 +18,67 @@ public class SeguimientosHabitosController {
     @Autowired
     private ISeguimientoHabitosService shS;
 
+    private ModelMapper modelMapper = new ModelMapper();
+
+    // Listar todos
+    @GetMapping
+    public ResponseEntity<?> listar() {
+        List<SeguimientoHabitosDTO> lista = shS.list().stream()
+                .map(s -> modelMapper.map(s, SeguimientoHabitosDTO.class))
+                .collect(Collectors.toList());
+
+        if (lista.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body("No existen registros de seguimiento de hábitos.");
+        }
+
+        return ResponseEntity.ok(lista);
+    }
+
+    // Listar por ID
+    @GetMapping("/{id}")
+    public ResponseEntity<?> listarPorId(@PathVariable("id") Integer id) {
+        SeguimientoHabitos seguimiento = shS.listId(id);
+        if (seguimiento == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No existe seguimiento de hábito con ID: " + id);
+        }
+        SeguimientoHabitosDTO dto = modelMapper.map(seguimiento, SeguimientoHabitosDTO.class);
+        return ResponseEntity.ok(dto);
+    }
+
+    // Registrar
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody SeguimientoHabitosDTO dto) {
-        ModelMapper m = new ModelMapper();
-        SeguimientoHabitos sh = m.map(dto, SeguimientoHabitos.class);
-
-        Usuario usuario = new Usuario();
-        usuario.setId(dto.getId());
-        sh.setUsuario(usuario);
-
-        shS.insert(sh);
-        return new ResponseEntity<>("Registro exitoso", HttpStatus.CREATED);
+        SeguimientoHabitos seguimiento = modelMapper.map(dto, SeguimientoHabitos.class);
+        shS.insert(seguimiento);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Seguimiento de hábito registrado correctamente.");
     }
 
-    @GetMapping
-    public List<SeguimientoHabitosDTO> listar() {
-        return shS.list().stream().map(x -> {
-            ModelMapper m = new ModelMapper();
-            return m.map(x, SeguimientoHabitosDTO.class);
-        }).collect(Collectors.toList());
-    }
-
-    @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") int id) {
-        shS.delete(id);
-    }
-
-    @GetMapping("/{id}")
-    public SeguimientoHabitosDTO listarId(@PathVariable("id") int id) {
-        ModelMapper m = new ModelMapper();
-        return m.map(shS.listId(id), SeguimientoHabitosDTO.class);
-    }
-
+    // Modificar
     @PutMapping
-    public void modificar(@RequestBody SeguimientoHabitosDTO dto) {
-        ModelMapper m = new ModelMapper();
-        SeguimientoHabitos sh = m.map(dto, SeguimientoHabitos.class);
+    public ResponseEntity<String> modificar(@RequestBody SeguimientoHabitosDTO dto) {
+        SeguimientoHabitos existente = shS.listId(dto.getId());
+        if (existente == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No se puede modificar. No existe seguimiento de hábito con ID: " + dto.getId());
+        }
+        SeguimientoHabitos seguimiento = modelMapper.map(dto, SeguimientoHabitos.class);
+        shS.update(seguimiento);
+        return ResponseEntity.ok("Seguimiento de hábito con ID " + dto.getId() + " modificado correctamente.");
+    }
 
-        // Asignar el usuario
-        Usuario usuario = new Usuario();
-        usuario.setId(dto.getId());
-        sh.setUsuario(usuario);
-
-        shS.update(sh);
+    // Eliminar
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> eliminar(@PathVariable("id") Integer id) {
+        SeguimientoHabitos existente = shS.listId(id);
+        if (existente == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No existe seguimiento de hábito con ID: " + id);
+        }
+        shS.delete(id);
+        return ResponseEntity.ok("Seguimiento de hábito con ID " + id + " eliminado correctamente.");
     }
 
     // Endpoint para la query personalizada: Seguimiento de hábitos por usuario

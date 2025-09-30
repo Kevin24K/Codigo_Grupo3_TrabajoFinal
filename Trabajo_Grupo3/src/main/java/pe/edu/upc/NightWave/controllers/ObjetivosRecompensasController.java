@@ -20,56 +20,67 @@ public class ObjetivosRecompensasController {
     @Autowired
     private IObjetivosRecompensasService orS;
 
+    private ModelMapper modelMapper = new ModelMapper();
+
+    // Listar todos
+    @GetMapping
+    public ResponseEntity<?> listar() {
+        List<ObjetivosRecompensasDTO> lista = orS.list().stream()
+                .map(o -> modelMapper.map(o, ObjetivosRecompensasDTO.class))
+                .collect(Collectors.toList());
+
+        if (lista.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body("No existen registros de objetivos y recompensas.");
+        }
+
+        return ResponseEntity.ok(lista);
+    }
+
+    // Listar por ID
+    @GetMapping("/{id}")
+    public ResponseEntity<?> listarPorId(@PathVariable("id") Integer id) {
+        ObjetivosRecompensas objRec = orS.listId(id);
+        if (objRec == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No existe registro de objetivo-recompensa con ID: " + id);
+        }
+        ObjetivosRecompensasDTO dto = modelMapper.map(objRec, ObjetivosRecompensasDTO.class);
+        return ResponseEntity.ok(dto);
+    }
+
+    // Registrar
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody ObjetivosRecompensasDTO dto) {
-        ModelMapper m = new ModelMapper();
-        ObjetivosRecompensas or = m.map(dto, ObjetivosRecompensas.class);
-
-        Objetivos o = new Objetivos();
-        o.setId(dto.getId());
-        Recompensas r = new Recompensas();
-        r.setIdRecompensa(dto.getId());
-
-        or.setObjetivo(o);
-        or.setRecompensa(r);
-
-        orS.insert(or);
-        return new ResponseEntity<>("Registro exitoso", HttpStatus.CREATED);
+        ObjetivosRecompensas objRec = modelMapper.map(dto, ObjetivosRecompensas.class);
+        orS.insert(objRec);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Registro de objetivo-recompensa creado correctamente.");
     }
 
-    @GetMapping
-    public List<ObjetivosRecompensasDTO> listar() {
-        return orS.list().stream().map(x -> {
-            ModelMapper m = new ModelMapper();
-            return m.map(x, ObjetivosRecompensasDTO.class);
-        }).collect(Collectors.toList());
-    }
-
-    @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") int id) {
-        orS.delete(id);
-    }
-
-    @GetMapping("/{id}")
-    public ObjetivosRecompensasDTO listarId(@PathVariable("id") int id) {
-        ModelMapper m = new ModelMapper();
-        return m.map(orS.listId(id), ObjetivosRecompensasDTO.class);
-    }
-
+    // Modificar
     @PutMapping
-    public void modificar(@RequestBody ObjetivosRecompensasDTO dto) {
-        ModelMapper m = new ModelMapper();
-        ObjetivosRecompensas or = m.map(dto, ObjetivosRecompensas.class);
+    public ResponseEntity<String> modificar(@RequestBody ObjetivosRecompensasDTO dto) {
+        ObjetivosRecompensas existente = orS.listId(dto.getId());
+        if (existente == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No se puede modificar. No existe registro de objetivo-recompensa con ID: " + dto.getId());
+        }
+        ObjetivosRecompensas objRec = modelMapper.map(dto, ObjetivosRecompensas.class);
+        orS.update(objRec);
+        return ResponseEntity.ok("Registro de objetivo-recompensa con ID " + dto.getId() + " modificado correctamente.");
+    }
 
-        Objetivos o = new Objetivos();
-        o.setId(dto.getId());
-        Recompensas r = new Recompensas();
-        r.setIdRecompensa(dto.getId());
-
-        or.setObjetivo(o);
-        or.setRecompensa(r);
-
-        orS.update(or);
+    // Eliminar
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> eliminar(@PathVariable("id") Integer id) {
+        ObjetivosRecompensas existente = orS.listId(id);
+        if (existente == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No existe registro de objetivo-recompensa con ID: " + id);
+        }
+        orS.delete(id);
+        return ResponseEntity.ok("Registro de objetivo-recompensa con ID " + id + " eliminado correctamente.");
     }
 
     @GetMapping("/por-objetivo/{idObjetivo}")

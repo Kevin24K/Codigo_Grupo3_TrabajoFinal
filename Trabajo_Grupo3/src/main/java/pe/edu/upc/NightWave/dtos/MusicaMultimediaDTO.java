@@ -1,6 +1,5 @@
 package pe.edu.upc.NightWave.dtos;
 
-import jakarta.persistence.*;
 import pe.edu.upc.NightWave.entities.TipoMusica;
 
 public class MusicaMultimediaDTO
@@ -8,7 +7,7 @@ public class MusicaMultimediaDTO
     private int id;
     private String nombre;
     private String linkArchivo;
-    private TipoMusica tipoMusica;
+    private int IdTipoMusica;
 
     public int getId() {
         return id;
@@ -34,11 +33,13 @@ public class MusicaMultimediaDTO
         this.linkArchivo = linkArchivo;
     }
 
-    public TipoMusica getTipoMusica() {
-        return tipoMusica;
+    public int getIdTipoMusica() {
+        return IdTipoMusica;
     }
 
-    public void setTipoMusica(TipoMusica tipoMusica) {
-        this.tipoMusica = tipoMusica;
+    public void setIdTipoMusica(int idTipoMusica) {
+        IdTipoMusica = idTipoMusica;
     }
+
+
 }

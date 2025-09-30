@@ -1,8 +1,5 @@
 package pe.edu.upc.NightWave.dtos;
 
-import jakarta.persistence.*;
-import pe.edu.upc.NightWave.entities.Usuario;
-
 import java.time.LocalDateTime;
 
 public class SuenoDTO
@@ -18,7 +15,7 @@ public class SuenoDTO
     private boolean pantallasAntesDormir;
     private int nivelEstresDia;
     private String notas;
-    private Usuario usuario;
+    private int IdUsuario;
 
     public int getId() {
         return id;
@@ -108,11 +105,12 @@ public class SuenoDTO
         this.notas = notas;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public int getIdUsuario() {
+        return IdUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(int idUsuario) {
+        IdUsuario = idUsuario;
     }
+
 }

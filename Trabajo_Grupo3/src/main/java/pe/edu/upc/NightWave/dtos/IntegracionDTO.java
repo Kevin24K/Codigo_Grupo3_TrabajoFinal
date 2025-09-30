@@ -66,4 +66,5 @@ public class IntegracionDTO {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+
 }

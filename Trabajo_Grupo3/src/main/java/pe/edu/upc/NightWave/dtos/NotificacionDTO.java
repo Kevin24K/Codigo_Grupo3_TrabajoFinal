@@ -1,6 +1,5 @@
 package pe.edu.upc.NightWave.dtos;
 
-import jakarta.persistence.*;
 import pe.edu.upc.NightWave.entities.Usuario;
 
 import java.time.LocalDateTime;
@@ -13,7 +12,7 @@ public class NotificacionDTO
     private String tipo;
     private LocalDateTime fechaProgramada;
     private boolean leida;
-    private Usuario usuario;
+    private int IdUsuario;
 
     public int getId() {
         return id;
@@ -63,11 +62,13 @@ public class NotificacionDTO
         this.leida = leida;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public int getIdUsuario() {
+        return IdUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(int idUsuario) {
+        IdUsuario = idUsuario;
     }
+
 }
+

@@ -1,7 +1,8 @@
 package pe.edu.upc.NightWave.entities;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
+
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "Evaluacion_Diaria")
@@ -21,7 +22,7 @@ public class EvaluacionDiaria {
     private String recomendaciones;
 
     @Column(name = "fecha_evaluacion", nullable = false)
-    private LocalDateTime fechaEvaluacion;
+    private LocalDate fechaEvaluacion;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
@@ -31,7 +32,7 @@ public class EvaluacionDiaria {
     public EvaluacionDiaria() {}
 
     // Constructor completo
-    public EvaluacionDiaria(int id, String estadoAnimo, int nivelEnergia, String recomendaciones, LocalDateTime fechaEvaluacion, Usuario usuario) {
+    public EvaluacionDiaria(int id, String estadoAnimo, int nivelEnergia, String recomendaciones, LocalDate fechaEvaluacion, Usuario usuario) {
         this.id = id;
         this.estadoAnimo = estadoAnimo;
         this.nivelEnergia = nivelEnergia;
@@ -73,11 +74,11 @@ public class EvaluacionDiaria {
         this.recomendaciones = recomendaciones;
     }
 
-    public LocalDateTime getFechaEvaluacion() {
+    public LocalDate getFechaEvaluacion() {
         return fechaEvaluacion;
     }
 
-    public void setFechaEvaluacion(LocalDateTime fechaEvaluacion) {
+    public void setFechaEvaluacion(LocalDate fechaEvaluacion) {
         this.fechaEvaluacion = fechaEvaluacion;
     }
 
