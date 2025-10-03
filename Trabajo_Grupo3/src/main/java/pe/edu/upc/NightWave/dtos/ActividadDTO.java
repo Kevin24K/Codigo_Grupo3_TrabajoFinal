@@ -1,13 +1,9 @@
 package pe.edu.upc.NightWave.dtos;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import pe.edu.upc.NightWave.entities.MusicaMultimedia;
 import pe.edu.upc.NightWave.entities.Users;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class ActividadDTO
 {

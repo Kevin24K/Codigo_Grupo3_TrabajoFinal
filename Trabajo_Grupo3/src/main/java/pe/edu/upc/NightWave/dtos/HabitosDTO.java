@@ -1,8 +1,5 @@
 package pe.edu.upc.NightWave.dtos;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import pe.edu.upc.NightWave.entities.Users;
 
 public class HabitosDTO

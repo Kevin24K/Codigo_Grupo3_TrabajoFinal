@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import pe.edu.upc.NightWave.securities.JwtRequest;
-import pe.edu.upc.NightWave.securities.JwtResponse;
+import pe.edu.upc.NightWave.dtos.JwtRequestDTO;
+import pe.edu.upc.NightWave.dtos.JwtResponseDTO;
 import pe.edu.upc.NightWave.securities.JwtTokenUtil;
 import pe.edu.upc.NightWave.servicesimplements.JwtUserDetailsService;
 
@@ -30,11 +30,11 @@ public class JwtAuthenticationController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<JwtResponse> login(@RequestBody JwtRequest req) throws Exception {
+    public ResponseEntity<JwtResponseDTO> login(@RequestBody JwtRequestDTO req) throws Exception {
         authenticate(req.getUsername(), req.getPassword());
         final UserDetails userDetails = userDetailsService.loadUserByUsername(req.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
-        return ResponseEntity.ok(new JwtResponse(token));
+        return ResponseEntity.ok(new JwtResponseDTO(token));
     }
 
     private void authenticate(String username, String password) throws Exception {

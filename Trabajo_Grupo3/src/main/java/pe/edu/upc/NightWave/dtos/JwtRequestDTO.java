@@ -1,27 +1,17 @@
-package pe.edu.upc.NightWave.securities;
+package pe.edu.upc.NightWave.dtos;
 
 import java.io.Serializable;
 
-/*
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-
-//Clase 4
-@Data
-@AllArgsConstructor
-@NoArgsConstructor*/
-public class JwtRequest implements Serializable {
+public class JwtRequestDTO implements Serializable {
 	private static final long serialVersionUID = 5926468583005150707L;
 	private String username;
 	private String password;
-	public JwtRequest() {
+	public JwtRequestDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public JwtRequest(String username, String password) {
+	public JwtRequestDTO(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
