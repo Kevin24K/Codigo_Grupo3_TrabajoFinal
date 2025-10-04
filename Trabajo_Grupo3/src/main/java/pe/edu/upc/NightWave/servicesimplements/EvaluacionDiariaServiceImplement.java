@@ -6,6 +6,7 @@ import pe.edu.upc.NightWave.entities.EvaluacionDiaria;
 import pe.edu.upc.NightWave.repositories.IEvaluacionDiariaRepository;
 import pe.edu.upc.NightWave.servicesinterfaces.IEvaluacionDiariaService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -38,4 +39,12 @@ public class EvaluacionDiariaServiceImplement implements IEvaluacionDiariaServic
     public void update(EvaluacionDiaria evaluacionDiaria) {
         edR.save(evaluacionDiaria);
     }
+
+    //Busqueda
+    @Override
+    public List<EvaluacionDiaria> buscarEvaluacion(LocalDate fechaInicio,LocalDate fechaFin) {
+        return edR.buscarPorFecha(fechaInicio,fechaFin);
+    }
+
+
 }

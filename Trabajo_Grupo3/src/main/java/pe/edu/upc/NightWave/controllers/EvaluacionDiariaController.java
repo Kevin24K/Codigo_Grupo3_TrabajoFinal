@@ -12,6 +12,7 @@ import pe.edu.upc.NightWave.entities.EvaluacionDiaria;
 import pe.edu.upc.NightWave.servicesinterfaces.IAlarmaService;
 import pe.edu.upc.NightWave.servicesinterfaces.IEvaluacionDiariaService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 @RestController
@@ -84,5 +85,24 @@ public class EvaluacionDiariaController {
         edS.delete(id);
         return ResponseEntity.ok("Evaluacion diaria con ID " + id + " eliminado correctamente.");
     }
+
+    //Busqueda
+    @GetMapping("/busquedaEvaluacion")
+    public ResponseEntity<?> buscarPorRangoFechas(
+            @RequestParam LocalDate fechaInicio,
+            @RequestParam LocalDate fechaFin) {
+
+        List<EvaluacionDiaria> evaluacionDiarias = edS.buscarEvaluacion(fechaInicio, fechaFin);
+
+        if (evaluacionDiarias.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No se encontraron evaluaciones entre las fechas: " + fechaInicio + " y " + fechaFin);
+        }
+        List<EvaluacionDiariaDTO> listaDTO = evaluacionDiarias.stream()
+                .map(x -> new ModelMapper().map(x, EvaluacionDiariaDTO.class))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(listaDTO);
+    }
+
 
 }
