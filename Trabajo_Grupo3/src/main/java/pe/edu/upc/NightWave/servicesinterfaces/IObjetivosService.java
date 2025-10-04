@@ -11,4 +11,9 @@ public interface IObjetivosService
     public void delete(int id);
     public Objetivos  listId(int id);
     public void update(Objetivos objetivos);
+    //Query
+    List<String[]> obtenerPromedioProgresoPorUsuario();
+    //Query
+    List<String[]> objetivosAlcanzadosPorUsuario();
+
 }

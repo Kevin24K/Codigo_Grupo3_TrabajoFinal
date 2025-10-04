@@ -4,15 +4,15 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.NightWave.dtos.AlarmaDTO;
 import pe.edu.upc.NightWave.dtos.EvaluacionDiariaDTO;
-import pe.edu.upc.NightWave.entities.Alarma;
+import pe.edu.upc.NightWave.dtos.ContarEvaluacionXUsuarioDTO;
 import pe.edu.upc.NightWave.entities.EvaluacionDiaria;
-import pe.edu.upc.NightWave.servicesinterfaces.IAlarmaService;
 import pe.edu.upc.NightWave.servicesinterfaces.IEvaluacionDiariaService;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 @RestController
@@ -87,7 +87,7 @@ public class EvaluacionDiariaController {
     }
 
     //Busqueda
-    @GetMapping("/busquedaEvaluacion")
+    @GetMapping("/busqueda-evaluacion")
     public ResponseEntity<?> buscarPorRangoFechas(
             @RequestParam LocalDate fechaInicio,
             @RequestParam LocalDate fechaFin) {
@@ -104,5 +104,25 @@ public class EvaluacionDiariaController {
         return ResponseEntity.ok(listaDTO);
     }
 
+    //Query
+    @PreAuthorize("hasAnyAuthority('usuario','admin')")
+    @GetMapping("/contar-evaluaciones-x-usuario")
+    public ResponseEntity<?> contarEvaluaciones() {
+        List<ContarEvaluacionXUsuarioDTO> listaDto = new ArrayList<>();
+        List<String[]> fila = edS.quantityEvaluaciones();
 
+        if (fila.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No se encontraron registros");
+        }
+
+        for (String[] x : fila) {
+            ContarEvaluacionXUsuarioDTO dto = new ContarEvaluacionXUsuarioDTO();
+            dto.setNombreUsuario(x[0]);
+            dto.setCantidadEvaluaciones(Integer.parseInt(x[1]));
+            listaDto.add(dto);
+        }
+
+        return ResponseEntity.ok(listaDto);
+    }
 }

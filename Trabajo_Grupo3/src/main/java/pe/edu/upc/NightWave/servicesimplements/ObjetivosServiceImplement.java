@@ -14,7 +14,6 @@ public class ObjetivosServiceImplement implements IObjetivosService
     @Autowired
     private IObjetivosRepository oR;
 
-
     @Override
     public void insert(Objetivos  objetivos) {
         oR.save(objetivos);
@@ -39,4 +38,17 @@ public class ObjetivosServiceImplement implements IObjetivosService
     public void update(Objetivos  objetivos) {
         oR.save(objetivos);
     }
+
+    //Query
+    @Override
+    public List<String[]> obtenerPromedioProgresoPorUsuario() {
+        return oR.promedioProgresoPorUsuario();
+    }
+
+    //Query
+    @Override
+    public List<String[]> objetivosAlcanzadosPorUsuario() {
+        return oR.objetivosAlcanzadosPorUsuario();
+    }
+
 }

@@ -4,14 +4,18 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.NightWave.dtos.AlarmaDTO;
+import pe.edu.upc.NightWave.dtos.ObjetivosAlcanzadosDTO;
 import pe.edu.upc.NightWave.dtos.ObjetivosDTO;
+import pe.edu.upc.NightWave.dtos.PromedioProgresoDTO;
 import pe.edu.upc.NightWave.entities.Alarma;
 import pe.edu.upc.NightWave.entities.Objetivos;
 import pe.edu.upc.NightWave.servicesinterfaces.IAlarmaService;
 import pe.edu.upc.NightWave.servicesinterfaces.IObjetivosService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -84,5 +88,51 @@ public class ObjetivosController {
         oS.delete(id);
         return ResponseEntity.ok("Objetivo con ID " + id + " eliminado correctamente.");
     }
+
+    //Query
+    @PreAuthorize("hasAnyAuthority('analista','admin')")
+    @GetMapping("/promedioProgreso")
+    public ResponseEntity<?> obtenerPromedioProgreso() {
+        List<PromedioProgresoDTO> listaDto = new ArrayList<>();
+        List<String[]> filas = oS.obtenerPromedioProgresoPorUsuario();
+
+        if (filas.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No se encontraron registros de progreso de objetivos");
+        }
+
+        for (String[] x : filas) {
+            PromedioProgresoDTO dto = new PromedioProgresoDTO();
+            dto.setNombreUsuario(x[0]);
+            dto.setPromedioProgreso(Double.parseDouble(x[1]));
+            listaDto.add(dto);
+        }
+
+        return ResponseEntity.ok(listaDto);
+    }
+
+    //Query
+    @PreAuthorize("hasAnyAuthority('coach','admin')")
+    @GetMapping("/objetivos-alcanzados-x-usuario")
+    public ResponseEntity<?> contarObjetivosPorUsuario() {
+        List<ObjetivosAlcanzadosDTO> listaDto = new ArrayList<>();
+        List<String[]> filas = oS.objetivosAlcanzadosPorUsuario();
+
+        if (filas.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No se encontraron registros");
+        }
+
+        for (String[] x : filas) {
+            ObjetivosAlcanzadosDTO dto = new ObjetivosAlcanzadosDTO();
+            dto.setNombreUsuario(x[0]);
+            dto.setObjetivosAlcanzados(Integer.parseInt(x[1]));
+            dto.setObjetivosNoAlcanzados(Integer.parseInt(x[2]));
+            listaDto.add(dto);
+        }
+
+        return ResponseEntity.ok(listaDto);
+    }
+
 
 }

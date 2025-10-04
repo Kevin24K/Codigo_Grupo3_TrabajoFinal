@@ -46,5 +46,10 @@ public class EvaluacionDiariaServiceImplement implements IEvaluacionDiariaServic
         return edR.buscarPorFecha(fechaInicio,fechaFin);
     }
 
+    //Query
+    @Override
+    public List<String[]> quantityEvaluaciones() {
+        return edR.cantidadEvaluacionesPorUsuario();
+    }
 
 }
