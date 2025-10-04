@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.NightWave.dtos.TipoMusicaDTO;
 import pe.edu.upc.NightWave.entities.TipoMusica;
@@ -18,6 +19,7 @@ public class TipoMusicaController {
     @Autowired
     private ITipoMusicaService tmS;
 
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping
     public ResponseEntity<?> listar() {
         List<TipoMusicaDTO> lista = tmS.list().stream().map(x -> {
@@ -32,6 +34,7 @@ public class TipoMusicaController {
         return ResponseEntity.ok(lista);
     }
 
+    @PreAuthorize("hasAnyAuthority('coach','usuario','analista','admin')")
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody TipoMusicaDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -41,7 +44,7 @@ public class TipoMusicaController {
                 .body("Tipo musica registrado correctamente.");
     }
 
-
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable("id") Integer id) {
         TipoMusica tipoMusica = tmS.listId(id);
@@ -55,7 +58,7 @@ public class TipoMusicaController {
         return ResponseEntity.ok(dto);
     }
 
-
+    @PreAuthorize("hasAnyAuthority('coach','admin')")
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody TipoMusicaDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -71,6 +74,7 @@ public class TipoMusicaController {
         return ResponseEntity.ok("Tipo musica con ID " + dto.getIdTipoMusica() + " modificado correctamente.");
     }
 
+    @PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id) {
         TipoMusica tipoMusica = tmS.listId(id);

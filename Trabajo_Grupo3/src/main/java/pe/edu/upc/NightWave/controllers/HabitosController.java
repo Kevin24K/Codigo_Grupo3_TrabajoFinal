@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.NightWave.dtos.AlarmaDTO;
 import pe.edu.upc.NightWave.dtos.HabitosDTO;
@@ -21,6 +22,7 @@ public class HabitosController {
     @Autowired
     private IHabitosService hS;
 
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping
     public ResponseEntity<?> listar() {
         List<HabitosDTO> lista = hS.list().stream().map(x -> {
@@ -35,6 +37,7 @@ public class HabitosController {
         return ResponseEntity.ok(lista);
     }
 
+    @PreAuthorize("hasAnyAuthority('coach','usuario','analista','admin')")
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody HabitosDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -44,7 +47,7 @@ public class HabitosController {
                 .body("Habito registrado correctamente.");
     }
 
-
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable("id") Integer id) {
         Habitos habitos = hS.listId(id);
@@ -58,7 +61,7 @@ public class HabitosController {
         return ResponseEntity.ok(dto);
     }
 
-
+    @PreAuthorize("hasAnyAuthority('coach','admin')")
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody HabitosDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -74,6 +77,7 @@ public class HabitosController {
         return ResponseEntity.ok("Habito con ID " + dto.getIdHabitos() + " modificado correctamente.");
     }
 
+    @PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id) {
         Habitos habitos = hS.listId(id);

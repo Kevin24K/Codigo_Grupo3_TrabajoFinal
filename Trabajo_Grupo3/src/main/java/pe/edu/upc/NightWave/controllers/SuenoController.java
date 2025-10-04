@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.NightWave.dtos.SuenoDTO;
 import pe.edu.upc.NightWave.entities.Sueno;
@@ -18,6 +19,7 @@ public class SuenoController {
     @Autowired
     private ISuenoService sS;
 
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping
     public ResponseEntity<?> listar() {
         List<SuenoDTO> lista = sS.list().stream().map(x -> {
@@ -32,6 +34,7 @@ public class SuenoController {
         return ResponseEntity.ok(lista);
     }
 
+    @PreAuthorize("hasAnyAuthority('coach','usuario','analista','admin')")
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody SuenoDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -41,7 +44,7 @@ public class SuenoController {
                 .body("Sueño registrado correctamente.");
     }
 
-
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable("id") Integer id) {
         Sueno sueno = sS.listId(id);
@@ -55,7 +58,7 @@ public class SuenoController {
         return ResponseEntity.ok(dto);
     }
 
-
+    @PreAuthorize("hasAnyAuthority('coach','admin')")
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody SuenoDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -71,6 +74,7 @@ public class SuenoController {
         return ResponseEntity.ok("Sueño con ID " + dto.getIdSueno() + " modificado correctamente.");
     }
 
+    @PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id) {
         Sueno suenio = sS.listId(id);

@@ -11,4 +11,8 @@ public interface IEstresService
     public void delete(int id);
     public Estres listId(int id);
     public void update(Estres estres);
+    //Query
+    List<String[]> promedioEstresYAnsiedadPorUsuario();
+    //Query
+    List<String[]> conteoEstresPorMes();
 }

@@ -22,6 +22,7 @@ public class EvaluacionDiariaController {
     @Autowired
     private IEvaluacionDiariaService edS;
 
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping
     public ResponseEntity<?> listar() {
         List<EvaluacionDiariaDTO> lista = edS.list().stream().map(x -> {
@@ -36,6 +37,7 @@ public class EvaluacionDiariaController {
         return ResponseEntity.ok(lista);
     }
 
+    @PreAuthorize("hasAnyAuthority('coach','usuario','analista','admin')")
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody EvaluacionDiariaDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -45,7 +47,7 @@ public class EvaluacionDiariaController {
                 .body("Evaluacion diaria registrada correctamente.");
     }
 
-
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable("id") Integer id) {
         EvaluacionDiaria evaluacionDiaria = edS.listId(id);
@@ -59,7 +61,7 @@ public class EvaluacionDiariaController {
         return ResponseEntity.ok(dto);
     }
 
-
+    @PreAuthorize("hasAnyAuthority('coach','admin')")
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody EvaluacionDiariaDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -75,6 +77,7 @@ public class EvaluacionDiariaController {
         return ResponseEntity.ok("Evaluacion diaria con ID " + dto.getIdEvaluacionDiaria() + " modificado correctamente.");
     }
 
+    @PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id) {
         EvaluacionDiaria evaluacionDiaria = edS.listId(id);
@@ -87,6 +90,7 @@ public class EvaluacionDiariaController {
     }
 
     //Busqueda
+    @PreAuthorize("hasAnyAuthority('usuario','admin')")
     @GetMapping("/busqueda-evaluacion")
     public ResponseEntity<?> buscarPorRangoFechas(
             @RequestParam LocalDate fechaInicio,
@@ -105,7 +109,7 @@ public class EvaluacionDiariaController {
     }
 
     //Query
-    @PreAuthorize("hasAnyAuthority('usuario','admin')")
+    @PreAuthorize("hasAuthority('admin')")
     @GetMapping("/contar-evaluaciones-x-usuario")
     public ResponseEntity<?> contarEvaluaciones() {
         List<ContarEvaluacionXUsuarioDTO> listaDto = new ArrayList<>();

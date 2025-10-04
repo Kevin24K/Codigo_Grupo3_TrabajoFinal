@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.NightWave.dtos.NotificacionDTO;
 import pe.edu.upc.NightWave.dtos.SeguimientoHabitosDTO;
@@ -20,6 +21,7 @@ public class SeguimientosHabitosController {
     @Autowired
     private ISeguimientoHabitosService shS;
 
+    @PreAuthorize("hasAnyAuthority('coach','usuario','analista','admin')")
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody SeguimientoHabitosDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -29,6 +31,7 @@ public class SeguimientosHabitosController {
                 .body("Seguimiento registrado correctamente.");
     }
 
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping
     public List<SeguimientoHabitosDTO> listar() {
         return shS.list().stream().map(x -> {
@@ -37,17 +40,20 @@ public class SeguimientosHabitosController {
         }).collect(Collectors.toList());
     }
 
+    @PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int id) {
         shS.delete(id);
     }
 
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping("/{id}")
     public SeguimientoHabitosDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         return m.map(shS.listId(id), SeguimientoHabitosDTO.class);
     }
 
+    @PreAuthorize("hasAnyAuthority('coach','admin')")
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody SeguimientoHabitosDTO dto) {
         ModelMapper m = new ModelMapper();

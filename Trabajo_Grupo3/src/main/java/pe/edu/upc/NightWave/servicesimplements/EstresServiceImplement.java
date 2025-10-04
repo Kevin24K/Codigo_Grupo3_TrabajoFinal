@@ -39,4 +39,14 @@ public class EstresServiceImplement implements IEstresService
         eR.save(estres);
     }
 
+    @Override
+    public List<String[]> promedioEstresYAnsiedadPorUsuario() {
+        return eR.promedioEstresYAnsiedadPorUsuario();
+    }
+
+    @Override
+    public List<String[]> conteoEstresPorMes() {
+        return eR.conteoEstresPorMes();
+    }
+
 }

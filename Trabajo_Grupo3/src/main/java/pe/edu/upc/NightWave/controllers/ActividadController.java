@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.NightWave.dtos.ActividadDTO;
 import pe.edu.upc.NightWave.entities.Actividad;
@@ -19,6 +20,7 @@ public class ActividadController {
     @Autowired
     private IActividadService aS;
 
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping
     public ResponseEntity<?> listar() {
         List<ActividadDTO> lista = aS.list().stream().map(x -> {
@@ -33,6 +35,7 @@ public class ActividadController {
         return ResponseEntity.ok(lista);
     }
 
+    @PreAuthorize("hasAnyAuthority('coach','usuario','analista','admin')")
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody ActividadDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -42,7 +45,7 @@ public class ActividadController {
                 .body("Actividad registrado correctamente.");
     }
 
-
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable("id") Integer id) {
         Actividad actividad = aS.listId(id);
@@ -56,7 +59,7 @@ public class ActividadController {
         return ResponseEntity.ok(dto);
     }
 
-
+    @PreAuthorize("hasAnyAuthority('coach','admin')")
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody ActividadDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -72,6 +75,7 @@ public class ActividadController {
         return ResponseEntity.ok("Actividad con ID " + dto.getIdActividad() + " modificado correctamente.");
     }
 
+    @PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id) {
         Actividad actividad = aS.listId(id);

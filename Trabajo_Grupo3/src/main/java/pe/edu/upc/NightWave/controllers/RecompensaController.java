@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.NightWave.dtos.RecompensasDTO;
 import pe.edu.upc.NightWave.entities.Recompensas;
@@ -19,6 +20,7 @@ public class RecompensaController
     @Autowired
     private IRecompensasService rS;
 
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping
     public ResponseEntity<?> listar() {
         List<RecompensasDTO> lista = rS.list().stream().map(x -> {
@@ -33,6 +35,7 @@ public class RecompensaController
         return ResponseEntity.ok(lista);
     }
 
+    @PreAuthorize("hasAnyAuthority('coach','usuario','analista','admin')")
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody RecompensasDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -42,7 +45,7 @@ public class RecompensaController
                 .body("Recompensa registrado correctamente.");
     }
 
-
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable("id") Integer id) {
         Recompensas recompensas = rS.listId(id);
@@ -56,7 +59,7 @@ public class RecompensaController
         return ResponseEntity.ok(dto);
     }
 
-
+    @PreAuthorize("hasAnyAuthority('coach','admin')")
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody RecompensasDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -72,6 +75,7 @@ public class RecompensaController
         return ResponseEntity.ok("Recompensa con ID " + dto.getIdRecompensa() + " modificado correctamente.");
     }
 
+    @PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id) {
         Recompensas recompensas = rS.listId(id);
