@@ -24,7 +24,7 @@ public interface IEstresRepository extends JpaRepository<Estres, Integer> {
             ORDER BY 
                 promedioEstres DESC
             """, nativeQuery = true)
-    List<String[]> promedioEstresYAnsiedadPorUsuario();
+    public List<String[]> promedioEstresYAnsiedadPorUsuario();
 
     @Query(value = """
             SELECT 
@@ -37,5 +37,5 @@ public interface IEstresRepository extends JpaRepository<Estres, Integer> {
             ORDER BY 
                 mes ASC
             """, nativeQuery = true)
-    List<String[]> conteoEstresPorMes();
+    public List<String[]> conteoEstresPorMes();
 }

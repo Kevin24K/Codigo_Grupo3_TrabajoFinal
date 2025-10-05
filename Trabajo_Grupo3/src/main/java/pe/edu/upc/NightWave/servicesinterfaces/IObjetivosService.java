@@ -12,8 +12,8 @@ public interface IObjetivosService
     public Objetivos  listId(int id);
     public void update(Objetivos objetivos);
     //Query
-    List<String[]> obtenerPromedioProgresoPorUsuario();
+    public List<String[]> obtenerPromedioProgresoPorUsuario();
     //Query
-    List<String[]> objetivosAlcanzadosPorUsuario();
+    public List<String[]> objetivosAlcanzadosPorUsuario();
 
 }

@@ -12,7 +12,7 @@ public interface IEstresService
     public Estres listId(int id);
     public void update(Estres estres);
     //Query
-    List<String[]> promedioEstresYAnsiedadPorUsuario();
+    public List<String[]> promedioEstresYAnsiedadPorUsuario();
     //Query
-    List<String[]> conteoEstresPorMes();
+    public List<String[]> conteoEstresPorMes();
 }

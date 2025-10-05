@@ -20,7 +20,7 @@ public interface IObjetivosRepository extends JpaRepository<Objetivos,Integer> {
         GROUP BY u.username
         ORDER BY promedioProgreso DESC
         """, nativeQuery = true)
-    List<String[]> promedioProgresoPorUsuario();
+    public List<String[]> promedioProgresoPorUsuario();
 
     // Query para visualizar cuántos objetivos han sido alcanzados o no por cada usuario
     @Query(value = """
@@ -37,7 +37,7 @@ public interface IObjetivosRepository extends JpaRepository<Objetivos,Integer> {
             ORDER BY 
                 objetivosAlcanzados DESC
             """, nativeQuery = true)
-    List<String[]> objetivosAlcanzadosPorUsuario();
+    public List<String[]> objetivosAlcanzadosPorUsuario();
 
 
 

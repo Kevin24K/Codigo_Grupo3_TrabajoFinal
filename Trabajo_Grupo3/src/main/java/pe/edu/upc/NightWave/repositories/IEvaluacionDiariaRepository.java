@@ -14,7 +14,7 @@ public interface IEvaluacionDiariaRepository extends JpaRepository<EvaluacionDia
 
     //Busqueda
     @Query("SELECT e FROM EvaluacionDiaria e WHERE e.fechaEvaluacion BETWEEN :fechaInicio AND :fechaFin")
-    List<EvaluacionDiaria> buscarPorFecha(
+    public List<EvaluacionDiaria> buscarPorFecha(
             @Param("fechaInicio") LocalDate fechaInicio,
             @Param("fechaFin") LocalDate fechaFin);
 
@@ -23,7 +23,7 @@ public interface IEvaluacionDiariaRepository extends JpaRepository<EvaluacionDia
             " FROM evaluacion_diaria e " +
             " JOIN users u ON e.id_usuario = u.id " +
             " GROUP BY u.username", nativeQuery = true)
-    List<String[]> cantidadEvaluacionesPorUsuario();
+    public List<String[]> cantidadEvaluacionesPorUsuario();
 
 
 

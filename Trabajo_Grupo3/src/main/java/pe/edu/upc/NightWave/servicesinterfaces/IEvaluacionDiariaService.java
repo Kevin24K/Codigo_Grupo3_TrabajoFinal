@@ -17,7 +17,7 @@ public interface IEvaluacionDiariaService
     public List<EvaluacionDiaria> buscarEvaluacion(LocalDate fechaInicio, LocalDate fechaFin);
 
     //Query
-    List<String[]> quantityEvaluaciones();
+    public List<String[]> quantityEvaluaciones();
 
 
 }
