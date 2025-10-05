@@ -13,11 +13,10 @@ import java.util.List;
 public interface IEvaluacionDiariaRepository extends JpaRepository<EvaluacionDiaria, Integer> {
 
     //Busqueda
-    @Query("SELECT idEvaluacionDiaria, estadoAnimo, nivelEnergia, recomendaciones, fechaEvaluacion, idUsuario\n" +
-            " FROM EvaluacionDiaria\n" +
-            " WHERE fechaEvaluacion BETWEEN :fechaInicio AND :fechaFin")
-    public List<EvaluacionDiaria> buscarPorFecha(@Param("fechaInicio") LocalDate fechaInicio
-                                                , @Param("fechaFin") LocalDate fechaFin);
+    @Query("SELECT e FROM EvaluacionDiaria e WHERE e.fechaEvaluacion BETWEEN :fechaInicio AND :fechaFin")
+    List<EvaluacionDiaria> buscarPorFecha(
+            @Param("fechaInicio") LocalDate fechaInicio,
+            @Param("fechaFin") LocalDate fechaFin);
 
     //Query
     @Query(value = "SELECT u.username, COUNT(e.id_evaluacion_diaria) " +
