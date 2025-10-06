@@ -15,22 +15,12 @@ public class RecompensasServiceImplement implements IRecompensasService
     private IRecompensasRepository rR;
 
     @Override
-<<<<<<< HEAD
-    public void insert(Recompensas recompensas)
-    {
-        rR.save(recompensas);
-    }
-    @Override
-    public List<Recompensas> list()
-    {
-=======
     public void insert(Recompensas recompensas) {
         rR.save(recompensas);
     }
 
     @Override
     public List<Recompensas> list() {
->>>>>>> origin/Gabriel
         return rR.findAll();
     }
 
@@ -41,19 +31,11 @@ public class RecompensasServiceImplement implements IRecompensasService
 
     @Override
     public Recompensas listId(int id) {
-<<<<<<< HEAD
-        return rR.findById(id).orElse(new Recompensas());
-=======
         return rR.findById(id).orElse(null);
->>>>>>> origin/Gabriel
     }
 
     @Override
     public void update(Recompensas recompensas) {
         rR.save(recompensas);
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/Gabriel
 }

@@ -1,35 +1,16 @@
 package pe.edu.upc.NightWave.entities;
 
 import jakarta.persistence.*;
-<<<<<<< HEAD
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
-@Entity
-@Table(name = "Alarma")
-public class Alarma
-{
-=======
 import java.time.LocalTime;
 
 @Entity
 @Table(name = "Alarma")
 public class Alarma {
 
->>>>>>> origin/Gabriel
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idAlarma;
 
-<<<<<<< HEAD
-    private String nombreAlarma;
-    private LocalDateTime horaAlarma;
-    private String diaSemana;
-    private double volumen;
-    private boolean activa;
-
-=======
     @Column(name = "nombreAlarma", length = 100, nullable = false)
     private String nombreAlarma;
 
@@ -120,5 +101,4 @@ public class Alarma {
     public void setIdMusicaMultimedia(MusicaMultimedia idMusicaMultimedia) {
         this.idMusicaMultimedia = idMusicaMultimedia;
     }
->>>>>>> origin/Gabriel
 }

@@ -27,18 +27,12 @@
         <url/>
     </scm>
     <properties>
-<<<<<<< HEAD
-        <java.version>24</java.version>
-    </properties>
-    <dependencies>
-=======
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <java.version>17</java.version>
     </properties>
     <dependencies>
 
->>>>>>> origin/Gabriel
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>

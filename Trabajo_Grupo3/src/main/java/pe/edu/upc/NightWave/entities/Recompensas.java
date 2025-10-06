@@ -5,38 +5,23 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-<<<<<<< HEAD
-@Table(name = "Recompensas")
-=======
 @Table(name = "Recompensa")
->>>>>>> origin/Gabriel
 public class Recompensas
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRecompensa;
 
-<<<<<<< HEAD
-    @Column(name = "nombre_recompensa", nullable = false, length = 100)
-=======
     @Column(name = "nombreRecompensa", nullable = false, length = 100)
->>>>>>> origin/Gabriel
     private String nombreRecompensa;
 
     @Column(name = "descripcion",  nullable = false, length = 500)
     private String descripcion;
 
-<<<<<<< HEAD
-    @Column(name = "tipo_recompensa", nullable = false, length = 100)
-    private String tipoRecompensa;
-
-    @Column(name = "puntos_valor", nullable = false)
-=======
     @Column(name = "tipoRecompensa", nullable = false, length = 100)
     private String tipoRecompensa;
 
     @Column(name = "puntosValor", nullable = false)
->>>>>>> origin/Gabriel
     private int puntosValor;
 
     public Recompensas () {}
