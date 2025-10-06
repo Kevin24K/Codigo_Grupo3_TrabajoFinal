@@ -88,4 +88,26 @@ public class MusicaMultimediaController {
         mmS.delete(id);
         return ResponseEntity.ok("Musica Multimedia con ID " + id + " eliminado correctamente.");
     }
+
+    @PreAuthorize("hasAuthoriry('coach','usuario','analista','admin')")
+    @GetMapping("/musicas-mas-usadas")
+    public ResponseEntity<?> musicasMasUsadas()
+    {
+        List<MusicaMasUsadaDTO> listaDto = new ArrayList<>();
+        List<String[]> fila = mmS.MusicasMasUsadas();
+
+        if (fila.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No se encontraron registros");
+        }
+
+        for (String[] x : fila) {
+            MusicaMasUsadaDTO dto = new MusicaMasUsadaDTO();
+            dto.setNombreMusica(x[0]);
+            dto.setPorcentajeUso(Integer.parseInt(x[1]));
+            listaDto.add(dto);
+        }
+
+        return ResponseEntity.ok(listaDto);
+    }
 }

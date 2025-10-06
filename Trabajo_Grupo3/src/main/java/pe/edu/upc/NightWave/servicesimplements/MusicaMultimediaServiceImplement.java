@@ -38,4 +38,10 @@ public class MusicaMultimediaServiceImplement implements IMusicaMultimediaServic
         public void update(MusicaMultimedia musicaMultimedia) {
         mmR.save(musicaMultimedia);
     }
+
+    //Query
+    @Override
+    public List<String[]> MusicasMasUsadas() {
+        return mmR.BuscarMusicasMasUsadasEnAlarmas();
+    }
 }

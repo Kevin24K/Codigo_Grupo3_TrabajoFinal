@@ -11,4 +11,5 @@ public interface IMusicaMultimediaService
     public void delete(int id);
     public MusicaMultimedia listId(int id);
     public void update(MusicaMultimedia musicaMultimedia);
+    List<String[]> MusicasMasUsadas();
 }
