@@ -11,4 +11,5 @@ public interface ITipoMusicaService
     public TipoMusica listId(int id);
     public void update(TipoMusica tipoMusica);
     public void delete(int id);
+    List<String[]> NroMusicaXTipo();
 }

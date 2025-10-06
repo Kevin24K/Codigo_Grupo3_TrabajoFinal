@@ -86,4 +86,25 @@ public class TipoMusicaController {
         return ResponseEntity.ok("Registro con ID " + id + " eliminado correctamente.");
     }
 
+    @PreAuthorize("hasAuthoriry('coach','usuario','analista','admin')")
+    @GetMapping("/numero-de-musicas-x-tipo")
+    public ResponseEntity<?> numeroMusicasXTipo()
+    {
+        List<NroMusicaXTipoDTO> listaDto = new ArrayList<>();
+        List<String[]> fila = tmS.NroMusicaXTipo();
+
+        if (fila.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No se encontraron registros");
+        }
+
+        for (String[] x : fila) {
+            NroMusicaXTipoDTO dto = new NroMusicaXTipoDTO();
+            dto.setNombreTipo(x[0]);
+            dto.setNroMusica(Integer.parseInt(x[1]));
+            listaDto.add(dto);
+        }
+
+        return ResponseEntity.ok(listaDto);
+    }
 }

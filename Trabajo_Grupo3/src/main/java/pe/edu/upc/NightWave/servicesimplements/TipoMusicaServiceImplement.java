@@ -38,4 +38,9 @@ public class TipoMusicaServiceImplement implements ITipoMusicaService
     public void delete(int id) {
         tmR.deleteById(id);
     }
+
+    @Override
+    public List<String[]> NroMusicaXTipo() { 
+        return tmR.NroDeMusicaXTipo(); 
+    }
 }
