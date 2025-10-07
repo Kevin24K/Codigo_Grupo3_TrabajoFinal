@@ -42,7 +42,7 @@ public class NotificacionController {
         Notificacion n = m.map(dto, Notificacion.class);
         nS.insert(n);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body("Estres registrado correctamente.");
+                .body("Notificacion registrada correctamente.");
     }
 
     @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
@@ -52,7 +52,7 @@ public class NotificacionController {
         if (notificacion == null) {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
-                    .body("No existe estres con ID: " + id);
+                    .body("No existe notificacion con ID: " + id);
         }
         ModelMapper m = new ModelMapper();
         NotificacionDTO dto = m.map(notificacion, NotificacionDTO.class);
@@ -68,7 +68,7 @@ public class NotificacionController {
         Notificacion existente = nS.listId(dto.getIdNotificacion());
         if (existente == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No se puede modificar. No existe notificaicones con ID: " + dto.getIdNotificacion());
+                    .body("No se puede modificar. No existe notificaciones con ID: " + dto.getIdNotificacion());
         }
 
         nS.update(no);
@@ -84,7 +84,7 @@ public class NotificacionController {
                     .body("No existe una notificacion con el ID: " + id);
         }
         nS.delete(id);
-        return ResponseEntity.ok("Registro con ID " + id + " eliminado correctamente.");
+        return ResponseEntity.ok("Notificacion con ID " + id + " eliminado correctamente.");
     }
 
 

@@ -35,23 +35,43 @@ public class Recompensas
         this.puntosValor = puntosValor;
     }
 
-    public int getIdRecompensa() {return idRecompensa;}
+    public int getIdRecompensa() {
+        return idRecompensa;
+    }
 
-    public void setIdRecompensa(int idRecompensa) {this.idRecompensa = idRecompensa;}
+    public void setIdRecompensa(int idRecompensa) {
+        this.idRecompensa = idRecompensa;
+    }
 
-    public String getNombreRecompensa() {return nombreRecompensa;}
+    public String getNombreRecompensa() {
+        return nombreRecompensa;
+    }
 
-    public void setNombreRecompensa(String  nombreRecompensa) {this.nombreRecompensa = nombreRecompensa;}
+    public void setNombreRecompensa(String nombreRecompensa) {
+        this.nombreRecompensa = nombreRecompensa;
+    }
 
-    public String getDescripcionRecompensa() {return descripcion;}
+    public String getDescripcion() {
+        return descripcion;
+    }
 
-    public void setDescripcionRecompensa(String descripcion) {this.descripcion = descripcion;}
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
-    public String getTipoRecompensa() {return tipoRecompensa;}
+    public String getTipoRecompensa() {
+        return tipoRecompensa;
+    }
 
-    public void setTipoRecompensa(String tipoRecompensa) {this.tipoRecompensa = tipoRecompensa;}
+    public void setTipoRecompensa(String tipoRecompensa) {
+        this.tipoRecompensa = tipoRecompensa;
+    }
 
-    public int getPuntosValorReompensa() {return puntosValor;}
+    public int getPuntosValor() {
+        return puntosValor;
+    }
 
-    public void setPuntosValorRecompensa(int  puntosValor) {this.puntosValor = puntosValor;}
+    public void setPuntosValor(int puntosValor) {
+        this.puntosValor = puntosValor;
+    }
 }

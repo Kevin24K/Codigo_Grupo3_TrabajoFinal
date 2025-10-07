@@ -38,7 +38,7 @@ public class SuenoController {
         return ResponseEntity.ok(lista);
     }
 
-    @PreAuthorize("hasAnyAuthority('coach','usuario','analista','admin')")
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody SuenoDTO dto) {
         ModelMapper m = new ModelMapper();

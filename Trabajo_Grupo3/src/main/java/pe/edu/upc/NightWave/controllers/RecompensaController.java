@@ -30,12 +30,12 @@ public class RecompensaController
 
         if (lista.isEmpty()) {
             return ResponseEntity.status(HttpStatus.OK)
-                    .body("No existen notificaciones registrados.");
+                    .body("No existen recompensas registradas.");
         }
         return ResponseEntity.ok(lista);
     }
 
-    @PreAuthorize("hasAnyAuthority('coach','usuario','analista','admin')")
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody RecompensasDTO dto) {
         ModelMapper m = new ModelMapper();
