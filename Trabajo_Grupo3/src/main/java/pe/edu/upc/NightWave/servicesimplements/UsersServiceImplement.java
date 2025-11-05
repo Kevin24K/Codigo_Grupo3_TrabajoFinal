@@ -11,25 +11,51 @@ import java.util.List;
 @Service
 public class UsersServiceImplement implements IUsersService {
     @Autowired
-    private IUserRepository userRepository;
+    private IUserRepository uR;
 
     @Override
     public Users findByUsername(String username) {
-        return userRepository.findOneByUsername(username);
+        return uR.findOneByUsername(username);
     }
 
     @Override
     public int buscarUsername(String nombre) {
-        return userRepository.buscarUsername(nombre);
+        return uR.buscarUsername(nombre);
     }
 
     @Override
     public void insertarRol(String rol, Long userId) {
-        userRepository.insRol(rol, userId);
+        uR.insRol(rol, userId);
     }
 
     @Override
     public List<Users> listarUsuarios() {
-        return userRepository.findAll();
+        return uR.findAll();
     }
+
+    @Override
+    public void insert(Users usuario) {
+        uR.save(usuario);
+    }
+
+    @Override
+    public List<Users> list() {
+        return uR.findAll();
+    }
+
+    @Override
+    public Users listId(long id) {
+        return uR.findById(id).orElse(null);
+    }
+
+    @Override
+    public void update(Users usuario) {
+        uR.save(usuario);
+    }
+
+    @Override
+    public void delete(long id) {
+        uR.deleteById(id);
+    }
+
 }

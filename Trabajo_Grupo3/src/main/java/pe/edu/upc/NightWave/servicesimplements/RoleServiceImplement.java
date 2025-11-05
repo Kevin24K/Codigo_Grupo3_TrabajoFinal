@@ -1,25 +1,27 @@
-package pe.edu.upc.NigthWave.servicesimplements;
+package pe.edu.upc.NightWave.servicesimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pe.edu.upc.NigthWave.entities.Rol;
-import pe.edu.upc.NigthWave.repositories.IRolRepository;
-import pe.edu.upc.NigthWave.servicesinterfaces.IRolService;
+import pe.edu.upc.NightWave.entities.Role;
+import pe.edu.upc.NightWave.repositories.IRoleRepository;
+import pe.edu.upc.NightWave.servicesinterfaces.IRoleService;
+
 
 import java.util.List;
+
 @Service
-public class RolServiceImplement implements IRolService
+public class RoleServiceImplement implements IRoleService
 {
     @Autowired
-    private IRolRepository rR;
+    private IRoleRepository rR;
 
     @Override
-    public List<Rol> list() {
+    public List<Role> list() {
         return rR.findAll();
     }
 
     @Override
-    public void insert(Rol rol) {
+    public void insert(Role rol) {
         rR.save(rol);
     }
 
@@ -29,12 +31,12 @@ public class RolServiceImplement implements IRolService
     }
 
     @Override
-    public Rol listId(int id) {
+    public Role listId(int id) {
         return rR.findById(id).orElse(null);
     }
 
     @Override
-    public void update(Rol rol) {
+    public void update(Role rol) {
         rR.save(rol);
     }
 }

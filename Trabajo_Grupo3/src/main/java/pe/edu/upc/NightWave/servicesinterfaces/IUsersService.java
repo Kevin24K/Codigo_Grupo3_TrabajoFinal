@@ -9,4 +9,10 @@ public interface IUsersService {
     int buscarUsername(String nombre);
     void insertarRol(String rol, Long userId);
     List<Users> listarUsuarios();
+
+    public void insert(Users usuario);
+    public List<Users> list();
+    public Users listId(long id);
+    public void update(Users usuario);
+    public void delete(long id);
 }

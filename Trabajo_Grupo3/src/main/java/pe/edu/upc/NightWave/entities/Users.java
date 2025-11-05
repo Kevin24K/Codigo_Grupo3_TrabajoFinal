@@ -18,9 +18,7 @@ public class Users implements Serializable {
     @Column(length = 30, unique = true)
     private String username;
     @Column(length = 200)
-    @JsonIgnore
     private String password;
-    @JsonIgnore
     private Boolean enabled;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")

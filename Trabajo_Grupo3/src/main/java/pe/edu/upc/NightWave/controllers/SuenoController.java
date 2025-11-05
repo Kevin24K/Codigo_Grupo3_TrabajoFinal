@@ -122,7 +122,7 @@ public class SuenoController {
             dto.setIdUsuario(((Number) fila[0]).intValue());
             dto.setPromedioHorasDormidas(fila[1] != null ? ((Number) fila[1]).doubleValue() : 0.0);
             dto.setPromedioInterrupciones(fila[2] != null ? ((Number) fila[2]).doubleValue() : 0.0);
-            dto.setPromedioEstres(fila[3] != null ? ((Number) fila[3]).doubleValue() : 0.0);
+            dto.setPromedioCalidad(fila[3] != null ? ((Number) fila[3]).doubleValue() : 0.0);
             listaDTO.add(dto);
         }
         return ResponseEntity.ok(listaDTO);
@@ -151,9 +151,4 @@ public class SuenoController {
 
         return ResponseEntity.ok(listaDTO);
     }
-
-
-
-
-
 }

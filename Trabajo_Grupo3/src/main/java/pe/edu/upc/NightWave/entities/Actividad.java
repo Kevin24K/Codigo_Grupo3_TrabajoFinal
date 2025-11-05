@@ -57,23 +57,20 @@ public class Actividad {
     // Constructor vacío
     public Actividad() {}
 
-    // Constructor completo
-
-
-    public Actividad(int idActividad, String tipoActividad, String nombre, String descripcion, int duracionMinutos, String intensidad, LocalDate fechaInicio, LocalDate fechaFin, boolean completada, int nivelEstresAntes, int nivelEstresDespues, int puntuacionSatisfaccion, Users idUsuario, MusicaMultimedia idMusica) {
+    public Actividad(int idActividad, String tipoActividad, String nombre, String descripcion, String intensidad, int duracionMinutos, LocalDate fechaFin, LocalDate fechaInicio, int nivelEstresAntes, boolean completada, int nivelEstresDespues, Users idUsuario, int puntuacionSatisfaccion, MusicaMultimedia idMusica) {
         this.idActividad = idActividad;
         this.tipoActividad = tipoActividad;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.duracionMinutos = duracionMinutos;
         this.intensidad = intensidad;
-        this.fechaInicio = fechaInicio;
+        this.duracionMinutos = duracionMinutos;
         this.fechaFin = fechaFin;
-        this.completada = completada;
+        this.fechaInicio = fechaInicio;
         this.nivelEstresAntes = nivelEstresAntes;
+        this.completada = completada;
         this.nivelEstresDespues = nivelEstresDespues;
-        this.puntuacionSatisfaccion = puntuacionSatisfaccion;
         this.idUsuario = idUsuario;
+        this.puntuacionSatisfaccion = puntuacionSatisfaccion;
         this.idMusica = idMusica;
     }
 
@@ -117,6 +114,14 @@ public class Actividad {
         this.duracionMinutos = duracionMinutos;
     }
 
+    public LocalDate getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(LocalDate fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
     public String getIntensidad() {
         return intensidad;
     }
@@ -131,14 +136,6 @@ public class Actividad {
 
     public void setFechaInicio(LocalDate fechaInicio) {
         this.fechaInicio = fechaInicio;
-    }
-
-    public LocalDate getFechaFin() {
-        return fechaFin;
-    }
-
-    public void setFechaFin(LocalDate fechaFin) {
-        this.fechaFin = fechaFin;
     }
 
     public boolean isCompletada() {
@@ -165,20 +162,20 @@ public class Actividad {
         this.nivelEstresDespues = nivelEstresDespues;
     }
 
-    public int getPuntuacionSatisfaccion() {
-        return puntuacionSatisfaccion;
-    }
-
-    public void setPuntuacionSatisfaccion(int puntuacionSatisfaccion) {
-        this.puntuacionSatisfaccion = puntuacionSatisfaccion;
-    }
-
     public Users getIdUsuario() {
         return idUsuario;
     }
 
     public void setIdUsuario(Users idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public int getPuntuacionSatisfaccion() {
+        return puntuacionSatisfaccion;
+    }
+
+    public void setPuntuacionSatisfaccion(int puntuacionSatisfaccion) {
+        this.puntuacionSatisfaccion = puntuacionSatisfaccion;
     }
 
     public MusicaMultimedia getIdMusica() {
