@@ -1,1 +1,47 @@
-<p>tipomusicaregistrar works!</p>
+<div class="form-wrapper">
+  <div class="form-box">
+    <h2>{{ edicion ? 'Editar Tipo de Música' : 'Registrar Tipo de Música' }}</h2>
+
+    <form [formGroup]="form" (ngSubmit)="aceptar()">
+      <ng-container *ngIf="edicion">
+        <mat-form-field appearance="fill">
+          <mat-label>ID</mat-label>
+          <input matInput formControlName="codigo" readonly />
+        </mat-form-field>
+      </ng-container>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombreTipo" />
+        <mat-error *ngIf="form.get('nombreTipo')?.hasError('required')">
+          Ingrese el nombre del tipo de música
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Categoría</mat-label>
+        <input matInput formControlName="categoria" />
+        <mat-error *ngIf="form.get('categoria')?.hasError('required')">
+          Ingrese la categoría
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput rows="3" formControlName="descripcion"></textarea>
+        <mat-error *ngIf="form.get('descripcion')?.hasError('required')">
+          Ingrese una descripción
+        </mat-error>
+      </mat-form-field>
+
+      <div class="button-group">
+        <button mat-raised-button color="primary" type="submit">
+          {{ edicion ? 'Actualizar' : 'Registrar' }}
+        </button>
+        <button mat-stroked-button color="warn" type="button" (click)="cancelar()">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
