@@ -66,6 +66,8 @@ public class WebSecurityConfig {
                         .requestMatchers("/swagger-ui/**").permitAll()
                         .requestMatchers("/swagger-ui.html").permitAll()
                         .requestMatchers("/tipoMusica").permitAll()
+                        .requestMatchers("/tipoMusica").permitAll()
+                        .requestMatchers("/tipoMusica/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())
