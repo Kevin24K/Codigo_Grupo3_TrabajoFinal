@@ -1,0 +1,48 @@
+<div class="container">
+  <h2>Gestión de Tipos de Música</h2>
+
+  <div class="toolbar">
+  <button mat-button class="add" (click)="openDialog()">
+    <mat-icon>add</mat-icon> Registrar nuevo tipo
+  </button>
+</div>
+
+<table mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="nombreTipo">
+    <th mat-header-cell *matHeaderCellDef>Nombre</th>
+    <td mat-cell *matCellDef="let element">{{ element.nombreTipo }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="categoria">
+    <th mat-header-cell *matHeaderCellDef>Categoría</th>
+    <td mat-cell *matCellDef="let element">{{ element.categoria }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="descripcion">
+    <th mat-header-cell *matHeaderCellDef>Descripción</th>
+    <td mat-cell *matCellDef="let element">{{ element.descripcion }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="editar">
+    <th mat-header-cell *matHeaderCellDef>Editar</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-button class="edit" (click)="editar(element.idTipoMusica)">
+        <mat-icon>edit</mat-icon>Editar
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="eliminar">
+    <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-button class="delete" (click)="eliminar(element.idTipoMusica)">
+        <mat-icon>delete</mat-icon>Eliminar
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+</div>
