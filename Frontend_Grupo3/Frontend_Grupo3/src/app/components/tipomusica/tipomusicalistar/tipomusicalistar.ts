@@ -7,7 +7,6 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { RouterLink } from '@angular/router';
 import { TipoMusica } from '../../../models/TipoMusica';
 import { TipoMusicaService } from '../../../services/tipomusica-service';
-import { Tipomusicaregistrar } from '../tipomusicaregistrar/tipomusicaregistrar'; 
 
 @Component({
   selector: 'app-tipomusicalistar',
@@ -17,9 +16,7 @@ import { Tipomusicaregistrar } from '../tipomusicaregistrar/tipomusicaregistrar'
     RouterLink,
     MatTableModule,
     MatButtonModule,
-    MatIconModule,
-    MatDialogModule,
-    Tipomusicaregistrar,        
+    MatIconModule,       
   ],
   templateUrl: './tipomusicalistar.html',
   styleUrls: ['./tipomusicalistar.css'],
@@ -28,17 +25,15 @@ export class Tipomusicalistar implements OnInit {
   dataSource = new MatTableDataSource<TipoMusica>();
   displayedColumns: string[] = ['nombreTipo', 'categoria', 'descripcion', 'editar', 'eliminar'];
 
-  constructor(private tS: TipoMusicaService, private dialog: MatDialog) {}
+  constructor(private tS: TipoMusicaService) {}
 
   ngOnInit(): void {
-    this.tS.list().subscribe({
-      next: (data) => (this.dataSource = new MatTableDataSource(data)),
-      error: (err) => console.error('Error al listar:', err),
+    this.tS.list().subscribe((data) => {
+      this.dataSource = new MatTableDataSource(data);
     });
 
-    // Escuchar actualizaciones
-    this.tS.getList().subscribe({
-      next: (data) => (this.dataSource = new MatTableDataSource(data)),
+    this.tS.getList().subscribe((data) => {
+      this.dataSource = new MatTableDataSource(data);
     });
   }
 
@@ -46,48 +41,14 @@ export class Tipomusicalistar implements OnInit {
     if (confirm('¿Deseas eliminar este tipo de música?')) {
       console.log('Intentando eliminar ID:', id);
       this.tS.delete(id).subscribe({
-        next: (mensaje) => {
-          console.log('Backend respondió:', mensaje);
-          this.tS.list().subscribe((data) => {
-            this.tS.setList(data);
-          });
+        next: () => {
+          this.tS.list().subscribe((data) => this.tS.setList(data));
         },
         error: (err) => {
           console.error('Error al eliminar:', err);
-          alert('No se pudo eliminar el registro.');
+          alert('No se pudo eliminar el registro dado que está en uso.');
         },
       });
     }
-  }
-
-  editar(id: number) {
-    const item = this.dataSource.data.find((i) => i.idTipoMusica === id);
-    const dialogRef = this.dialog.open(Tipomusicaregistrar, {
-      width: '450px',
-      data: item,
-      panelClass: 'custom-dialog-container',
-      backdropClass: 'custom-dialog-backdrop',
-      disableClose: true,
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result === 'saved') {
-        this.tS.list().subscribe((data) => this.tS.setList(data));
-      }
-    });
-  }
-
-  openDialog() {
-    const dialogRef = this.dialog.open(Tipomusicaregistrar, {
-      width: '450px',
-      disableClose: true,
-      panelClass: 'custom-dialog-container',
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result === 'saved') {
-        this.tS.list().subscribe((data) => this.tS.setList(data));
-      }
-    });
   }
 }

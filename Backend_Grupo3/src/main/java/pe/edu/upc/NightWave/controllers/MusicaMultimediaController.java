@@ -22,7 +22,7 @@ public class MusicaMultimediaController {
     @Autowired
     private IMusicaMultimediaService mmS;
 
-    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    //@PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping
     public ResponseEntity<?> listar() {
         List<MusicaMultimediaDTO> lista = mmS.list().stream().map(x -> {
@@ -37,7 +37,7 @@ public class MusicaMultimediaController {
         return ResponseEntity.ok(lista);
     }
 
-    @PreAuthorize("hasAnyAuthority('coach','usuario','analista','admin')")
+   //@PreAuthorize("hasAnyAuthority('coach','usuario','analista','admin')")
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody MusicaMultimediaDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -47,7 +47,7 @@ public class MusicaMultimediaController {
                 .body("Musica Multimedia registrada correctamente.");
     }
 
-    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    //@PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable("id") Integer id) {
         MusicaMultimedia musicaMultimedia = mmS.listId(id);
@@ -61,7 +61,7 @@ public class MusicaMultimediaController {
         return ResponseEntity.ok(dto);
     }
 
-    @PreAuthorize("hasAnyAuthority('coach','admin')")
+    //@PreAuthorize("hasAnyAuthority('coach','admin')")
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody MusicaMultimediaDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -77,7 +77,7 @@ public class MusicaMultimediaController {
         return ResponseEntity.ok("Musica Multimedia con ID " + dto.getIdMusicaMultimedia() + " modificado correctamente.");
     }
 
-    @PreAuthorize("hasAuthority('admin')")
+    //@PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id) {
         MusicaMultimedia musicaMultimedia = mmS.listId(id);

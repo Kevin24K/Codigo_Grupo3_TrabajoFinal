@@ -21,7 +21,7 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 
 
 //@Profile(value = {"development", "production"})
-//Clase S7
+
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -68,6 +68,8 @@ public class WebSecurityConfig {
                         .requestMatchers("/tipoMusica").permitAll()
                         .requestMatchers("/tipoMusica").permitAll()
                         .requestMatchers("/tipoMusica/**").permitAll()
+                        .requestMatchers("/musicasMultimedia").permitAll()
+                        .requestMatchers("/musicasMultimedia/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())

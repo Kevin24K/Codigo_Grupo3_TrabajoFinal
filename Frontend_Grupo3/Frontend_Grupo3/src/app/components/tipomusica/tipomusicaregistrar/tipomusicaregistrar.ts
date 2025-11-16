@@ -1,82 +1,115 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { MatSelectModule } from '@angular/material/select';
 import { TipoMusica } from '../../../models/TipoMusica';
 import { TipoMusicaService } from '../../../services/tipomusica-service';
-import { CommonModule } from '@angular/common';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
+import { MatCell } from "@angular/material/table";
 
 @Component({
   selector: 'app-tipomusicaregistrar',
   standalone: true,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
-    MatFormFieldModule,
     MatInputModule,
+    MatFormFieldModule,
     MatButtonModule,
-    MatDialogModule,
+    MatSelectModule,
+    MatCell
   ],
   templateUrl: './tipomusicaregistrar.html',
-  styleUrls: ['./tipomusicaregistrar.css'],
+  styleUrl: './tipomusicaregistrar.css',
 })
 export class Tipomusicaregistrar implements OnInit {
-  form: FormGroup;
-  isEdit = false; // para diferenciar registrar / editar
+  
+  form: FormGroup = new FormGroup({});
+  tipoMusica: TipoMusica = new TipoMusica();
+  edicion: boolean = false;
+  id: number = 0;
+
+  categorias: string[] = [
+    'Relajacion',
+    'Sueño',
+    'Meditacion',
+    'Concentración',
+    'Estrés'
+  ];
 
   constructor(
-    private tS: TipoMusicaService,
+    private tService: TipoMusicaService,
+    private router: Router,
     private formBuilder: FormBuilder,
-    private dialogRef: MatDialogRef<Tipomusicaregistrar>,
-    @Inject(MAT_DIALOG_DATA) public data: TipoMusica | null
-  ) {
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    this.route.params.subscribe((data: Params) => {
+      this.id = data['id'];
+      this.edicion = this.id != null;
+      this.init();
+    });
+
+    // FORMULARIO CON VALIDACIONES
     this.form = this.formBuilder.group({
-      idTipoMusica: [null],
+      codigo: [''],
       nombreTipo: ['', Validators.required],
       categoria: ['', Validators.required],
       descripcion: ['', Validators.required],
     });
   }
 
-  ngOnInit(): void {
-    if (this.data) {
-      this.isEdit = true;
-      this.form.patchValue(this.data); // cargar datos al formulario
+  aceptar(): void {
+    this.form.markAllAsTouched();
+
+    if (!this.form.valid) {
+      return; 
     }
-  }
 
-  guardar(): void {
-    if (this.form.invalid) return;
+    this.tipoMusica.idTipoMusica = this.form.value.codigo;
+    this.tipoMusica.nombreTipo = this.form.value.nombreTipo;
+    this.tipoMusica.categoria = this.form.value.categoria;
+    this.tipoMusica.descripcion = this.form.value.descripcion;
 
-    const tipoMusica = this.form.value as TipoMusica;
-
-    if (this.isEdit) {
-      this.tS.update(tipoMusica).subscribe({
-        next: () => {
-          this.tS.list().subscribe((data) => this.tS.setList(data));
-          this.dialogRef.close('saved');
-        },
-        error: (err) => console.error('Error al editar:', err),
+    if (this.edicion) {
+      this.tService.update(this.tipoMusica).subscribe(() => {
+        this.tService.list().subscribe((data) => {
+          this.tService.setList(data);
+        });
       });
     } else {
-      this.tS.insert(tipoMusica).subscribe({
-        next: () => {
-          this.tS.list().subscribe((data) => this.tS.setList(data));
-          this.dialogRef.close('saved');
-        },
-        error: (err) => console.error('Error al registrar:', err),
+      this.tService.insert(this.tipoMusica).subscribe(() => {
+        this.tService.list().subscribe((data) => {
+          this.tService.setList(data);
+        });
+      });
+    }
+    this.router.navigate(['tipomusica']);
+  }
+
+  // Cargar datos si es edición
+  init(): void {
+    if (this.edicion) {
+      this.tService.listId(this.id).subscribe((data) => {
+        this.form.setValue({
+          codigo: data.idTipoMusica,
+          nombreTipo: data.nombreTipo,
+          categoria: data.categoria,
+          descripcion: data.descripcion
+        });
       });
     }
   }
 
   cancelar(): void {
-    this.dialogRef.close();
+    this.router.navigate(['/tipomusica']);
   }
 }
