@@ -28,7 +28,7 @@ export class TipoMusicaService {
   }
 
   delete(id: number): Observable<string> {
-    return this.http.delete(`${this.url}/${id}`, { responseType: 'text' });
+    return this.http.delete(`${this.url}/${id}`, { responseType: 'text' }); 
   }
 
   listId(id: number): Observable<TipoMusica> {
@@ -39,7 +39,7 @@ export class TipoMusicaService {
     this.listaCambio.next(listaNueva);
   }
 
-  getList() {
+  getList(): Observable<TipoMusica[]> {
     return this.listaCambio.asObservable();
   }
 }
