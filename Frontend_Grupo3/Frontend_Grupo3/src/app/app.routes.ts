@@ -8,6 +8,9 @@ import { Tipomusicalistar } from './components/tipomusica/tipomusicalistar/tipom
 import { Habitos } from './components/habitos/habitos';
 import { HabitosListar } from './components/habitos/habitoslistar/habitoslistar';
 import { HabitosRegistrar } from './components/habitos/habitosregistrar/habitosregistrar';
+import { Seguimientohabitos } from './components/seguimientohabitos/seguimientohabitos';
+import { SeguimientoHabitosListar } from './components/seguimientohabitos/seguimientohabitoslistar/seguimientohabitoslistar';
+import { SeguimientoHabitosRegistrar } from './components/seguimientohabitos/seguimientohabitosregistrar/seguimientohabitosregistrar';
 
 export const routes: Routes = [
   {
@@ -36,6 +39,16 @@ export const routes: Routes = [
       { path: '', component: HabitosListar },
       { path: 'news', component: HabitosRegistrar },
       { path: 'edits/:id', component: HabitosRegistrar },
+    ],
+  },
+
+  {
+    path: 'seguimientohabitos/:idHabito',
+    component: Seguimientohabitos,
+    children: [
+      { path: '', component: SeguimientoHabitosListar },
+      { path: 'news', component: SeguimientoHabitosRegistrar },
+      { path: 'edits/:id', component: SeguimientoHabitosRegistrar },
     ],
   },
 ];

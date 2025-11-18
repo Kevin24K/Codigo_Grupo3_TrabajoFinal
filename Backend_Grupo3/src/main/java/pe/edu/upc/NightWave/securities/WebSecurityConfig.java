@@ -74,6 +74,8 @@ public class WebSecurityConfig {
                         .requestMatchers("/habitos/**").permitAll()
                         .requestMatchers("/users").permitAll()
                         .requestMatchers("/users/**").permitAll()
+                        .requestMatchers("/seguimiento-habitos").permitAll()
+                        .requestMatchers("/seguimiento-habitos/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())

@@ -8,17 +8,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-musicamultimedialistar',
-  imports: [
-    CommonModule,
-    RouterLink,
-    MatTableModule,
-    MatButtonModule,
-    MatIconModule,
-  ],
+  imports: [CommonModule, RouterLink, MatTableModule, MatButtonModule, MatIconModule],
   templateUrl: './musicamultimedialistar.html',
-  styleUrls: ['./musicamultimedialistar.css'], 
+  styleUrls: ['./musicamultimedialistar.css'],
 })
-export class MusicaMultimediaListar implements OnInit { 
+export class MusicaMultimediaListar implements OnInit {
   dataSource: MatTableDataSource<Musicamultimedia> = new MatTableDataSource();
 
   displayedColumns: string[] = ['nombreMusica', 'linkArchivo', 'tipoMusica', 'editar', 'eliminar'];

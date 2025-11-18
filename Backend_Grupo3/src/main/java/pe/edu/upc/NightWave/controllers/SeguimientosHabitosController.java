@@ -24,7 +24,7 @@ public class SeguimientosHabitosController {
     @Autowired
     private ISeguimientoHabitosService shS;
 
-    @PreAuthorize("hasAnyAuthority('coach','usuario','analista','admin')")
+    //@PreAuthorize("hasAnyAuthority('coach','usuario','analista','admin')")
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody SeguimientoHabitosDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -34,7 +34,7 @@ public class SeguimientosHabitosController {
                 .body("Seguimiento registrado correctamente.");
     }
 
-    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    //@PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping
     public List<SeguimientoHabitosDTO> listar() {
         return shS.list().stream().map(x -> {
@@ -43,20 +43,20 @@ public class SeguimientosHabitosController {
         }).collect(Collectors.toList());
     }
 
-    @PreAuthorize("hasAuthority('admin')")
+    //@PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int id) {
         shS.delete(id);
     }
 
-    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    //@PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping("/{id}")
     public SeguimientoHabitosDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         return m.map(shS.listId(id), SeguimientoHabitosDTO.class);
     }
 
-    @PreAuthorize("hasAnyAuthority('coach','admin')")
+    //@PreAuthorize("hasAnyAuthority('coach','admin')")
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody SeguimientoHabitosDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -72,7 +72,7 @@ public class SeguimientosHabitosController {
         return ResponseEntity.ok("Control parental con ID " + dto.getIdSeguimientoHabitos() + " modificado correctamente.");
     }
 
-    @PreAuthorize("hasAuthority('admin')")
+    //@PreAuthorize("hasAuthority('admin')")
     @GetMapping("/habitoscompletadosPorUsuario")
     public ResponseEntity<?> habitoscompletadosPorUsuario() {
         List<UsuariosConHabitosCompletadosDTO> listaDto = new ArrayList<>();
@@ -93,7 +93,7 @@ public class SeguimientosHabitosController {
         return ResponseEntity.ok(listaDto);
     }
 
-    @PreAuthorize("hasAuthority('admin')")
+    //@PreAuthorize("hasAuthority('admin')")
     @GetMapping("/habitosNocompletadosPorUsuario")
     public ResponseEntity<?> habitosNocompletadosPorUsuario() {
         List<UsuariosConHabitosNoCompletadosDTO> listaDto = new ArrayList<>();
