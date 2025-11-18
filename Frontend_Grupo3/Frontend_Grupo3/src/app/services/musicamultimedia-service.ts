@@ -21,8 +21,8 @@ export class MusicaMultimediaService implements OnInit{
     return this.http.get<Musicamultimedia[]>(this.url);
     }
 
-    insert(d: Musicamultimedia): Observable<string> {
-    return this.http.post(this.url, d, { responseType: 'text' });
+    insert(musica: Musicamultimedia): Observable<string> {
+    return this.http.post(this.url, musica, { responseType: 'text' });
     }
 
     setList(listaNueva: Musicamultimedia[]) {
@@ -36,8 +36,8 @@ export class MusicaMultimediaService implements OnInit{
     return this.http.get<Musicamultimedia>(`${this.url}/${id}`);
     }
 
-    update(d: Musicamultimedia) {
-    return this.http.put(`${this.url}`, d, { responseType: 'text' });
+    update(musica: Musicamultimedia) {
+    return this.http.put(`${this.url}`, musica, { responseType: 'text' });
     }
 
     delete(id: number) {

@@ -13,7 +13,6 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatSelectModule } from '@angular/material/select';
 import { TipoMusica } from '../../../models/TipoMusica';
 import { TipoMusicaService } from '../../../services/tipomusica-service';
-import { MatCell } from "@angular/material/table";
 
 @Component({
   selector: 'app-tipomusicaregistrar',
@@ -24,7 +23,6 @@ import { MatCell } from "@angular/material/table";
     MatFormFieldModule,
     MatButtonModule,
     MatSelectModule,
-    MatCell
   ],
   templateUrl: './tipomusicaregistrar.html',
   styleUrl: './tipomusicaregistrar.css',

@@ -20,7 +20,7 @@ public class UserController {
     @Autowired
     private IUsersService userService;
 
-    @PreAuthorize("hasAuthority('admin')")
+    //@PreAuthorize("hasAuthority('admin')")
     @GetMapping
     public ResponseEntity<?> listarUsuarios() {
         List<UsuarioDTO> lista = userService.list().stream().map(u -> {
@@ -37,7 +37,7 @@ public class UserController {
         return ResponseEntity.ok(lista);
     }
 
-    @PreAuthorize("hasAnyAuthority('admin', 'usuario')")
+   //@PreAuthorize("hasAnyAuthority('admin', 'usuario')")
     @GetMapping("/{id}")
     public ResponseEntity<?> obtenerPorId(@PathVariable("id") Long id) {
         Users user = userService.listId(id);
@@ -54,7 +54,7 @@ public class UserController {
         return ResponseEntity.ok(dto);
     }
 
-    @PreAuthorize("hasAuthority('admin')")
+    //@PreAuthorize("hasAuthority('admin')")
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody RegistroUsuarioDTO dto) {
         if (dto.getUsername() == null || dto.getUsername().trim().isEmpty()) {
@@ -82,7 +82,7 @@ public class UserController {
                 .body("Usuario creado correctamente.");
     }
 
-    @PreAuthorize("hasAuthority('admin')")
+    //@PreAuthorize("hasAuthority('admin')")
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody UsuarioDTO dto) {
         if (dto.getId() == null) {
@@ -105,7 +105,7 @@ public class UserController {
         return ResponseEntity.ok("Usuario actualizado correctamente.");
     }
 
-    @PreAuthorize("hasAuthority('admin')")
+    //PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable("id") Long id) {
         Users existente = userService.listId(id);
@@ -118,7 +118,7 @@ public class UserController {
         return ResponseEntity.ok("Usuario eliminado correctamente.");
     }
 
-    @PreAuthorize("hasAnyAuthority('usuario','admin')")
+    //@PreAuthorize("hasAnyAuthority('usuario','admin')")
     @GetMapping("/buscar/{username}")
     public ResponseEntity<?> buscarPorUsername(@PathVariable String username) {
         Users user = userService.findByUsername(username);
@@ -135,14 +135,14 @@ public class UserController {
         return ResponseEntity.ok(dto);
     }
 
-    @PreAuthorize("hasAuthority('admin')")
+    //@PreAuthorize("hasAuthority('admin')")
     @GetMapping("/existe/{username}")
     public ResponseEntity<Boolean> existeUsername(@PathVariable String username) {
         boolean existe = userService.buscarUsername(username) > 0;
         return ResponseEntity.ok(existe);
     }
 
-    @PreAuthorize("hasAuthority('admin')")
+    //@PreAuthorize("hasAuthority('admin')")
     @PostMapping("/rol")
     public ResponseEntity<String> insertarRol(@RequestParam String rol, @RequestParam Long userId) {
         Users user = userService.listId(userId);
