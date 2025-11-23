@@ -76,7 +76,6 @@ export class MusicamultimediaRegistrar implements OnInit {
     this.musica.nombreMusica = this.form.value.nombreMusica;
     this.musica.linkArchivo = this.form.value.linkArchivo;
 
-    // ❗ Corregido: tu objeto es anidado
     this.musica.idTipoMusica = new TipoMusica();
     this.musica.idTipoMusica.idTipoMusica = this.form.value.tipo;
 
