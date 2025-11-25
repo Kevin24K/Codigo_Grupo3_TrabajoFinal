@@ -1,0 +1,475 @@
+/* === FONDO GLOBAL === */
+:host {
+  display: block;
+  background-color: #030511;
+  min-height: 100vh;
+  color: #ffffff;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  padding: 40px;
+}
+
+/* === TÍTULO === */
+h2 {
+  color: #64ffda;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 2rem !important;
+}
+
+/* === CONTENEDOR DEL FORMULARIO === */
+.form-box {
+  background-color: #040f1b;
+  padding: 30px;
+  border-radius: 12px;
+  width: 60%;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+/* === CAMPOS === */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Label */
+.mat-mdc-form-field-label,
+.mdc-floating-label {
+  color: #b8c1cc !important;
+  font-size: 1rem !important;
+}
+
+/* Campos llenados */
+.mdc-text-field--filled {
+  background-color: #1b263b !important;
+  border-radius: 8px !important;
+}
+
+.mdc-line-ripple::before {
+  border-bottom-color: rgba(100, 255, 218, 0.3) !important;
+}
+
+.mdc-line-ripple::after {
+  border-bottom-color: #64ffda !important;
+}
+
+.mdc-text-field__input,
+.mat-mdc-input-element {
+  color: #ffffff !important;
+  font-size: 1rem !important;
+}
+
+.mat-mdc-input-element::placeholder {
+  color: #b8c1cc !important;
+  opacity: 0.6;
+}
+
+/* Fondo del input */
+mat-form-field .mdc-text-field--filled {
+  background-color: #1b263b !important;
+  border-radius: 8px !important;
+  padding: 4px 10px !important;
+  height: 55px;
+  display: flex;
+  align-items: center;
+}
+
+/* Textos del select */
+.mat-mdc-select-value {
+  color: #ffffff !important;
+  font-size: 1rem !important;
+}
+
+.mat-mdc-select-arrow {
+  color: #64ffda !important;
+}
+
+.mat-mdc-select-panel,
+.mdc-menu-surface {
+  background-color: #1b263b !important;
+  border-radius: 8px !important;
+}
+
+.mat-mdc-option {
+  background-color: #1b263b !important;
+  color: #ffffff !important;
+  padding: 14px 18px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mat-mdc-option:hover {
+  background-color: #0f1a28 !important;
+}
+
+.mat-mdc-option.mdc-list-item--selected {
+  background-color: #0a1a27 !important;
+  color: #64ffda !important;
+}
+
+/* ================================
+   BOTONES
+   ================================ */
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Botón principal */
+button[mat-raised-button] {
+  width: 48%;
+  background-color: #1b263b !important;
+  color: #64ffda !important;
+  border: 1px solid #64ffda !important;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 1rem !important;
+  font-weight: 500;
+  transition: 0.25s ease-in-out;
+}
+
+button[mat-raised-button]:hover {
+  background-color: #64ffda !important;
+  color: #0d1b2a !important;
+}
+
+/* Botón cancelar */
+.cancel-btn {
+  width: 40%;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background-color: #1b263b;
+  color: #64ffda;
+  border: 1px solid #64ffda;
+  font-size: 1rem !important;
+  font-weight: 500;
+  transition: 0.25s ease-in-out;
+}
+
+.cancel-btn:hover {
+  background-color: #64ffda;
+  color: #0d1b2a;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .form-box {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .button-container {
+    flex-direction: column;
+  }
+
+  .cancel-btn,
+  button[mat-raised-button] {
+    width: 100%;
+  }
+}
+
+/* ==== ERRORES ==== */
+mat-error {
+  color: #b8c1cc !important;
+  font-size: 0.85rem !important;
+}
+
+.container {
+  margin-top: 80px;
+}
+
+.mensaje-global {
+  text-align: center;
+  color: #b8c1cc;
+  font-size: 0.9rem !important;
+}
+
+
+mat-form-field.textarea-filled .mdc-notched-outline__leading,
+mat-form-field.textarea-filled .mdc-notched-outline__notch,
+mat-form-field.textarea-filled .mdc-notched-outline__trailing {
+  display: none !important;
+}
+
+mat-form-field.textarea-filled .mdc-text-field {
+  background-color: #1b263b !important;
+  border: 1px solid rgba(100, 255, 218, 0.3) !important;
+  border-radius: 8px !important;
+  padding: 8px !important;
+}
+
+mat-form-field.textarea-filled .mdc-text-field.mdc-text-field--focused {
+  border-color: #64ffda !important;
+}
+
+mat-form-field.textarea-filled textarea {
+  padding: 6px 0 !important;
+  margin-top: 4px !important;
+}
+
+.error-text {
+  color: #b8c1cc;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* === Estilo para el Calendario === */
+
+/* Cabecera del calendario (Mes y Año) */
+::ng-deep .mat-calendar-header {
+  background-color: #1b263b !important;
+  color: #64ffda !important;
+  font-weight: bold !important;
+  padding: 10px 20px !important;
+  text-align: center !important;
+}
+
+/* Estilo para el botón del mes/año */
+::ng-deep .mat-calendar-period-button {
+  color: #64ffda !important;
+  font-size: 1.2rem !important;
+  font-weight: bold !important;
+  padding: 10px !important;
+}
+
+/* Estilo para los días de la semana (Sun, Mon, Tue, etc.) */
+::ng-deep .mat-calendar-body-header {
+  background-color: #1b263b !important;
+  /* Fondo para la fila de los días de la semana */
+  color: #64ffda !important;
+  /* Texto en verde claro */
+  font-weight: bold !important;
+  /* Negrita */
+  text-align: center !important;
+  /* Centrado */
+  font-size: 1rem !important;
+  /* Tamaño adecuado */
+  padding: 10px 0 !important;
+  /* Espaciado adecuado */
+}
+
+/* Estilos para los nombres de los días de la semana (Sun, Mon, Tue, etc.) */
+::ng-deep .mat-calendar-body-header .mat-calendar-body-cell {
+  font-size: 1rem !important;
+  /* Tamaño de la fuente para los días */
+  font-weight: bold !important;
+  /* Negrita */
+  color: #64ffda !important;
+  /* Color verde claro para los días */
+}
+
+
+/* =============================
+   BOTONES: CANCELAR / REGISTRAR
+   ============================= */
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Botón cancelar */
+.cancel-btn {
+  width: 48%;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background-color: #1b263b;
+  color: #64ffda;
+  border: 1px solid #64ffda;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: 0.25s ease-in-out;
+}
+
+.cancel-btn:hover {
+  background-color: #64ffda;
+  color: #0d1b2a;
+}
+
+/* Botón registrar / actualizar */
+button[matButton="elevated"] {
+  width: 48%;
+  background-color: #1b263b;
+  color: #64ffda;
+  border: 1px solid #64ffda;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: 0.25s ease-in-out;
+}
+
+button[matButton="elevated"]:hover {
+  background-color: #64ffda;
+  color: #0d1b2a;
+}
+
+/* Estilos para el mes (e.g. NOV, DIC) */
+::ng-deep .mat-calendar-period-button {
+  font-size: 1.2rem !important;
+  /* Tamaño de la fuente para el mes */
+  font-weight: bold !important;
+  /* Negrita para el mes */
+  color: #64ffda !important;
+  /* Color del mes en verde claro */
+  padding: 10px !important;
+  /* Espaciado alrededor del mes */
+}
+
+/* Fondo y color de texto de la cabecera del mes */
+::ng-deep .mat-calendar-header {
+  background-color: #1b263b !important;
+  /* Fondo para la cabecera (Mes) */
+  color: #64ffda !important;
+  /* Texto verde claro */
+  font-size: 1.2rem !important;
+  /* Tamaño adecuado */
+  font-weight: bold !important;
+  /* Texto en negrita */
+  padding: 10px !important;
+  /* Espaciado adecuado */
+}
+
+/* Fondo para la fila de los días de la semana (Sunday, Monday, etc.) */
+::ng-deep .mat-calendar-body-header .mat-calendar-body-cell-content {
+  background-color: #1b263b !important;
+  /* Fondo para las celdas de los días de la semana */
+}
+
+/* Fondo de la fila de días de la semana */
+::ng-deep .mat-calendar-header .mat-calendar-body-cell-content {
+  background-color: #1b263b !important;
+}
+
+/* Estilo para las celdas del calendario */
+::ng-deep .mat-calendar-body-cell {
+  background-color: #1b263b !important;
+  color: white !important;
+  font-size: 1rem !important;
+}
+
+/* Estilo para el día seleccionado */
+::ng-deep .mat-calendar-body-selected {
+  background-color: #64ffda !important;
+  color: #0d1b2a !important;
+}
+
+/* Estilo al pasar el ratón sobre las celdas */
+::ng-deep .mat-calendar-body-cell:hover {
+  background-color: #0d1b2a !important;
+  color: #64ffda !important;
+}
+
+/* Estilo para los días deshabilitados */
+::ng-deep .mat-calendar-body-disabled {
+  color: #3c4b5a !important;
+}
+
+/* Asegura que el popup del calendario tenga el máximo z-index */
+::ng-deep .mat-mdc-datepicker-popup {
+  z-index: 9999 !important;
+}
+
+/* Icono de abrir el calendario */
+::ng-deep .mat-datepicker-toggle-default-icon {
+  color: #64ffda !important;
+}
+
+/* Estilo para los botones de navegación de mes (Next, Prev) */
+::ng-deep .mat-calendar-navigation-button-icon {
+  color: #64ffda !important;
+}
+
+/* Estilo para las celdas del calendario (días) */
+::ng-deep .mat-calendar-body-cell-content {
+  color: white !important;
+  background-color: #1b263b !important;
+}
+
+/* Fondo y color de los días seleccionados */
+::ng-deep .mat-calendar-body-selected {
+  background-color: #64ffda !important;
+  color: #0d1b2a !important;
+}
+
+/* Fondo del día seleccionado al hacer hover */
+::ng-deep .mat-calendar-body-selected:hover {
+  background-color: #0d1b2a !important;
+  color: #64ffda !important;
+}
+
+/* Estilo para las celdas del calendario (días) cuando se pasa el ratón por encima */
+::ng-deep .mat-calendar-body-cell:hover {
+  background-color: #0d1b2a !important;
+  color: #64ffda !important;
+}
+
+/* Asegurarse de que el calendario esté al frente */
+::ng-deep .mat-mdc-datepicker-popup {
+  z-index: 99999 !important;
+}
+
+/* Fondo para la fila de los días de la semana (Sun, Mon, Tue, etc.) */
+::ng-deep .mat-calendar-body-label {
+  background-color: #1b263b !important;
+  color: #64ffda !important;
+  font-weight: bold !important;
+  font-size: 1rem !important;
+}
+
+/* === Estilos para el calendario (tabla de días) === */
+
+::ng-deep .mat-calendar-table {
+  background-color: #1b263b !important;
+  color: white !important;
+  border-radius: 8px !important;
+}
+
+/* Estilo para los días dentro de la tabla */
+::ng-deep .mat-calendar-body-cell {
+  background-color: #1b263b !important;
+  color: white !important;
+}
+
+/* Estilo para los días de la semana dentro de la tabla (Sun, Mon, etc.) */
+::ng-deep .mat-calendar-body-label .mat-calendar-body-cell {
+  color: #64ffda !important;
+  font-weight: bold !important;
+  font-size: 1rem !important;
+}
+
+/* === Estilo para el mes (e.g., NOV, DIC) === */
+::ng-deep .mat-calendar-period-button {
+  font-size: 1.2rem !important;
+  /* Aumentar tamaño del texto para el mes */
+  font-weight: bold !important;
+  /* Negrita */
+  color: #64ffda !important;
+  /* Color verde claro para el mes */
+}
+
+::ng-deep .mat-calendar-content {
+  padding: 20px !important;
+  /* Espaciado interno para el contenido */
+  background-color: #1b263b !important;
+  /* Fondo para el contenido */
+  border-radius: 8px !important;
+  /* Bordes redondeados */
+}
+
+/* === Fondo y texto para la cabecera del mes === */
+::ng-deep .mat-calendar-header {
+  background-color: #1b263b !important;
+  /* Fondo oscuro */
+  color: #64ffda !important;
+  /* Texto verde claro */
+  font-size: 1.2rem !important;
+  /* Tamaño adecuado */
+  font-weight: bold !important;
+  /* Negrita */
+}

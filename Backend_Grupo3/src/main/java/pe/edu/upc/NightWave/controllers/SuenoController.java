@@ -1,0 +1,155 @@
+package pe.edu.upc.NightWave.controllers;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.NightWave.dtos.HorasDormidasDTO;
+import pe.edu.upc.NightWave.dtos.PromedioSuenoDTO;
+import pe.edu.upc.NightWave.dtos.SuenoDTO;
+import pe.edu.upc.NightWave.entities.Sueno;
+import pe.edu.upc.NightWave.entities.Users;
+import pe.edu.upc.NightWave.servicesinterfaces.ISuenoService;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@RestController
+@RequestMapping("/suenos")
+public class SuenoController {
+    @Autowired
+    private ISuenoService sS;
+
+    //@PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    @GetMapping
+    public ResponseEntity<?> listar() {
+        List<SuenoDTO> lista = sS.list().stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, SuenoDTO.class);
+        }).collect(Collectors.toList());
+
+        if (lista.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body("No existen sueños registrados.");
+        }
+        return ResponseEntity.ok(lista);
+    }
+
+    //@PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    @PostMapping
+    public ResponseEntity<String> registrar(@RequestBody SuenoDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Sueno s = m.map(dto, Sueno.class);
+        sS.insert(s);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Sueño registrado correctamente.");
+    }
+
+    //@PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    @GetMapping("/{id}")
+    public ResponseEntity<?> listarPorId(@PathVariable("id") Integer id) {
+        Sueno sueno = sS.listId(id);
+        if (sueno == null) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body("No existe sueños con ID: " + id);
+        }
+        ModelMapper m = new ModelMapper();
+        SuenoDTO dto = m.map(sueno, SuenoDTO.class);
+        return ResponseEntity.ok(dto);
+    }
+
+    //@PreAuthorize("hasAnyAuthority('coach','admin')")
+    @PutMapping
+    public ResponseEntity<String> modificar(@RequestBody SuenoDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Sueno su = m.map(dto, Sueno.class);
+
+        Sueno existente = sS.listId(dto.getIdSueno());
+        if (existente == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No se puede modificar. No existe sueño con ID: " + dto.getIdSueno());
+        }
+
+        sS.update(su);
+        return ResponseEntity.ok("Sueño con ID " + dto.getIdSueno() + " modificado correctamente.");
+    }
+
+    //@PreAuthorize("hasAuthority('admin')")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> eliminar(@PathVariable("id") Integer id) {
+        Sueno suenio = sS.listId(id);
+        if (suenio == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No existe un sueño con el ID: " + id);
+        }
+        sS.delete(id);
+        return ResponseEntity.ok("Registro con ID " + id + " eliminado correctamente.");
+    }
+
+    //@PreAuthorize("hasAnyAuthority('analista','admin')")
+    @GetMapping("/por-calidad")
+    public ResponseEntity<?> suenosPorCalidad(@RequestParam int umbral) {
+        List<SuenoDTO> lista = sS.BuscarPorUmbralCalidadDeSueno(umbral).stream()
+                .map(s -> {
+                    ModelMapper m = new ModelMapper();
+                    return m.map(s, SuenoDTO.class);
+                }).collect(Collectors.toList());
+
+        if (lista.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No se encontraron sueños con calidad menor o igual a " + umbral);
+        }
+        return ResponseEntity.ok(lista);
+    }
+
+    //@PreAuthorize("hasAnyAuthority('analista','admin')")
+    @GetMapping("/promedios")
+    public ResponseEntity<?> promedioSuenoTodosUsuarios() {
+        List<Object[]> resultados = sS.promedioSuenoTodosUsuarios();
+
+        if (resultados.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No se encontraron registros de sueño para ningún usuario.");
+        }
+
+        List<PromedioSuenoDTO> listaDTO = new ArrayList<>();
+        for (Object[] fila : resultados) {
+            PromedioSuenoDTO dto = new PromedioSuenoDTO();
+            dto.setIdUsuario(((Number) fila[0]).intValue());
+            dto.setPromedioHorasDormidas(fila[1] != null ? ((Number) fila[1]).doubleValue() : 0.0);
+            dto.setPromedioInterrupciones(fila[2] != null ? ((Number) fila[2]).doubleValue() : 0.0);
+            dto.setPromedioCalidad(fila[3] != null ? ((Number) fila[3]).doubleValue() : 0.0);
+            listaDTO.add(dto);
+        }
+        return ResponseEntity.ok(listaDTO);
+    }
+
+    //@PreAuthorize("hasAnyAuthority('analista','admin')")
+    @GetMapping("/horasdormidas")
+    public ResponseEntity<?> horasDormidasPorUsuarioPorRegistro() {
+        // Llamamos al servicio
+        List<Object[]> resultados = sS.horasDormidasPorUsuarioPorRegistro();
+
+        if (resultados.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("No se encontraron registros de sueño para ningún usuario.");
+        }
+
+        // Mapeamos Object[] a HorasDormidasDTO
+        List<HorasDormidasDTO> listaDTO = resultados.stream()
+                .map(fila -> {
+                    int idUsuario = ((Number) fila[0]).intValue();
+                    LocalDate fechaRegistro = ((java.sql.Date) fila[1]).toLocalDate();
+                    double horasDormidas = fila[2] != null ? ((Number) fila[2]).doubleValue() : 0.0;
+                    return new HorasDormidasDTO(idUsuario, fechaRegistro, horasDormidas);
+                })
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(listaDTO);
+    }
+}
