@@ -25,7 +25,7 @@ public class ObjetivosController {
     @Autowired
     private IObjetivosService oS;
 
-    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    //@PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping
     public ResponseEntity<?> listar() {
         List<ObjetivosDTO> lista = oS.list().stream().map(x -> {
@@ -40,7 +40,7 @@ public class ObjetivosController {
         return ResponseEntity.ok(lista);
     }
 
-    @PreAuthorize("hasAnyAuthority('coach','usuario','analista','admin')")
+    //@PreAuthorize("hasAnyAuthority('coach','usuario','analista','admin')")
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody ObjetivosDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -50,7 +50,7 @@ public class ObjetivosController {
                 .body("Objetivo registrada correctamente.");
     }
 
-    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    //@PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable("id") Integer id) {
         Objetivos objetivos = oS.listId(id);
@@ -64,7 +64,7 @@ public class ObjetivosController {
         return ResponseEntity.ok(dto);
     }
 
-    @PreAuthorize("hasAnyAuthority('coach','admin')")
+    //@PreAuthorize("hasAnyAuthority('coach','admin')")
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody ObjetivosDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -80,7 +80,7 @@ public class ObjetivosController {
         return ResponseEntity.ok("Objetivo con ID " + dto.getIdObjetivos() + " modificado correctamente.");
     }
 
-    @PreAuthorize("hasAuthority('admin')")
+    //@PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id) {
         Objetivos objetivos = oS.listId(id);
@@ -93,7 +93,7 @@ public class ObjetivosController {
     }
 
     //Query
-    @PreAuthorize("hasAnyAuthority('analista','admin')")
+    //@PreAuthorize("hasAnyAuthority('analista','admin')")
     @GetMapping("/promedioProgreso")
     public ResponseEntity<?> obtenerPromedioProgreso() {
         List<PromedioProgresoDTO> listaDto = new ArrayList<>();
@@ -115,7 +115,7 @@ public class ObjetivosController {
     }
 
     //Query
-    @PreAuthorize("hasAnyAuthority('coach','admin')")
+    //@PreAuthorize("hasAnyAuthority('coach','admin')")
     @GetMapping("/objetivos-alcanzados-x-usuario")
     public ResponseEntity<?> contarObjetivosPorUsuario() {
         List<ObjetivosAlcanzadosDTO> listaDto = new ArrayList<>();

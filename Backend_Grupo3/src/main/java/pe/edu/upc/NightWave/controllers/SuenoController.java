@@ -10,6 +10,7 @@ import pe.edu.upc.NightWave.dtos.HorasDormidasDTO;
 import pe.edu.upc.NightWave.dtos.PromedioSuenoDTO;
 import pe.edu.upc.NightWave.dtos.SuenoDTO;
 import pe.edu.upc.NightWave.entities.Sueno;
+import pe.edu.upc.NightWave.entities.Users;
 import pe.edu.upc.NightWave.servicesinterfaces.ISuenoService;
 
 import java.time.LocalDate;
@@ -23,7 +24,7 @@ public class SuenoController {
     @Autowired
     private ISuenoService sS;
 
-    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    //@PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping
     public ResponseEntity<?> listar() {
         List<SuenoDTO> lista = sS.list().stream().map(x -> {
@@ -38,7 +39,7 @@ public class SuenoController {
         return ResponseEntity.ok(lista);
     }
 
-    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    //@PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody SuenoDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -48,7 +49,7 @@ public class SuenoController {
                 .body("Sueño registrado correctamente.");
     }
 
-    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    //@PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable("id") Integer id) {
         Sueno sueno = sS.listId(id);
@@ -62,7 +63,7 @@ public class SuenoController {
         return ResponseEntity.ok(dto);
     }
 
-    @PreAuthorize("hasAnyAuthority('coach','admin')")
+    //@PreAuthorize("hasAnyAuthority('coach','admin')")
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody SuenoDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -78,7 +79,7 @@ public class SuenoController {
         return ResponseEntity.ok("Sueño con ID " + dto.getIdSueno() + " modificado correctamente.");
     }
 
-    @PreAuthorize("hasAuthority('admin')")
+    //@PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id) {
         Sueno suenio = sS.listId(id);
@@ -90,7 +91,7 @@ public class SuenoController {
         return ResponseEntity.ok("Registro con ID " + id + " eliminado correctamente.");
     }
 
-    @PreAuthorize("hasAnyAuthority('analista','admin')")
+    //@PreAuthorize("hasAnyAuthority('analista','admin')")
     @GetMapping("/por-calidad")
     public ResponseEntity<?> suenosPorCalidad(@RequestParam int umbral) {
         List<SuenoDTO> lista = sS.BuscarPorUmbralCalidadDeSueno(umbral).stream()
@@ -106,7 +107,7 @@ public class SuenoController {
         return ResponseEntity.ok(lista);
     }
 
-    @PreAuthorize("hasAnyAuthority('analista','admin')")
+    //@PreAuthorize("hasAnyAuthority('analista','admin')")
     @GetMapping("/promedios")
     public ResponseEntity<?> promedioSuenoTodosUsuarios() {
         List<Object[]> resultados = sS.promedioSuenoTodosUsuarios();
@@ -128,7 +129,7 @@ public class SuenoController {
         return ResponseEntity.ok(listaDTO);
     }
 
-    @PreAuthorize("hasAnyAuthority('analista','admin')")
+    //@PreAuthorize("hasAnyAuthority('analista','admin')")
     @GetMapping("/horasdormidas")
     public ResponseEntity<?> horasDormidasPorUsuarioPorRegistro() {
         // Llamamos al servicio

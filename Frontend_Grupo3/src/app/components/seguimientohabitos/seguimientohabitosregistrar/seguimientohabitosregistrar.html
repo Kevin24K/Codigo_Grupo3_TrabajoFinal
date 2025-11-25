@@ -1,0 +1,73 @@
+<div class="container">
+
+  <h2>{{ edicion ? 'Editar Seguimiento de Hábito' : 'Registrar Seguimiento de Hábito' }}</h2>
+
+  <div class="form-box">
+    <form [formGroup]="form" (submit)="aceptar()">
+
+      @if(edicion){
+      <mat-form-field>
+        <mat-label>ID</mat-label>
+        <input matInput formControlName="codigo" readonly />
+      </mat-form-field>
+      }
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Hábito</mat-label>
+        <input matInput formControlName="habito" readonly />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Usuario</mat-label>
+        <input matInput formControlName="usuario" readonly />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Fecha de Seguimiento</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fechaSeguimiento" required />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error>
+          @if (form.get('fechaSeguimiento')?.hasError('required')) { Ingrese fecha }
+        </mat-error>
+      </mat-form-field>
+
+      <mat-radio-group aria-label="Selecciona una opción" formControlName="completado">
+        <mat-label>¿Completado?</mat-label>
+        <mat-radio-button [value]="true">Sí</mat-radio-button>
+        <mat-radio-button [value]="false">No</mat-radio-button>
+        <mat-error>
+          @if (form.get('completado')?.hasError('required')) { Ingrese si esta completado o no }
+        </mat-error>
+      </mat-radio-group>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Calidad de Ejecución (0-10)</mat-label>
+        <input matInput type="number" formControlName="calidadEjecucion" (input)="limitarCalidad($event)" required />
+        <mat-error>
+          @if (form.get('calidadEjecucion')?.hasError('required')) { Ingrese la puntuación }
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Notas</mat-label>
+        <textarea matInput formControlName="notas" rows="4" maxlength="200" required></textarea>
+        <mat-error>
+          @if (form.get('notas')?.hasError('required')) { Ingrese las notas }
+        </mat-error>
+      </mat-form-field>
+
+      <button matButton="elevated">{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
+
+      <button mat-raised-button color="warn" type="button" (click)="cancelar()">
+        Cancelar
+      </button>
+    </form>
+
+    <p class="mensaje-global">
+      @if(form.invalid && form.touched){
+      Complete los espacios en blanco
+      }
+    </p>
+  </div>
+</div>

@@ -24,7 +24,7 @@ public class RoleController {
     @Autowired
     private IUsersService userService;
 
-    @PreAuthorize("hasAuthority('admin')")
+    //@PreAuthorize("hasAuthority('admin')")
     @GetMapping
     public ResponseEntity<?> listar() {
         List<RolDTO> lista = roleService.list().stream().map(role -> {
@@ -43,7 +43,7 @@ public class RoleController {
         return ResponseEntity.ok(lista);
     }
 
-    @PreAuthorize("hasAuthority('admin')")
+    //@PreAuthorize("hasAuthority('admin')")
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody RolDTO dto) {
         if (dto.getRol() == null || dto.getRol().trim().isEmpty()) {
@@ -71,7 +71,7 @@ public class RoleController {
                 .body("Rol registrado correctamente.");
     }
 
-    @PreAuthorize("hasAuthority('admin')")
+    //@PreAuthorize("hasAuthority('admin')")
     @GetMapping("/{id}")
     public ResponseEntity<?> obtenerPorId(@PathVariable("id") Long id) {
         Role rol = roleService.listId(id.intValue());
@@ -88,7 +88,7 @@ public class RoleController {
         return ResponseEntity.ok(dto);
     }
 
-    @PreAuthorize("hasAuthority('admin')")
+    //@PreAuthorize("hasAuthority('admin')")
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody RolDTO dto) {
         if (dto.getId() == null) {
@@ -120,7 +120,7 @@ public class RoleController {
         return ResponseEntity.ok("Rol actualizado correctamente.");
     }
 
-    @PreAuthorize("hasAuthority('admin')")
+    //@PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable("id") Long id) {
         Role rol = roleService.listId(id.intValue());
