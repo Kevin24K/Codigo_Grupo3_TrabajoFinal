@@ -24,7 +24,7 @@ public class HabitosController {
 
     //@PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping
-    public ResponseEntity<?> listar() {
+    public ResponseEntity<?> listar() { 
         List<HabitosDTO> lista = hS.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
             return m.map(x, HabitosDTO.class);
