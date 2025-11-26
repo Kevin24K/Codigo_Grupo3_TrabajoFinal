@@ -1,0 +1,96 @@
+<div class="container">
+
+  <div class="header-row">
+    <h2>
+      <mat-icon class="habit-icon">checklist</mat-icon>
+      Gestión de Hábitos
+    </h2>
+    <button mat-button class="add" [routerLink]="['/habitos/news']">
+      <mat-icon>add</mat-icon> Registrar nuevo hábito
+    </button>
+  </div>
+
+  <div class="habits-grid">
+
+    <div class="habit-card" *ngFor="let h of dataSource.data">
+
+      <!-- ENCABEZADO -->
+      <div class="card-header">
+        <h3>
+          @if (h.nombreHabito) {
+          {{ h.nombreHabito }}
+          } @else {
+          <span class="error-text">Nombre no registrado</span>
+          }
+        </h3>
+
+        <span class="status" [class.active]="h.activo" [class.inactive]="!h.activo">
+          {{ h.activo ? "Activo" : "Inactivo" }}
+        </span>
+      </div>
+
+      <!-- DESCRIPCIÓN -->
+      <p class="descripcion">
+        @if (h.descripcion) {
+        {{ h.descripcion }}
+        } @else {
+        <span class="error-text">Sin descripción</span>
+        }
+      </p>
+
+      <!-- CATEGORÍA -->
+      <div class="info-row">
+        <mat-icon>category</mat-icon>
+        <span>
+          @if (h.categoria) {
+          {{ h.categoria }}
+          } @else {
+          <span class="error-text">Sin categoría</span>
+          }
+        </span>
+      </div>
+
+      <!-- MOMENTO DEL DÍA -->
+      <div class="info-row">
+        <mat-icon>schedule</mat-icon>
+        <span>
+          @if (h.momentoDia) {
+          {{ h.momentoDia }}
+          } @else {
+          <span class="error-text">No registrado</span>
+          }
+        </span>
+      </div>
+
+      <!-- USUARIO -->
+      <div class="info-row">
+        <mat-icon>person</mat-icon>
+        <span>
+          @if (h.idUsuario.username) {
+          {{ h.idUsuario.username }}
+          } @else {
+          <span class="error-text">Usuario no asignado</span>
+          }
+        </span>
+      </div>
+
+      <!-- BOTONES -->
+      <div class="card-actions">
+        <button mat-icon-button color="primary" [routerLink]="['/habitos/edits', h.idHabitos]">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-icon-button color="warn" (click)="eliminar(h.idHabitos)">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+        <button mat-icon-button color="accent" [routerLink]="['/seguimientohabitos/listar', h.idHabitos, h.idUsuario.id]">
+          <mat-icon>playlist_add_check</mat-icon>
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
