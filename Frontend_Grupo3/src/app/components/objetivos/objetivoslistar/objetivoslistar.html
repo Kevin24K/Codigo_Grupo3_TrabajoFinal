@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="header-row">
+    <div>
+      <h1>Objetivos</h1>
+      <p class="subtitle">Define y alcanza tus metas de bienestar</p>
+    </div>
+
+    <button mat-button class="add" [routerLink]="['/objetivos/news']">
+      <mat-icon>add</mat-icon>
+      <span>Nuevo Objetivo</span>
+    </button>
+  </div>
+
+  <!-- EMPTY STATE -->
+  <div class="empty-state" *ngIf="!dataSource?.data || dataSource.data.length === 0">
+    <div class="empty-card">
+      <div class="empty-icon"><mat-icon>flag</mat-icon></div>
+      <h3>No tienes objetivos definidos.</h3>
+      <p>¡Define tu primer objetivo!</p>
+      <button mat-flat-button color="primary" class="primary-cta" [routerLink]="['/objetivos/news']">
+        <mat-icon>add</mat-icon> Nuevo Objetivo
+      </button>
+    </div>
+  </div>
+
+  <!-- GRID -->
+  <div class="habits-grid" *ngIf="dataSource?.data && dataSource.data.length > 0">
+    <div class="habit-card" *ngFor="let o of dataSource.connect() | async">
+      <div class="card-header">
+        <h3>
+          <ng-container *ngIf="o.nombreObjetivo; else noName">
+            {{ o.nombreObjetivo }}
+          </ng-container>
+          <ng-template #noName><span class="error-text">Nombre no registrado</span></ng-template>
+        </h3>
+
+        <span class="status" [class.active]="o.alcanzado" [class.inactive]="!o.alcanzado">
+          {{ o.alcanzado ? 'Alcanzado' : 'En progreso' }}
+        </span>
+      </div>
+
+      <p class="descripcion">
+        {{ o.descripcion || 'Sin descripción' }}
+      </p>
+
+      <div class="info-row">
+        <mat-icon>category</mat-icon>
+        <span>{{ o.tipoObjetivo || 'No especificado' }}</span>
+      </div>
+
+      <div class="info-row">
+        <mat-icon>track_changes</mat-icon>
+        <span>Objetivo: {{ o.valorObjetivo ?? '—' }} &nbsp;/&nbsp; Actual: {{ o.valorActual ?? '—' }}</span>
+      </div>
+
+      <div class="info-row">
+        <mat-icon>calendar_today</mat-icon>
+        <span>
+          Inicio: {{ o.fechaInicio ? (o.fechaInicio | date:'shortDate') : '—' }}
+          <span *ngIf="o.fechaFin"> — Fin: {{ o.fechaFin | date:'shortDate' }}</span>
+        </span>
+      </div>
+
+      <div class="info-row">
+        <mat-icon>person</mat-icon>
+        <span>{{ o.idUsuario?.username || ('Usuario ' + (o.idUsuario?.id ?? '—')) }}</span>
+      </div>
+
+      <div class="card-actions">
+        <button mat-icon-button color="primary" [routerLink]="['/objetivos/edits', o.idObjetivos]"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button color="warn" (click)="eliminar(o.idObjetivos)"><mat-icon>delete</mat-icon></button>
+        <button mat-icon-button color="accent" [routerLink]="['/seguimientoobjetivos/listar', o.idObjetivos, o.idUsuario?.id]"><mat-icon>playlist_add_check</mat-icon></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="paginator-wrap" *ngIf="(dataSource?.data?.length ?? 0) > 8" style="margin-top:16px;">
+    <mat-paginator [pageSize]="8" [pageSizeOptions]="[8,16,32]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

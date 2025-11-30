@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { Rol } from '../../../models/Rol';
 import { RolService } from '../../../services/rol-service';
@@ -20,6 +21,7 @@ import { UsuarioService } from '../../../services/usuarios-service'; // Asegúra
     MatFormFieldModule,
     MatButtonModule,
     MatSelectModule,
+    MatAutocompleteModule,
   ],
   templateUrl: './rolregistrar.html',
   styleUrls: ['./rolregistrar.css'],
@@ -31,8 +33,8 @@ export class RolRegistrar implements OnInit {
   id: number = 0;
 
   listaUsuarios: Users[] = [];
-  // Lista predefinida de roles sugeridos, o puedes dejarlo libre
-  rolesSugeridos = ['ADMIN', 'USER', 'INVITADO', 'MODERADOR'];
+
+  listaroles = ['admin', 'analista', 'coach', 'cliente'];
 
   constructor(
     private rService: RolService,
@@ -69,8 +71,7 @@ export class RolRegistrar implements OnInit {
 
     this.rol.id = this.edicion ? this.id : 0;
     this.rol.rol = raw.rol;
-    
-    // Mapeo manual del usuario, similar a Habitos
+
     this.rol.user = new Users();
     this.rol.user.id = raw.usuario;
 
@@ -84,7 +85,7 @@ export class RolRegistrar implements OnInit {
       });
     }
 
-    this.router.navigate(['/roles']);
+    this.router.navigate(['/rol']);
   }
 
   init() {
@@ -100,6 +101,6 @@ export class RolRegistrar implements OnInit {
   }
 
   cancelar() {
-    this.router.navigate(['/roles']);
+    this.router.navigate(['/rol']);
   }
 }

@@ -20,7 +20,7 @@ public class ActividadController {
     @Autowired
     private IActividadService aS;
 
-    //@PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping
     public ResponseEntity<?> listar() {
         List<ActividadDTO> lista = aS.list().stream().map(x -> {
@@ -35,7 +35,7 @@ public class ActividadController {
         return ResponseEntity.ok(lista);
     }
 
-    //@PreAuthorize("hasAnyAuthority('coach','usuario','analista','admin')")
+    @PreAuthorize("hasAnyAuthority('coach','usuario','analista','admin')")
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody ActividadDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -45,7 +45,7 @@ public class ActividadController {
                 .body("Actividad registrado correctamente.");
     }
 
-    //@PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable("id") Integer id) {
         Actividad actividad = aS.listId(id);
@@ -59,7 +59,7 @@ public class ActividadController {
         return ResponseEntity.ok(dto);
     }
 
-    //@PreAuthorize("hasAnyAuthority('coach','admin')")
+    @PreAuthorize("hasAnyAuthority('coach','admin')")
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody ActividadDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -75,7 +75,7 @@ public class ActividadController {
         return ResponseEntity.ok("Actividad con ID " + dto.getIdActividad() + " modificado correctamente.");
     }
 
-    //@PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id) {
         Actividad actividad = aS.listId(id);
@@ -86,6 +86,4 @@ public class ActividadController {
         aS.delete(id);
         return ResponseEntity.ok("Registro con ID " + id + " eliminado correctamente.");
     }
-
-
 }

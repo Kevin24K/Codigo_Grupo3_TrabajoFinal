@@ -3,6 +3,8 @@ import { environment } from '../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Sueno } from '../models/Sueno';
+import { HorasDormidasDTO } from '../models/HorasDormidasDTO';
+import { PromedioSuenoDTO } from '../models/PromedioSuenoDTO';
 
 const base_url = environment.base;
 
@@ -46,16 +48,15 @@ export class SuenoService {
   }
 
   // MÉTODOS ESPECIALES (REPORTES/FILTROS DEL CONTROLLER)
-  buscarPorCalidad(umbral: number) {
-    const params = new HttpParams().set('umbral', umbral.toString());
-    return this.http.get<Sueno[]>(`${this.url}/por-calidad`, { params });
+  BuscarPorUmbralCalidadDeSueno(umbral: number): Observable<Sueno[]> {
+    return this.http.get<Sueno[]>(`${this.url}/calidad-umbral/${umbral}`);
   }
 
-  obtenerPromedios() {
-    return this.http.get<any[]>(`${this.url}/promedios`);
+  promedioSuenoTodosUsuarios(): Observable<PromedioSuenoDTO[]> {
+    return this.http.get<PromedioSuenoDTO[]>(`${this.url}/promedios`);
   }
 
-  obtenerHorasDormidas() {
-    return this.http.get<any[]>(`${this.url}/horasdormidas`);
+  horasDormidasPorUsuarioPorRegistro(): Observable<HorasDormidasDTO[]> {
+    return this.http.get<HorasDormidasDTO[]>(`${this.url}/horasdormidas`);
   }
 }

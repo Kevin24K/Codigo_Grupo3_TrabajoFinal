@@ -17,6 +17,12 @@ h2 {
   font-size: 2rem !important;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* === CONTENEDOR DEL FORMULARIO === */
 .form-box {
   background-color: #040f1b;

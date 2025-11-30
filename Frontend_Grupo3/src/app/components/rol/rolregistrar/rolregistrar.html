@@ -12,10 +12,14 @@
       }
 
       <mat-form-field>
-        <mat-label>Nombre del Rol</mat-label>
-        <input matInput formControlName="rol" placeholder="Ej: ADMIN" />
+        <mat-label>Roles</mat-label>
+        <mat-select formControlName="rol" required>
+          @for (r of listaroles; track r) {
+          <mat-option [value]="rol">{{ rol }}</mat-option>
+          }
+        </mat-select>
         <mat-error>
-          @if (form.get('rol')?.hasError('required')) { El nombre del rol es obligatorio }
+          @if (form.get('rol')?.hasError('required')) { Debe asignar un usuario }
         </mat-error>
       </mat-form-field>
 
@@ -23,7 +27,7 @@
         <mat-label>Usuario</mat-label>
         <mat-select formControlName="usuario">
           @for (u of listaUsuarios; track u.id) {
-            <mat-option [value]="u.id">{{ u.username }}</mat-option>
+          <mat-option [value]="u.id">{{ u.username }}</mat-option>
           }
         </mat-select>
         <mat-error>

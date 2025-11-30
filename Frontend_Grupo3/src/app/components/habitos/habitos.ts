@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, ActivatedRoute } from '@angular/router';
-import { HabitosListar } from './habitoslistar/habitoslistar';
 
 @Component({
   selector: 'app-habitos',
   standalone: true,
-  imports: [RouterOutlet, HabitosListar ],
+  imports: [RouterOutlet],
   templateUrl: './habitos.html',
   styleUrl: './habitos.css',
 })

@@ -1,0 +1,47 @@
+<div class="container">
+    <h2>
+        <mat-icon class="search-icon">search</mat-icon>
+        Buscar Usuarios por Nombre
+    </h2>
+
+    <mat-card class="search-form-card">
+        <form [formGroup]="form" (submit)="buscar()">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Nombre de Usuario</mat-label>
+                <input matInput formControlName="username" placeholder="Ingrese el nombre de usuario" />
+                <mat-error *ngIf="form.get('username')?.hasError('required')">
+                    El nombre de usuario es obligatorio.
+                </mat-error>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">
+                <mat-icon>search</mat-icon> Buscar
+            </button>
+        </form>
+    </mat-card>
+
+    <div *ngIf="mensaje" [ngClass]="{'success-message': usuarioEncontrado, 'error-message': !usuarioEncontrado}" class="message-box">
+        {{ mensaje }}
+    </div>
+
+    <mat-card *ngIf="usuarioEncontrado" class="user-card mat-elevation-z8">
+        <mat-card-header>
+            <mat-icon mat-card-avatar class="user-avatar">person</mat-icon>
+            <mat-card-title>{{ usuarioEncontrado.username }}</mat-card-title>
+            <mat-card-subtitle>ID: {{ usuarioEncontrado.id }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p><strong>Estado:</strong> 
+                <span [ngClass]="usuarioEncontrado.enabled ? 'enabled' : 'disabled'">
+                    {{ usuarioEncontrado.enabled ? '✅ Activo' : '❌ Desactivado' }}
+                </span>
+            </p>
+            <p *ngIf="usuarioEncontrado.roles && usuarioEncontrado.roles.length > 0">
+                <strong>Roles:</strong> {{ rolesFormateados }}
+            </p>
+            <p *ngIf="!usuarioEncontrado.roles || usuarioEncontrado.roles.length === 0">
+                <strong>Roles:</strong> Sin roles asignados.
+            </p>
+        </mat-card-content>
+    </mat-card>
+</div>

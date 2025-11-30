@@ -20,7 +20,7 @@ public class RecompensaController
     @Autowired
     private IRecompensasService rS;
 
-    //@PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping
     public ResponseEntity<?> listar() {
         List<RecompensasDTO> lista = rS.list().stream().map(x -> {
@@ -35,7 +35,7 @@ public class RecompensaController
         return ResponseEntity.ok(lista);
     }
 
-    //@PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody RecompensasDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -45,7 +45,7 @@ public class RecompensaController
                 .body("Recompensa registrado correctamente.");
     }
 
-    //@PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable("id") Integer id) {
         Recompensas recompensas = rS.listId(id);
@@ -59,7 +59,7 @@ public class RecompensaController
         return ResponseEntity.ok(dto);
     }
 
-    //@PreAuthorize("hasAnyAuthority('coach','admin')")
+    @PreAuthorize("hasAnyAuthority('coach','admin')")
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody RecompensasDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -75,7 +75,7 @@ public class RecompensaController
         return ResponseEntity.ok("Recompensa con ID " + dto.getIdRecompensa() + " modificado correctamente.");
     }
 
-    //@PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id) {
         Recompensas recompensas = rS.listId(id);
@@ -87,7 +87,7 @@ public class RecompensaController
         return ResponseEntity.ok("Registro con ID " + id + " eliminado correctamente.");
     }
 
-    //@PreAuthorize("hasAnyAuthority('analista','admin')")
+    @PreAuthorize("hasAnyAuthority('analista','admin')")
     @GetMapping("/buscarportiporecompensa")
     public ResponseEntity<?> buscarRecompensasPorTipo(@RequestParam(value = "tipo", required = false) String tipo) {
         if (tipo == null || tipo.trim().isEmpty()) {

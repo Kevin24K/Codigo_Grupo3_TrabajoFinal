@@ -19,7 +19,7 @@ public class TipoMusicaController {
     @Autowired
     private ITipoMusicaService tmS;
 
-    //@PreAuthorize("hasAnyAuthority('admin','usuario')")
+    @PreAuthorize("hasAnyAuthority('admin','usuario')")
     @GetMapping
     public ResponseEntity<?> listar() {
         List<TipoMusicaDTO> lista = tmS.list().stream().map(x -> {
@@ -34,7 +34,7 @@ public class TipoMusicaController {
         return ResponseEntity.ok(lista);
     }
 
-    //@PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAuthority('admin')")
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody TipoMusicaDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -44,7 +44,7 @@ public class TipoMusicaController {
                 .body("Tipo musica registrado correctamente.");
     }
 
-    //@PreAuthorize("hasAnyAuthority('admin','usuario')")
+    @PreAuthorize("hasAnyAuthority('admin','usuario')")
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable("id") Integer id) {
         TipoMusica tipoMusica = tmS.listId(id);
@@ -58,7 +58,7 @@ public class TipoMusicaController {
         return ResponseEntity.ok(dto);
     }
 
-    //@PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAuthority('admin')")
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody TipoMusicaDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -74,7 +74,7 @@ public class TipoMusicaController {
         return ResponseEntity.ok("Tipo musica con ID " + dto.getIdTipoMusica() + " modificado correctamente.");
     }
 
-    //@PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id) {
         TipoMusica tipoMusica = tmS.listId(id);

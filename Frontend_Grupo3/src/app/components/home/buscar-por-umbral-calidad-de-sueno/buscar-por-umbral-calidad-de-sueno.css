@@ -1,0 +1,172 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* === Fondo y Estilos Generales === */
+.reportes-container {
+    padding: 30px;
+    background-color: #030511;
+    /* Fondo principal oscuro */
+    min-height: 90vh;
+    color: #ffffff;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+.header-row h2 {
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0 0 20px 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.report-icon {
+    color: #64ffda !important;
+    font-size: 32px !important;
+}
+
+/* === Navegación de Reportes (Botones) === */
+.report-navigation {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+    padding-bottom: 10px;
+}
+
+.report-nav-button {
+    background: none !important;
+    color: #b8c1cc !important;
+    border: none !important;
+    font-weight: 500;
+    transition: 0.3s;
+    border-radius: 0;
+    padding: 8px 16px;
+}
+
+.report-nav-button:hover {
+    color: #64ffda !important;
+}
+
+.active-report-link {
+    color: #64ffda !important;
+    font-weight: bold !important;
+    border-bottom: 3px solid #64ffda;
+}
+
+
+/* === Tarjeta de Contenido del Reporte === */
+.report-card {
+    background-color: #040f1b;
+    /* Fondo de la tarjeta */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.report-card h3 {
+    color: #64ffda;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.5rem;
+}
+
+.report-subtitle {
+    color: #b8c1cc;
+    margin-bottom: 20px;
+}
+
+/* === Estilos de la Tabla Material === */
+.report-table-wrapper {
+    overflow-x: auto;
+}
+
+.report-table {
+    width: 100%;
+    color: #ffffff;
+}
+
+/* Cabeceras */
+.report-table th.mat-header-cell {
+    background-color: #1b263b;
+    color: #64ffda;
+    font-weight: bold;
+    font-size: 0.95rem;
+    padding: 15px 10px;
+    text-transform: uppercase;
+}
+
+/* Filas de Datos */
+.report-table td.mat-cell {
+    color: #d6e2f0;
+    font-size: 0.9rem;
+    padding: 12px 10px;
+    border-bottom-color: #1b263b;
+}
+
+/* Alternar color de fondo para mejor legibilidad */
+.report-table tr.mat-row:nth-child(even) {
+    background-color: #0d1b2a;
+}
+
+.report-table tr.mat-row:hover {
+    background-color: #1b263b;
+    cursor: default;
+}
+
+/* Valor resaltado (para horas dormidas, por ejemplo) */
+.highlight-value {
+    color: #64ffda;
+    font-weight: bold;
+}
+
+/* Mensaje sin datos */
+.no-data-message {
+    padding: 40px;
+    text-align: center;
+    color: #b8c1cc;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Estilos para el campo de filtro */
+.filter-field {
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+/* Contenedor de filtro para Umbral y Botón */
+.filter-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.filter-field-umbral {
+    width: 220px;
+    /* Tamaño fijo para la entrada de umbral */
+}
+
+.search-button {
+    /* Ajustar altura del botón al mat-form-field */
+    height: 56px;
+}

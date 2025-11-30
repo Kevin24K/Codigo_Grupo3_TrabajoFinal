@@ -1,66 +1,210 @@
-/* --- Toolbar --- */
-.custom-toolbar {
-  background-color: rgb(242, 94, 35);/* verde principal */
+.sidenav-container {
+  display: flex;
+  height: 100vh;
+  background-color: #030511;
+}
+
+.sidebar {
+  width: 230px;
+  background-color: #040f1b;
+  color: #ffffff;
+  padding: 25px 15px;
+  position: relative;
+  /* Cambié a relative */
+  box-shadow: 3px 0 6px rgba(0, 0, 0, 0.35);
+  z-index: 1;
+  font-size: 20px;
+  /* Reduce el tamaño del icono */
+  margin-right: 6px;
+}
+
+
+.sidenav-content {
+  flex: 1;
+  padding: 20px;
+  overflow: auto;
+}
+
+/* Ajustes para que el contenido se vea correctamente cuando la barra lateral está abierta o cerrada */
+.sidenav-container.mat-sidenav-opened .sidenav-content {
+  margin-left: 230px;
+  /* El contenido se desplaza para dar espacio a la barra lateral */
+}
+
+.sidenav-container .sidenav-content {
+  margin-left: 0;
+}
+
+/* Estilos del icono en la barra lateral */
+.icon {
+  font-size: 28px;
+  color: #64ffda;
+}
+
+/* Otros estilos para la barra lateral y el contenido... */
+
+
+
+/* Sidebar (Menú Lateral) */
+.sidebar {
+  width: 230px;
+  /* El ancho del menú */
+  height: 100vh;
+  /* Altura completa de la pantalla */
+  background-color: #040f1b;
+  color: #ffffff;
+  padding: 25px 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 3px 0 6px rgba(0, 0, 0, 0.35);
+  overflow-y: auto;
+  z-index: 100;
+  /* Asegura que el menú esté por encima */
+}
+
+/* Contenedor principal (Dashboard) */
+.main-content {
+  margin-left: 230px;
+  /* Desplaza el contenido hacia la derecha para evitar que quede cubierto */
+  padding: 20px;
+  /* Añade algo de espacio alrededor del contenido */
+  flex: 1;
+  /* Hace que el contenido ocupe el resto del espacio disponible */
+}
+
+/* Si estás utilizando un layout con flexbox */
+.container {
+  display: flex;
+}
+
+/* Ajustes para el contenido dentro de .main-content */
+.main-content {
+  margin-left: 210px;
+  /* Reducir el espacio dejado por el sidebar */
+}
+
+.sidebar-title {
+  text-align: center;
+  color: #64ffda;
+  font-size: 22px;
+  margin-bottom: 30px;
+  font-weight: bold;
+  margin-top: 10px;
+  /* Reduce el espacio superior */
+}
+
+.sidebar ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* Contenedor de cada opción */
+.sidebar li {
+  margin-bottom: 18px;
+}
+
+/* Para unir icono + texto en línea */
+.sidebar li a {
   display: flex;
   align-items: center;
-  padding: 0 8px;
-}
-
-/* --- Botón principal --- */
-.btn-rojo {
-  background-color: rgb(242, 94, 35);
-  border: none;
-  font-size: smaller;
-  border-radius: 4px;
-  margin: 4px;
-  padding: 6px 10px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.btn-rojo:hover {
-  background-color: rgb(96, 245, 119);
-}
-
-/* --- Icono --- */
-.btn-rojo mat-icon,
-.btn-rojo .material-symbols-outlined {
-  font-size: 1.3rem;
-  vertical-align: middle;
-  line-height: 1;
-}
-
-/* --- Texto dentro del botón --- */
-.btn-rojo span:not(.material-symbols-outlined),
-.btn-rojo {
-  vertical-align: middle;
-}
-
-/* --- Asegurar color blanco --- */
-.custom-toolbar button,
-.custom-toolbar mat-icon {
-  color: rgb(255, 255, 255);
-}
-
-/* --- Menú desplegable translúcido verde claro --- */
-.mat-mdc-menu-panel {
-  background-color: rgba(243, 122, 122, 0.3) !important; /* verde claro translúcido (lightgreen con transparencia) */
-  backdrop-filter: blur(6px); /* efecto suave de vidrio */
-  border: 1px solid rgba(238, 79, 10, 0.3);
+  gap: 12px;
+  padding: 10px 12px;
   border-radius: 8px;
-  padding: 4px 0;
+  text-decoration: none;
+  color: #b8c1cc;
+  font-size: 17px;
+  transition: 0.25s;
 }
 
-/* --- Opciones del menú --- */
-.mat-mdc-menu-item {
-  color: #f43218 !important; /* texto verde oscuro */
-  font-size: 0.85rem;
-  font-weight: 500;
+/* Estilo de los iconos */
+.sidebar .icon {
+  font-size: 24px;
+  color: #64ffda;
 }
 
-.mat-mdc-menu-item:hover {
-  background-color: rgba(246, 136, 111, 0.2) !important; /* un verde más visible al pasar el mouse */
+/* Hover */
+.sidebar li a:hover {
+  background-color: #1b263b;
+  color: #64ffda;
+}
+
+/* Opción activa (si quieres agregar luego routerLinkActive) */
+.active-link {
+  background-color: #1b263b;
+  color: #64ffda !important;
+  font-weight: bold;
+}
+
+/* Estilo de los iconos */
+.sidebar .icon {
+  font-size: 24px;
+  color: #ffffff;
+  /* 👈 blanco puro */
+}
+
+/* ICONOS GENERALES */
+mat-icon,
+/* todos los mat-icon */
+mat-icon.icon,
+/* iconos específicos de títulos */
+button[mat-button] mat-icon,
+/* iconos dentro de botones normales */
+button[mat-icon-button] mat-icon
+
+/* iconos dentro de botones icon-button */
+  {
+  color: #ffffff !important;
+  /* blanco puro */
+  font-size: 20px;
+  /* tamaño base */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ICONOS DE TITULOS MÁS GRANDES */
+.icon {
+  font-size: 28px;
+  /* un poco más grande que el texto */
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* ICONOS DENTRO DE BOTONES */
+button[mat-button] mat-icon,
+button.add mat-icon {
+  font-size: 20px;
+  margin-right: 6px;
+}
+
+/* ICONOS DENTRO DE BOTONES ICON BUTTON */
+button[mat-icon-button] mat-icon {
+  font-size: 20px;
+}
+
+.sidebar li a:hover mat-icon {
+  color: #64ffda;
+  /* verde neón al pasar el mouse */
+}
+
+.sidebar ul li a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  /* texto blanco */
+  padding: 10px 15px;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.sidebar ul li a:hover {
+  background-color: #1b263b;
+  color: #64ffda;
+}
+
+.sidebar ul li a mat-icon {
+  color: #ffffff;
 }

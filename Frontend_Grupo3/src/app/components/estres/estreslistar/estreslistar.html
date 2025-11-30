@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="header-row">
+    <div>
+      <h1>Seguimiento de Estrés</h1>
+      <p class="subtitle">Registra y monitorea tus niveles de estrés y ansiedad</p>
+    </div>
+
+    <button mat-button class="add" [routerLink]="['/estres/news']">
+      <mat-icon>add</mat-icon> <span>Nuevo Registro</span>
+    </button>
+  </div>
+
+  <!-- EMPTY STATE -->
+  <div class="empty-state" *ngIf="!dataSource?.data || dataSource.data.length === 0">
+    <div class="empty-card">
+      <div class="empty-icon">
+        <mat-icon>error_outline</mat-icon>
+      </div>
+      <h3>No hay registros de estrés todavía.</h3>
+      <p>Comienza registrando tu primer nivel de estrés.</p>
+      <button mat-flat-button color="primary" class="primary-cta" [routerLink]="['/estres/news']">
+        <mat-icon>add</mat-icon> Nuevo Registro
+      </button>
+    </div>
+  </div>
+
+  <!-- LISTA / GRID -->
+  <div class="habits-grid" *ngIf="dataSource?.data && dataSource.data.length > 0">
+    <div class="habit-card" *ngFor="let e of dataSource.connect() | async">
+      <div class="card-header">
+        <h3>
+          <ng-container *ngIf="e.nivelEstres != null; else noLevel">
+            Nivel {{ e.nivelEstres }} — Ansiedad {{ e.nivelAnsiedad ?? '—' }}
+          </ng-container>
+          <ng-template #noLevel><span class="error-text">Nivel no registrado</span></ng-template>
+        </h3>
+
+        <span class="status"
+              [class.active]="e.nivelEstres >= 4"
+              [class.warn]="e.nivelEstres === 3"
+              [class.ok]="e.nivelEstres <= 2">
+          {{ e.nivelEstres ? ('Nivel ' + e.nivelEstres) : 'Sin nivel' }}
+        </span>
+      </div>
+
+      <p class="descripcion">
+        <ng-container *ngIf="e.factoresEstimulantes; else noFact">
+          {{ e.factoresEstimulantes }}
+        </ng-container>
+        <ng-template #noFact><span class="error-text">Factores no registrados</span></ng-template>
+      </p>
+
+      <div class="info-row">
+        <mat-icon>local_hospital</mat-icon>
+        <span>{{ e.sintomasFisicos || '—' }}</span>
+      </div>
+
+      <div class="info-row">
+        <mat-icon>psychology_alt</mat-icon>
+        <span>{{ e.sintomasEmocionales || '—' }}</span>
+      </div>
+
+      <div class="info-row">
+        <mat-icon>calendar_today</mat-icon>
+        <span>Registrado: {{ e.fechaRegistro ? (e.fechaRegistro | date:'shortDate') : '—' }}</span>
+      </div>
+
+      <div class="info-row">
+        <mat-icon>person</mat-icon>
+        <span>{{ e.idUsuario?.username || ('Usuario ' + (e.idUsuario?.id ?? '—')) }}</span>
+      </div>
+
+      <div class="card-actions">
+        <button mat-icon-button color="primary" [routerLink]="['/estres/edits', e.idEstres]"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button color="warn" (click)="eliminar(e.idEstres)"><mat-icon>delete</mat-icon></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- paginator -->
+  <div class="paginator-wrap" *ngIf="(dataSource?.data?.length ?? 0) > 8" style="margin-top:16px;">
+    <mat-paginator [pageSize]="8" [pageSizeOptions]="[8,16,32]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

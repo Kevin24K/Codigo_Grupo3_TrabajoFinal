@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, ActivatedRoute } from '@angular/router';
-import { SeguimientoHabitosListar } from './seguimientohabitoslistar/seguimientohabitoslistar';
 
 @Component({
   selector: 'app-seguimientohabitos',
-  imports: [RouterOutlet, SeguimientoHabitosListar ],
+  imports: [RouterOutlet],
   templateUrl: './seguimientohabitos.html',
   styleUrl: './seguimientohabitos.css',
 })

@@ -22,7 +22,7 @@ public class AlarmaController {
     @Autowired
     private IAlarmaService alS;
 
-    //@PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping
     public ResponseEntity<?> listar() {
         List<AlarmaDTO> lista = alS.list().stream().map(x -> {
@@ -37,7 +37,7 @@ public class AlarmaController {
         return ResponseEntity.ok(lista);
     }
 
-    //@PreAuthorize("hasAnyAuthority('coach','usuario','analista','admin')")
+    @PreAuthorize("hasAnyAuthority('coach','usuario','analista','admin')")
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody AlarmaDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -47,7 +47,7 @@ public class AlarmaController {
                 .body("Alarma registrada correctamente.");
     }
 
-    //@PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable("id") Integer id) {
         Alarma alarma = alS.listId(id);
@@ -61,7 +61,7 @@ public class AlarmaController {
         return ResponseEntity.ok(dto);
     }
 
-    //@PreAuthorize("hasAnyAuthority('coach','admin')")
+    @PreAuthorize("hasAnyAuthority('coach','admin')")
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody AlarmaDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -77,7 +77,7 @@ public class AlarmaController {
         return ResponseEntity.ok("Alarma con ID " + dto.getIdAlarma() + " modificado correctamente.");
     }
 
-    //@PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id) {
         Alarma alarma = alS.listId(id);

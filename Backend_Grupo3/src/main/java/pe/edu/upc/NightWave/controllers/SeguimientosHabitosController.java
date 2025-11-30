@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.NightWave.dtos.SeguimientoHabitosDTO;
 import pe.edu.upc.NightWave.dtos.UsuariosConHabitosCompletadosDTO;
@@ -22,7 +23,7 @@ public class SeguimientosHabitosController {
     @Autowired
     private ISeguimientoHabitosService shS;
 
-    // Registrar un nuevo seguimiento
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @PostMapping("/registrar/{idHabito}/{idUsuario}")
     public ResponseEntity<String> registrar(@PathVariable("idHabito") int idHabito,
                                             @PathVariable("idUsuario") long idUsuario,
@@ -37,7 +38,7 @@ public class SeguimientosHabitosController {
                 .body("Seguimiento registrado correctamente.");
     }
 
-    // Listar los seguimientos de un hábito y usuario específicos
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping("/listar/{idHabito}/{idUsuario}")
     public ResponseEntity<List<SeguimientoHabitosDTO>> listar(@PathVariable("idHabito") int idHabito,
                                                               @PathVariable("idUsuario") int idUsuario) {
@@ -49,7 +50,7 @@ public class SeguimientosHabitosController {
         return ResponseEntity.ok(seguimientos);
     }
 
-    // Eliminar un seguimiento
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @DeleteMapping("/eliminar/{idHabito}/{idUsuario}/{id}")
     public ResponseEntity<String> eliminar(@PathVariable("idHabito") int idHabito,
                                            @PathVariable("idUsuario") int idUsuario,
@@ -62,14 +63,14 @@ public class SeguimientosHabitosController {
         return ResponseEntity.status(HttpStatus.OK).body("Seguimiento eliminado correctamente");
     }
 
-    // Obtener seguimiento por ID
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping("/editar/{id}")
     public ResponseEntity<SeguimientoHabitosDTO> listarId(@PathVariable("id") int id) {
         SeguimientoHabitosDTO dto = new ModelMapper().map(shS.listId(id), SeguimientoHabitosDTO.class);
         return ResponseEntity.ok(dto);
     }
 
-    // Modificar un seguimiento
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @PutMapping("/editar/{idHabito}/{idUsuario}/{id}")
     public ResponseEntity<String> modificar(@PathVariable("idHabito") int idHabito,
                                             @PathVariable("idUsuario") long idUsuario,
@@ -88,8 +89,7 @@ public class SeguimientosHabitosController {
         return ResponseEntity.ok("Seguimiento con ID " + dto.getIdSeguimientoHabitos() + " modificado correctamente.");
     }
 
-
-    //@PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping("/habitoscompletadosPorUsuario")
     public ResponseEntity<?> habitoscompletadosPorUsuario() {
         List<UsuariosConHabitosCompletadosDTO> listaDto = new ArrayList<>();
@@ -110,7 +110,7 @@ public class SeguimientosHabitosController {
         return ResponseEntity.ok(listaDto);
     }
 
-    //@PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping("/habitosNocompletadosPorUsuario")
     public ResponseEntity<?> habitosNocompletadosPorUsuario() {
         List<UsuariosConHabitosNoCompletadosDTO> listaDto = new ArrayList<>();
@@ -127,7 +127,6 @@ public class SeguimientosHabitosController {
             dto.setNombreUsuario(x[1]);
             listaDto.add(dto);
         }
-
         return ResponseEntity.ok(listaDto);
     }
 }

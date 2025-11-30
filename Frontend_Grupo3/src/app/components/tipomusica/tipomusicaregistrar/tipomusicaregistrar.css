@@ -16,6 +16,12 @@ h2 {
   text-align: center;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* === FORM === */
 .form-box {
   background-color: #040f1b;

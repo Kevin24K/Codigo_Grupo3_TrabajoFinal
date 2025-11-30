@@ -22,7 +22,7 @@ public class EstresController {
     @Autowired
     private IEstresService eS;
 
-    //@PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping
     public ResponseEntity<?> listar() {
         List<EstresDTO> lista = eS.list().stream().map(x -> {
@@ -37,7 +37,7 @@ public class EstresController {
         return ResponseEntity.ok(lista);
     }
 
-    //@PreAuthorize("hasAnyAuthority('coach','usuario','analista','admin')")
+    @PreAuthorize("hasAnyAuthority('coach','usuario','analista','admin')")
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody EstresDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -47,7 +47,7 @@ public class EstresController {
                 .body("Estres registrado correctamente.");
     }
 
-    //@PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable("id") Integer id) {
         Estres estres = eS.listId(id);
@@ -61,7 +61,7 @@ public class EstresController {
         return ResponseEntity.ok(dto);
     }
 
-    //@PreAuthorize("hasAnyAuthority('coach','admin')")
+    @PreAuthorize("hasAnyAuthority('coach','admin')")
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody EstresDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -77,7 +77,7 @@ public class EstresController {
         return ResponseEntity.ok("Estres con ID " + dto.getIdEstres() + " modificado correctamente.");
     }
 
-    //@PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminar(@PathVariable("id") Integer id) {
         Estres estres = eS.listId(id);
@@ -89,8 +89,7 @@ public class EstresController {
         return ResponseEntity.ok("Registro con ID " + id + " eliminado correctamente.");
     }
 
-    //Query
-    //@PreAuthorize("hasAnyAuthority('coach','admin')")
+    @PreAuthorize("hasAnyAuthority('coach','admin')")
     @GetMapping("/promedio")
     public ResponseEntity<?> obtenerPromedioEstresAnsiedad() {
         List<String[]> filas = eS.promedioEstresYAnsiedadPorUsuario();
@@ -111,8 +110,7 @@ public class EstresController {
         return ResponseEntity.ok(listaDto);
     }
 
-    //Query
-    //@PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAuthority('admin')")
     @GetMapping("/conteo-mensual")
     public ResponseEntity<?> obtenerConteoEstresPorMes() {
         List<String[]> filas = eS.conteoEstresPorMes();

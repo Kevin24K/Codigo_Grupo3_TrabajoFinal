@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Habitos } from '../models/Habitos';
+import { HabitosActivosPorUsuarioDTO } from '../models/habitos-activos-por-usuario-dto';
 
 const base_url = environment.base;
 @Injectable({
@@ -41,5 +42,9 @@ export class HabitosService implements OnInit {
 
   delete(id: number) {
     return this.http.delete(`${this.url}/${id}`, { responseType: 'text' });
+  }
+
+  HabitosActivosParaUnUsuario(id: number): Observable<HabitosActivosPorUsuarioDTO[]> {
+    return this.http.get<HabitosActivosPorUsuarioDTO[]>(`${this.url}/HabitosActivosporUsuario?id=${id}`);
   }
 }

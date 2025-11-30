@@ -1,12 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { TipoMusica } from "./components/tipomusica/tipomusica";
-import { MatDialogModule } from '@angular/material/dialog';
+import { Menu } from './components/menu/menu';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, TipoMusica, MatDialogModule],
+  imports: [RouterOutlet, Menu],
+  standalone: true,
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

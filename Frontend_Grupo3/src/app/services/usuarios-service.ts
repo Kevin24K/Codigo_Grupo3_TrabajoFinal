@@ -42,4 +42,9 @@ export class UsuarioService {
   getList(): Observable<Users[]> {
     return this.listaCambio.asObservable();
   }
+
+  buscarPorUsername(username: string): Observable<Users> {
+    // Corresponde a GET /users/buscar/{username}
+    return this.http.get<Users>(`${this.url}/buscar/${username}`);
+  }
 }

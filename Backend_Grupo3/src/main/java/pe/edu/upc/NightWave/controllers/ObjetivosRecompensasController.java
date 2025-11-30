@@ -23,7 +23,7 @@ public class ObjetivosRecompensasController {
     @Autowired
     private IObjetivosRecompensasService orS;
 
-    //@PreAuthorize("hasAnyAuthority('coach','usuario','analista','admin')")
+    @PreAuthorize("hasAnyAuthority('coach','usuario','analista','admin')")
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody ObjetivosRecompensasDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -33,7 +33,7 @@ public class ObjetivosRecompensasController {
                 .body("ObjetivoRecompensa registrado correctamente.");
     }
 
-    //@PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping
     public List<ObjetivosRecompensasDTO> listar() {
         return orS.list().stream().map(x -> {
@@ -42,21 +42,21 @@ public class ObjetivosRecompensasController {
         }).collect(Collectors.toList());
     }
 
-    //@PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAuthority('admin')")
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int id) {
         orS.delete(id);
     }
 
 
-    //@PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
     @GetMapping("/{id}")
     public ObjetivosRecompensasDTO listarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         return m.map(orS.listId(id), ObjetivosRecompensasDTO.class);
     }
 
-    //@PreAuthorize("hasAnyAuthority('coach','admin')")
+    @PreAuthorize("hasAnyAuthority('coach','admin')")
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody ObjetivosRecompensasDTO dto) {
         ModelMapper m = new ModelMapper();
