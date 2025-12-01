@@ -17,6 +17,7 @@ import { RolRegistrar } from './components/rol/rolregistrar/rolregistrar';
 import { Suenos } from './components/sueno/sueno';
 import { SuenoListar } from './components/sueno/suenolistar/suenolistar';
 import { SuenoRegistrar } from './components/sueno/suenoregistrar/suenoregistrar';
+<<<<<<< HEAD
 import { Usuarios } from './components/usuarios/usuarios';
 import { Usuarioslistar } from './components/usuarios/usuarioslistar/usuarioslistar';
 import { Usuariosregistrar } from './components/usuarios/usuariosregistrar/usuariosregistrar';
@@ -79,6 +80,26 @@ export const routes: Routes = [
       { path: '', component: Recompensalistar, canActivate: [seguridadGuard] },
       { path: 'news', component: Recompensaregistrar, canActivate: [seguridadGuard] },
       { path: 'edits/:id', component: Recompensaregistrar, canActivate: [seguridadGuard] },
+=======
+
+export const routes: Routes = [
+  {
+    path: 'tipomusica',
+    component: TipoMusica,
+    children: [
+      { path: '', component: Tipomusicalistar },
+      { path: 'news', component: Tipomusicaregistrar },
+      { path: 'edits/:id', component: Tipomusicaregistrar },
+    ],
+  },
+  {
+    path: 'musicamultimedia',
+    component: Musicamultimedia,
+    children: [
+      { path: '', component: MusicaMultimediaListar },
+      { path: 'news', component: MusicamultimediaRegistrar },
+      { path: 'edits/:id', component: MusicamultimediaRegistrar },
+>>>>>>> 025f87f507c1755ca786cb4953a649d705e74a23
     ],
   },
 
@@ -86,6 +107,7 @@ export const routes: Routes = [
     path: 'habitos',
     component: Habitos,
     children: [
+<<<<<<< HEAD
       { path: '', component: HabitosListar, canActivate: [seguridadGuard] },
       { path: 'news', component: HabitosRegistrar, canActivate: [seguridadGuard] },
       { path: 'edits/:id', component: HabitosRegistrar, canActivate: [seguridadGuard] },
@@ -109,32 +131,53 @@ export const routes: Routes = [
       { path: '', component: Usuarioslistar, canActivate: [seguridadGuard] },
       { path: 'news', component: Usuariosregistrar, canActivate: [seguridadGuard] },
       { path: 'edits/:id', component: Usuariosregistrar, canActivate: [seguridadGuard] },
+=======
+      { path: '', component: HabitosListar },
+      { path: 'news', component: HabitosRegistrar },
+      { path: 'edits/:id', component: HabitosRegistrar },
+>>>>>>> 025f87f507c1755ca786cb4953a649d705e74a23
     ],
   },
 
   {
     path: 'seguimientohabitos/registrar/:idHabito/:idUsuario',
     component: SeguimientoHabitosRegistrar,
+<<<<<<< HEAD
     canActivate: [seguridadGuard],
+=======
+>>>>>>> 025f87f507c1755ca786cb4953a649d705e74a23
   },
   {
     path: 'seguimientohabitos/listar/:idHabito/:idUsuario',
     component: SeguimientoHabitosListar,
+<<<<<<< HEAD
     canActivate: [seguridadGuard],
   },
   {
     path: 'seguimientohabitos/editar/:idHabito/:idUsuario/:id',
     component: SeguimientoHabitosRegistrar,
     canActivate: [seguridadGuard],
+=======
+  },
+    {
+    path: 'seguimientohabitos/editar/:idHabito/:idUsuario/:id',
+    component: SeguimientoHabitosRegistrar,
+>>>>>>> 025f87f507c1755ca786cb4953a649d705e74a23
   },
 
   {
     path: 'rol',
     component: Rol,
     children: [
+<<<<<<< HEAD
       { path: '', component: RolListar, canActivate: [seguridadGuard] },
       { path: 'news', component: RolRegistrar, canActivate: [seguridadGuard] },
       { path: 'edits/:id', component: RolRegistrar, canActivate: [seguridadGuard] },
+=======
+      { path: '', component: RolListar },
+      { path: 'news', component: RolRegistrar },
+      { path: 'edits/:id', component: RolRegistrar },
+>>>>>>> 025f87f507c1755ca786cb4953a649d705e74a23
     ],
   },
 
@@ -142,6 +185,7 @@ export const routes: Routes = [
     path: 'suenos',
     component: Suenos,
     children: [
+<<<<<<< HEAD
       { path: '', component: SuenoListar, canActivate: [seguridadGuard] },
       { path: 'news', component: SuenoRegistrar, canActivate: [seguridadGuard] },
       { path: 'edits/:id', component: SuenoRegistrar, canActivate: [seguridadGuard] },
@@ -239,6 +283,11 @@ export const routes: Routes = [
         component: PromedioEstresAnsiedad,
         canActivate: [seguridadGuard],
       },
+=======
+      { path: '', component: SuenoListar },
+      { path: 'news', component: SuenoRegistrar },
+      { path: 'edits/:id', component: SuenoRegistrar },
+>>>>>>> 025f87f507c1755ca786cb4953a649d705e74a23
     ],
   },
 ];

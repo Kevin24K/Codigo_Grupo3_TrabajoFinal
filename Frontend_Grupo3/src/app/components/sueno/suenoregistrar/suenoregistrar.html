@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container">
   <h2>{{ edicion ? 'Editar Registro de Sueño' : 'Nuevo Registro de Sueño' }}</h2>
   <div class="form-box">
@@ -65,4 +66,73 @@
       </div>
     </form>
   </div>
+=======
+<div class="container">
+  <h2>{{ edicion ? 'Editar Registro de Sueño' : 'Nuevo Registro de Sueño' }}</h2>
+  <div class="form-box">
+    <form [formGroup]="form" (submit)="aceptar()">
+
+      <mat-form-field>
+        <mat-label>Fecha de Registro</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fechaRegistro">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <div style="display: flex; gap: 20px;">
+        <mat-form-field style="width: 50%;">
+            <mat-label>Hora de Acostarse</mat-label>
+            <input matInput type="datetime-local" formControlName="horaAcostarse">
+        </mat-form-field>
+
+        <mat-form-field style="width: 50%;">
+            <mat-label>Hora de Despertar</mat-label>
+            <input matInput type="datetime-local" formControlName="horaDespertar">
+        </mat-form-field>
+      </div>
+
+      <div style="display: flex; gap: 20px;">
+          <mat-form-field style="width: 33%;">
+            <mat-label>Calidad (1-5)</mat-label>
+            <mat-select formControlName="calidadSueno">
+                @for (c of calidades; track c) { <mat-option [value]="c">{{c}}</mat-option> }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field style="width: 33%;">
+            <mat-label>Interrupciones</mat-label>
+            <input matInput type="number" formControlName="interrupciones" min="0">
+          </mat-form-field>
+
+          <mat-form-field style="width: 33%;">
+            <mat-label>Consumió Cafeína</mat-label>
+            <mat-select formControlName="cafeinaConsumida">
+                <mat-option [value]="true">Sí</mat-option>
+                <mat-option [value]="false">No</mat-option>
+            </mat-select>
+          </mat-form-field>
+      </div>
+
+      <mat-form-field class="textarea-filled">
+        <mat-label>Notas sobre el sueño</mat-label>
+        <textarea matInput rows="3" formControlName="notas" maxlength="300"></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Usuario</mat-label>
+        <mat-select formControlName="usuario">
+          @for (u of listaUsuarios; track u.id) {
+            <mat-option [value]="u.id">{{ u.username }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <div class="button-container">
+        <button mat-raised-button type="submit">{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
+        <button mat-button type="button" class="cancel-btn" (click)="cancelar()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+>>>>>>> 025f87f507c1755ca786cb4953a649d705e74a23
 </div>

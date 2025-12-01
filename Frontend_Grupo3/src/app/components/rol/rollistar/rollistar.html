@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container">
   <div class="header-row">
     <h2>
@@ -41,4 +42,49 @@
 
     </div>
   </div>
+=======
+<div class="container">
+  <div class="header-row">
+    <h2>
+      <mat-icon class="habit-icon">admin_panel_settings</mat-icon>
+      Gestión de Roles
+    </h2>
+    <button mat-button class="add" [routerLink]="['/roles/news']">
+      <mat-icon>add</mat-icon> Asignar nuevo rol
+    </button>
+  </div>
+
+  <div class="habits-grid">
+    <div class="habit-card" *ngFor="let r of dataSource.data">
+      
+      <div class="card-header">
+        <h3>
+          @if (r.rol) { {{ r.rol }} } @else { <span class="error-text">Sin nombre</span> }
+        </h3>
+      </div>
+
+      <div class="info-row">
+        <mat-icon>person</mat-icon>
+        <span>
+          @if (r.user && r.user.username) {
+            Usuario: {{ r.user.username }}
+          } @else {
+            <span class="error-text">Usuario no detectado</span>
+          }
+        </span>
+      </div>
+
+      <div class="card-actions">
+        <button mat-icon-button color="primary" [routerLink]="['/roles/edits', r.id]">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-icon-button color="warn" (click)="eliminar(r.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+    </div>
+  </div>
+>>>>>>> 025f87f507c1755ca786cb4953a649d705e74a23
 </div>

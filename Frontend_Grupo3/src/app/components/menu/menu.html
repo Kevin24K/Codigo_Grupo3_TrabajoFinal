@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <li *ngIf="verificar()">
   <mat-sidenav-container class="sidenav-container">
     <!-- Barra Lateral -->
@@ -122,3 +123,35 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 </li>
+=======
+<div class="container">
+  <mat-toolbar class="custom-toolbar">
+    <button
+      matButton
+      class="btn-rojo"
+      aria-label="Example icon-button with menu icon"
+      [matMenuTriggerFor]="menuTipoMusica"
+    >
+      <mat-icon>business</mat-icon>Area
+    </button>
+    <button
+      matButton
+      class="btn-rojo"
+      aria-label="Example icon-button with menu icon"
+      [matMenuTriggerFor]="menuMusicaMultimedia"
+    >
+      <mat-icon>computer</mat-icon>Dispositivo
+    </button>
+  </mat-toolbar>
+
+  <mat-menu #menuTipoMusica="matMenu">
+    <button mat-menu-item routerLink="/menuTipoMusica"><mat-icon>list</mat-icon>Listar</button>
+    <button mat-menu-item routerLink="/menuTipoMusica/news"><mat-icon>add</mat-icon>Registrar</button>
+    <button mat-menu-item routerLink="/menuTipoMusica/searchs"><mat-icon>search</mat-icon>Buscar</button>
+  </mat-menu>
+  <mat-menu #menuMusicaMultimedia="matMenu">
+    <button mat-menu-item routerLink="/menuMusicaMultimedia"><mat-icon>list</mat-icon>Listar</button>
+    <button mat-menu-item routerLink="/menuMusicaMultimedia/news"><mat-icon>add</mat-icon>Registrar</button>
+  </mat-menu>
+</div>
+>>>>>>> 025f87f507c1755ca786cb4953a649d705e74a23
