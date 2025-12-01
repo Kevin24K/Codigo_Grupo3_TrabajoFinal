@@ -25,7 +25,42 @@ export class promedioSuenoTodosUsuarios implements OnInit{
 
   barChartOptions: ChartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: true,
+        labels: {
+          color: '#ffffff', // Texto de leyenda en blanco
+          font: {
+            size: 14
+          }
+        }
+      },
+      tooltip: {
+        bodyColor: '#ffffff',
+        titleColor: '#ffffff'
+      }
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: '#ffffff' // Etiquetas eje X en blanco
+        },
+        grid: {
+          color: 'rgba(100, 255, 218, 0.1)'
+        }
+      },
+      y: {
+        ticks: {
+          color: '#ffffff' // Etiquetas eje Y en blanco
+        },
+        grid: {
+          color: 'rgba(100, 255, 218, 0.1)'
+        }
+      }
+    }
   };
+  
   barChartLabels: string[] = [];
   barChartType: ChartType = 'bar';
   barChartLegend = true;
@@ -42,17 +77,23 @@ export class promedioSuenoTodosUsuarios implements OnInit{
           {
             data: data.map((item) => item.promedioHorasDormidas),
             label: 'Promedio Horas Dormidas',
-            backgroundColor: ['rgb(54, 162, 235)', 'rgb(84, 192, 255)'],
+            backgroundColor: '#64ffda',
+            borderColor: '#64ffda',
+            borderWidth: 1
           },
           {
             data: data.map((item) => item.promedioInterrupciones),
             label: 'Promedio Interrupciones',
-            backgroundColor: ['rgb(255, 99, 132)', 'rgb(255, 129, 162)'],
+            backgroundColor: '#ffffff',
+            borderColor: '#ffffff',
+            borderWidth: 1
           },
           {
             data: data.map((item) => item.promedioCalidad),
             label: 'Promedio Calidad',
-            backgroundColor: ['rgb(75, 192, 192)', 'rgb(105, 222, 222)'],
+            backgroundColor: '#b8c1cc',
+            borderColor: '#b8c1cc',
+            borderWidth: 1
           },
         ];
       } else {

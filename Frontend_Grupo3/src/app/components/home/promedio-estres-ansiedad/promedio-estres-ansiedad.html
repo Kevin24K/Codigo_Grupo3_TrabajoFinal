@@ -1,0 +1,37 @@
+<div class="container-reporte">
+  <h2>Promedio de Estrés y Ansiedad por Usuario</h2>
+
+  <div class="filtro">
+    <mat-form-field appearance="outline">
+      <mat-label>Buscar por nombre</mat-label>
+      <input matInput (input)="applyFilter($event)" placeholder="Escribe un nombre..." />
+    </mat-form-field>
+  </div>
+
+  <div class="tabla-reporte">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!-- Nombre -->
+      <ng-container matColumnDef="nombreUsuario">
+        <th mat-header-cell *matHeaderCellDef> Usuario </th>
+        <td mat-cell *matCellDef="let row"> {{ row.nombreUsuario }} </td>
+      </ng-container>
+
+      <!-- Promedio Estrés -->
+      <ng-container matColumnDef="promedioEstres">
+        <th mat-header-cell *matHeaderCellDef> Promedio Estrés </th>
+        <td mat-cell *matCellDef="let row"> {{ row.promedioEstres | number:'1.2-2' }} </td>
+      </ng-container>
+
+      <!-- Promedio Ansiedad -->
+      <ng-container matColumnDef="promedioAnsiedad">
+        <th mat-header-cell *matHeaderCellDef> Promedio Ansiedad </th>
+        <td mat-cell *matCellDef="let row"> {{ row.promedioAnsiedad | number:'1.2-2' }} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    </table>
+  </div>
+</div>

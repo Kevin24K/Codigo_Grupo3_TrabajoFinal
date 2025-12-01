@@ -1,12 +1,12 @@
 <div class="report-card">
-  <h3><mat-icon>timer</mat-icon> Horas Dormidas por Cada Registro</h3>
+  <h3><mat-icon>timer</mat-icon>Reporte de Horas Dormidas por Cada Registro</h3>
   <p class="report-subtitle">
     Muestra la duración exacta (en horas) de cada sesión de sueño registrada en la base de datos.
   </p>
 
   <mat-form-field appearance="outline" class="filter-field">
     <mat-label>Filtrar por ID de Usuario</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ej. 1" #input>
+    <input matInput (keyup)="applyFilter($event)">
     <mat-icon matSuffix>search</mat-icon>
   </mat-form-field>
 

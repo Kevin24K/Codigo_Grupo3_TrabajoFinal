@@ -4,12 +4,11 @@ import { UsuariosHabitosDTO } from '../../../models/UsuariosHabitosDTO';
 import { ReportesSeguimientoService } from '../../../services/reportes-seguimiento-service';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-habitosnocompletadoslistar',
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatIconModule, RouterLink],
+  imports: [CommonModule, MatTableModule, MatIconModule],
   templateUrl: './habitosnocompletadoslistar.html',
   // Reutilizamos el CSS del otro reporte para mantener la consistencia
   styleUrls: ['../habitoscompletados/habitoscompletadoslistar.css'], 

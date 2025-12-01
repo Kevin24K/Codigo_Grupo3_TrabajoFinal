@@ -70,7 +70,7 @@
         </li>
 
         <!-- Sueños (visible para Clientes y Coaches) -->
-        <li *ngIf="isClient() || isCoach()">
+        <li *ngIf="isAdmin() || isCoach() || isClient()">
           <a routerLink="/suenos">
             <mat-icon class="icon">bedtime</mat-icon>
             Sueños

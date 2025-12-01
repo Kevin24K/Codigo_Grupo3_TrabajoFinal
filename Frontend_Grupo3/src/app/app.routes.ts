@@ -42,6 +42,8 @@ import { Objetivosregistrar } from './components/objetivos/objetivosregistrar/ob
 import { Estreslistar } from './components/estres/estreslistar/estreslistar';
 import { Estresregistrar } from './components/estres/estresregistrar/estresregistrar';
 import { Estres } from './components/estres/estres';
+import { ObjetivosAlcanzadosXUsuario } from './components/home/objetivos-alcanzados-x-usuario/objetivos-alcanzados-x-usuario';
+import { PromedioEstresAnsiedad } from './components/home/promedio-estres-ansiedad/promedio-estres-ansiedad';
 
 export const routes: Routes = [
   {
@@ -165,7 +167,7 @@ export const routes: Routes = [
     canActivate: [seguridadGuard],
   },
 
-    {
+  {
     path: 'estres',
     component: Estres,
     children: [
@@ -185,14 +187,15 @@ export const routes: Routes = [
     ],
   },
 
-
   // Corresponde al Queries
 
   {
     path: 'homes',
     component: Home,
     children: [
-      { path: 'buscar', component: Usuariosbuscar, canActivate: [seguridadGuard] },
+      { path: 'buscar', 
+        component: Usuariosbuscar, 
+        canActivate: [seguridadGuard] },
 
       {
         path: 'calidad-umbral',
@@ -213,14 +216,28 @@ export const routes: Routes = [
       {
         path: 'completados-listar', // URL final: /reportes-seguimiento-habitos/completados-listar
         component: HabitosCompletadosListar,
+        canActivate: [seguridadGuard],
       },
       {
         path: 'no-completados-listar', // URL final: /reportes-seguimiento-habitos/no-completados-listar
         component: HabitosNoCompletadosListar,
+        canActivate: [seguridadGuard],
       },
       {
         path: 'reporte-activos',
         component: HabitosActivosPorUsuario,
+        canActivate: [seguridadGuard],
+      },
+      {
+        path: 'objetivos-alcanzados-x-usuario',
+        component: ObjetivosAlcanzadosXUsuario,
+        canActivate: [seguridadGuard],
+      },
+
+      {
+        path: 'promedio-estres-ansiedad',
+        component: PromedioEstresAnsiedad,
+        canActivate: [seguridadGuard],
       },
     ],
   },

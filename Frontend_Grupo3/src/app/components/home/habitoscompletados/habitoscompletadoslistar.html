@@ -1,10 +1,10 @@
 <div class="report-container">
   <h2>
-    <mat-icon>done_all</mat-icon> Reporte: Hábitos **Completados** por Usuario
+    <mat-icon>done_all</mat-icon>Reporte de Hábitos Completados por Usuario
   </h2>
 
   <div class="table-container">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="custom-table">
       
       <ng-container matColumnDef="nombreHabito">
         <th mat-header-cell *matHeaderCellDef>Nombre del Hábito</th>
@@ -24,10 +24,8 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
 
-    @if (dataSource.data.length === 0) {
-      <p class="no-data-message">
-        <mat-icon>info</mat-icon> No se encontraron **hábitos completados** registrados.
-      </p>
-    }
+    <div *ngIf="dataSource.data.length === 0" class="no-data-message">
+      <mat-icon>info</mat-icon> No se encontraron hábitos completados registrados.
+    </div>
   </div>
 </div>

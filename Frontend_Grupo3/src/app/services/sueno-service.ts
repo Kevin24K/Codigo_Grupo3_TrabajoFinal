@@ -47,9 +47,8 @@ export class SuenoService {
     return this.listaCambio.asObservable();
   }
 
-  // MÉTODOS ESPECIALES (REPORTES/FILTROS DEL CONTROLLER)
   BuscarPorUmbralCalidadDeSueno(umbral: number): Observable<Sueno[]> {
-    return this.http.get<Sueno[]>(`${this.url}/calidad-umbral/${umbral}`);
+    return this.http.get<Sueno[]>(`${this.url}/por-calidad?umbral=${umbral}`);
   }
 
   promedioSuenoTodosUsuarios(): Observable<PromedioSuenoDTO[]> {

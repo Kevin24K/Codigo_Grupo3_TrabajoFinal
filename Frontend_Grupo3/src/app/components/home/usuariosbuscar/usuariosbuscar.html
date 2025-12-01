@@ -1,14 +1,13 @@
 <div class="container">
     <h2>
         <mat-icon class="search-icon">search</mat-icon>
-        Buscar Usuarios por Nombre
+        Reporte de Buscar Usuarios por Nombre
     </h2>
 
     <mat-card class="search-form-card">
         <form [formGroup]="form" (submit)="buscar()">
             <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Nombre de Usuario</mat-label>
-                <input matInput formControlName="username" placeholder="Ingrese el nombre de usuario" />
+                <input matInput formControlName="username" placeholder="  Ingrese el nombre de usuario" />
                 <mat-error *ngIf="form.get('username')?.hasError('required')">
                     El nombre de usuario es obligatorio.
                 </mat-error>

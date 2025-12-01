@@ -23,7 +23,7 @@ public class SuenoController {
     @Autowired
     private ISuenoService sS;
 
-    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista','cliente')")
     @GetMapping
     public ResponseEntity<?> listar() {
         List<SuenoDTO> lista = sS.list().stream().map(x -> {
@@ -38,7 +38,7 @@ public class SuenoController {
         return ResponseEntity.ok(lista);
     }
 
-    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista','cliente')")
     @PostMapping
     public ResponseEntity<String> registrar(@RequestBody SuenoDTO dto) {
         ModelMapper m = new ModelMapper();
@@ -48,7 +48,7 @@ public class SuenoController {
                 .body("Sueño registrado correctamente.");
     }
 
-    @PreAuthorize("hasAnyAuthority('coach','admin','analista')")
+    @PreAuthorize("hasAnyAuthority('coach','admin','analista','cliente')")
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable("id") Integer id) {
         Sueno sueno = sS.listId(id);
@@ -62,7 +62,7 @@ public class SuenoController {
         return ResponseEntity.ok(dto);
     }
 
-    @PreAuthorize("hasAnyAuthority('coach','admin')")
+    @PreAuthorize("hasAnyAuthority('coach','admin','cliente')")
     @PutMapping
     public ResponseEntity<String> modificar(@RequestBody SuenoDTO dto) {
         ModelMapper m = new ModelMapper();

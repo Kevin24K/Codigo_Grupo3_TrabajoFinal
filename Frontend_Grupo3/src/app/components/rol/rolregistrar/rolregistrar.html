@@ -10,16 +10,16 @@
         <input matInput formControlName="id" readonly />
       </mat-form-field>
       }
-
+      
       <mat-form-field>
         <mat-label>Roles</mat-label>
         <mat-select formControlName="rol" required>
           @for (r of listaroles; track r) {
-          <mat-option [value]="rol">{{ rol }}</mat-option>
+          <mat-option [value]="r">{{ r }}</mat-option>
           }
         </mat-select>
         <mat-error>
-          @if (form.get('rol')?.hasError('required')) { Debe asignar un usuario }
+          @if (form.get('rol')?.hasError('required')) { Debe seleccionar un rol }
         </mat-error>
       </mat-form-field>
 

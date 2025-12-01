@@ -1,1 +1,52 @@
-<p>objetivosrecompensasregistrar works!</p>
+<div class="container">
+  <h2>{{ edicion ? 'Editar Objetivo-Recompensa' : 'Nuevo Objetivo-Recompensa' }}</h2>
+  <div class="form-box">
+    <form [formGroup]="form" (submit)="aceptar()">
+
+      <mat-form-field *ngIf="edicion">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="codigo" readonly>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Fecha de Obtención</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fechaObtencion">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="form.get('fechaObtencion')?.hasError('required')">
+          La fecha de obtención es requerida
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Objetivo</mat-label>
+        <mat-select formControlName="objetivo">
+          @for (obj of listaobjetivos; track obj.idObjetivos) {
+            <mat-option [value]="obj.idObjetivos">{{ obj.descripcion || obj.nombreObjetivo || 'Objetivo #' + obj.idObjetivos }}</mat-option>
+          }
+        </mat-select>
+        <mat-error *ngIf="form.get('objetivo')?.hasError('required')">
+          Debe seleccionar un objetivo
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Recompensa</mat-label>
+        <mat-select formControlName="recompensa">
+          @for (rec of listarecompensas; track rec.idRecompensa) {
+            <mat-option [value]="rec.idRecompensa">{{ rec.descripcion || rec.nombreRecompensa }}</mat-option>
+          }
+        </mat-select>
+        <mat-error *ngIf="form.get('recompensa')?.hasError('required')">
+          Debe seleccionar una recompensa
+        </mat-error>
+      </mat-form-field>
+
+      <div class="button-container">
+        <button mat-raised-button type="submit">{{ edicion ? 'Actualizar' : 'Registrar' }}</button>
+        <button mat-button type="button" class="cancel-btn" (click)="cancelar()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>

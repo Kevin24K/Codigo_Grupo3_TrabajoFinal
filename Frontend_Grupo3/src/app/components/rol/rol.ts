@@ -5,7 +5,8 @@ import { ActivatedRoute, RouterOutlet } from '@angular/router';
   selector: 'app-rol',
   standalone: true,
   imports: [RouterOutlet],
-  template: `<router-outlet></router-outlet>`,
+  templateUrl: './rol.html',
+  styleUrl: './rol.css',
 })
 export class Rol {
   constructor(public route: ActivatedRoute) {}

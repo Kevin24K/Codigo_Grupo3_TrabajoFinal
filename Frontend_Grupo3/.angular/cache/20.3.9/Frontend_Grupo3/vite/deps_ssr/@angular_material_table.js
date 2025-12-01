@@ -2,14 +2,10 @@ import { createRequire } from 'module';const require = createRequire(import.meta
 import {
   _DisposeViewRepeaterStrategy
 } from "./chunk-FDHWFS34.js";
-import "./chunk-WMCF36ZG.js";
-import {
-  MatCommonModule
-} from "./chunk-4C2VWHR2.js";
 import {
   ScrollingModule,
   ViewportRuler
-} from "./chunk-4236AYLB.js";
+} from "./chunk-FXXMXUC3.js";
 import {
   DataSource,
   _RecycleViewRepeaterStrategy,
@@ -17,15 +13,19 @@ import {
   _ViewRepeaterOperation,
   isDataSource
 } from "./chunk-MLRHMPXF.js";
+import "./chunk-WMCF36ZG.js";
+import {
+  MatCommonModule
+} from "./chunk-WTZGVT66.js";
+import "./chunk-PQ6CAPLO.js";
 import "./chunk-4NRDWZRV.js";
 import {
   Directionality
 } from "./chunk-C2RSYF2I.js";
-import "./chunk-PQ6CAPLO.js";
 import {
   Platform,
   _isNumberValue
-} from "./chunk-ATF234Y6.js";
+} from "./chunk-GEVOPQEA.js";
 import "./chunk-IOKVTDIT.js";
 import "./chunk-YQZF7T32.js";
 import {

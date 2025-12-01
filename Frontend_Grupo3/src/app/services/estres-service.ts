@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { Estres } from '../models/Estres';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
+import { PromedioEstresDTO } from '../models/PromedioEstresDTO';
 
 
 const base_url = environment.base;
@@ -44,4 +45,8 @@ export class EstresService implements OnInit {
     delete(id: number) {
       return this.http.delete(`${this.url}/${id}`, { responseType: 'text' });
     }
+
+    promedioEstresTodosUsuarios(): Observable<PromedioEstresDTO[]> {
+    return this.http.get<PromedioEstresDTO[]>(`${this.url}/promediosEstres`);
+  }
 }

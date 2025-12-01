@@ -6,6 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { CommonModule } from '@angular/common'; // Importar CommonModule para *ngIf
+import { MatCardModule } from '@angular/material/card'; // Importar MatCardModule
 
 import { Rol } from '../../../models/Rol';
 import { RolService } from '../../../services/rol-service';
@@ -22,6 +24,8 @@ import { UsuarioService } from '../../../services/usuarios-service'; // Asegúra
     MatButtonModule,
     MatSelectModule,
     MatAutocompleteModule,
+    CommonModule, // Agregado para usar *ngIf en el template
+    MatCardModule, // Sugerido para estilos de tarjeta
   ],
   templateUrl: './rolregistrar.html',
   styleUrls: ['./rolregistrar.css'],
@@ -63,6 +67,20 @@ export class RolRegistrar implements OnInit {
     });
   }
 
+  
+  init() {
+    if (this.edicion) {
+      this.rService.listId(this.id).subscribe((data) => {
+        this.form.patchValue({
+          id: data.id,
+          rol: data.rol,
+          // Se asume que data.user es un objeto Users con un campo 'id'
+          usuario: data.user.id, 
+        });
+      });
+    }
+  }
+
   aceptar(): void {
     this.form.markAllAsTouched();
     if (this.form.invalid) return;
@@ -73,34 +91,30 @@ export class RolRegistrar implements OnInit {
     this.rol.rol = raw.rol;
 
     this.rol.user = new Users();
-    this.rol.user.id = raw.usuario;
+    // Asignamos el ID del usuario seleccionado al objeto Users dentro de Rol
+    this.rol.user.id = raw.usuario; 
 
+    // Lógica para INSERT (Registro) o UPDATE (Modificación)
     if (this.edicion) {
+      // Modificar Rol
       this.rService.update(this.rol).subscribe(() => {
-        this.rService.list().subscribe((data) => this.rService.setList(data));
+        this.rService.list().subscribe((data) => {
+          this.rService.setList(data);
+          this.router.navigate(['rol']); // Navega a la lista
+        });
       });
     } else {
+      // Registrar Rol
       this.rService.insert(this.rol).subscribe(() => {
-        this.rService.list().subscribe((data) => this.rService.setList(data));
-      });
-    }
-
-    this.router.navigate(['/rol']);
-  }
-
-  init() {
-    if (this.edicion) {
-      this.rService.listId(this.id).subscribe((data) => {
-        this.form.patchValue({
-          id: data.id,
-          rol: data.rol,
-          usuario: data.user.id,
+        this.rService.list().subscribe((data) => {
+          this.rService.setList(data);
+          this.router.navigate(['rol']); // Navega a la lista
         });
       });
     }
   }
 
-  cancelar() {
-    this.router.navigate(['/rol']);
+  cancelar(): void {
+    this.router.navigate(['rol']); // Botón de cancelar
   }
 }

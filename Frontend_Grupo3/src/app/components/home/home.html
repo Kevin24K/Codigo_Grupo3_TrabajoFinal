@@ -25,17 +25,27 @@
 
     <button mat-button class="report-nav-button" [routerLink]="['/homes/completados-listar']"
       routerLinkActive="active-report-link">
-      <mat-icon>timer</mat-icon> Seguimiento de Hábitos Completados
+      <mat-icon>check_circle</mat-icon> Seguimiento de Hábitos Completados
     </button>
 
     <button mat-button class="report-nav-button" [routerLink]="['/homes/no-completados-listar']"
       routerLinkActive="active-report-link">
-      <mat-icon>timer</mat-icon> Seguimiento de Hábitos No Completados
+      <mat-icon>highlight_off</mat-icon> Seguimiento de Hábitos No Completados
     </button>
 
-    <button mat-button class="report-nav-button" [routerLink]="['/reporte-activos']"
+    <button mat-button class="report-nav-button" [routerLink]="['/homes/reporte-activos']"
       routerLinkActive="active-report-link">
-      <mat-icon>timer</mat-icon> Seguimiento de Hábitos Activos
+      <mat-icon>monitorin</mat-icon> Seguimiento de Hábitos Activos
+    </button>
+
+    <button mat-button class="report-nav-button" [routerLink]="['/homes/objetivos-alcanzados-x-usuario']"
+      routerLinkActive="active-report-link">
+      <mat-icon>flag</mat-icon> Objetivos Alcanzados por Usuario
+    </button>
+
+    <button mat-button class="report-nav-button" [routerLink]="['/homes/promedio-estres-ansiedad']"
+      routerLinkActive="active-report-link">
+      <mat-icon>psychology_al</mat-icon> Promedio de Estrés y Ansiedad
     </button>
 
   </div>

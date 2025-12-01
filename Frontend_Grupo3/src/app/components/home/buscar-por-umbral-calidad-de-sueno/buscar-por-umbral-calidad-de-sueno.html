@@ -1,18 +1,18 @@
 <div class="report-card">
-  <h3><mat-icon>warning</mat-icon> Registros de Sueño de Baja Calidad</h3>
+  <h3><mat-icon>warning</mat-icon>Reporte de Registros de Sueño por Calidad</h3>
   <p class="report-subtitle">
     Muestra los registros donde la calidad de sueño es igual al umbral
   </p>
 
   <div class="filter-row">
     <mat-form-field appearance="outline" class="filter-field-umbral">
-      <mat-label>Umbral de Calidad (1-10)</mat-label>
+      <mat-label>  Umbral de Calidad (1-5)</mat-label>
       <input 
         matInput 
         type="number" 
         [(ngModel)]="umbralCalidad" 
         min="1" 
-        max="10" 
+        max="5" 
         (keydown.enter)="buscarSuenos()">
       <mat-icon matSuffix>star_half</mat-icon>
     </mat-form-field>

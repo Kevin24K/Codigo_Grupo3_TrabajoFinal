@@ -134,7 +134,7 @@ button.add:hover { filter:brightness(0.95); }
 .habit-card h3 { margin:0; color:#64ffda; font-size:1.05rem; }
 .status { padding:4px 10px; border-radius:12px; font-weight:700; font-size:.8rem; }
 .status.active { background-color: rgba(100,255,218,0.15); color:#64ffda; }
-.status.warn { background-color: rgba(255,193,7,0.08); color:#ffb347; }
+.status.warn { background-color: rgba(255,193,7,0.08); color:#fffcf7; }
 .status.ok { background-color: rgba(100,255,218,0.06); color:#9feadf; }
 
 .descripcion { margin:12px 0 14px; color:#b8c1cc; font-size:.92rem; line-height:1.3; }
