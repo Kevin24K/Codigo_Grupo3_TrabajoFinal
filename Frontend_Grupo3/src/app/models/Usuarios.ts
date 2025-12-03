@@ -1,9 +1,0 @@
-import { Rol } from "./Rol";
-
-export class Users {
-  id: number = 0;
-  username: string = "";
-  password: string = "";
-  enabled: boolean = true;
-  roles: Rol[] = [];
-}
