@@ -8,6 +8,8 @@
     max-width: 900px;
     margin: 0 auto;
     width: 100%;
+    height: 100%;
+    box-sizing: border-box;
 }
 
 /* === TÍTULO === */
@@ -32,6 +34,14 @@
     color: #b8c1cc !important;
     margin-bottom: 25px !important;
     font-size: 1rem !important;
+}
+
+/* Input text */
+.mdc-text-field__input,
+.mat-mdc-input-element {
+    color: #ffffff !important;
+    font-size: 1rem !important;
+    padding: 10px;
 }
 
 /* === FILA DE FILTROS === */
@@ -263,4 +273,3 @@
         font-size: 1rem !important;
     }
 }
-

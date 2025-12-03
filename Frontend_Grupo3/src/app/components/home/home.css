@@ -1,26 +1,32 @@
 /* === Fondo y Estilos Generales === */
 .reportes-container {
     padding: 30px;
-    background-color: #030511; /* Fondo principal oscuro */
+    background-color: #030511;
+    /* Fondo principal oscuro */
     min-height: 90vh;
     color: #ffffff;
     font-family: ui-sans-serif, system-ui, sans-serif;
+    overflow-x: hidden;
+    /* Ocultar scroll horizontal */
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
 }
 
-.header-row h2 { 
-    color: #ffffff; 
-    display: flex; 
-    align-items: center; 
-    gap: 10px; 
-    font-size: 28px; 
-    font-weight: bold; 
-    margin: 0 0 20px 0; 
+.header-row h2 {
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0 0 20px 0;
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .report-icon {
@@ -35,6 +41,9 @@
     margin-bottom: 30px;
     border-bottom: 1px solid rgba(100, 255, 218, 0.1);
     padding-bottom: 10px;
+    overflow-x: hidden;
+    /* Evitar scroll horizontal */
+
 }
 
 .report-nav-button {
@@ -60,7 +69,8 @@
 
 /* === Tarjeta de Contenido del Reporte === */
 .report-card {
-    background-color: #040f1b; /* Fondo de la tarjeta */
+    background-color: #040f1b;
+    /* Fondo de la tarjeta */
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
@@ -68,7 +78,7 @@
 }
 
 .report-card h3 {
-    color: #64ffda; 
+    color: #64ffda;
     font-weight: 600;
     margin-top: 0;
     margin-bottom: 5px;
@@ -95,7 +105,7 @@
 
 /* Cabeceras */
 .report-table th.mat-header-cell {
-    background-color: #1b263b; 
+    background-color: #1b263b;
     color: #64ffda;
     font-weight: bold;
     font-size: 0.95rem;
@@ -115,6 +125,7 @@
 .report-table tr.mat-row:nth-child(even) {
     background-color: #0d1b2a;
 }
+
 .report-table tr.mat-row:hover {
     background-color: #1b263b;
     cursor: default;
@@ -153,11 +164,11 @@
 }
 
 .filter-field-umbral {
-    width: 220px; /* Tamaño fijo para la entrada de umbral */
+    width: 220px;
+    /* Tamaño fijo para la entrada de umbral */
 }
 
 .search-button {
     /* Ajustar altura del botón al mat-form-field */
-    height: 56px; 
+    height: 56px;
 }
-

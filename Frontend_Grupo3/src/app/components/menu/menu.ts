@@ -1,11 +1,10 @@
-<<<<<<< HEAD
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink, Router, RouterOutlet } from '@angular/router';  // Importar Router
 import { LoginService } from '../../services/login-service';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
@@ -20,8 +19,9 @@ import { MatListModule } from '@angular/material/list';
     MatMenuModule,
     RouterLink,
     CommonModule,
-    RouterOutlet,
+    RouterLink,
     MatListModule,
+    RouterOutlet
   ],
   templateUrl: './menu.html',
   styleUrl: './menu.css',
@@ -30,11 +30,11 @@ export class Menu {
   role: string = '';
   usuario: string = '';
 
-
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private router: Router) {}  // Inyectar Router
 
   cerrar() {
-    sessionStorage.clear();
+    sessionStorage.clear();  // Limpiar sesión
+    this.router.navigate(['/']);  // Redirigir a la landing page
   }
 
   verificar() {
@@ -58,21 +58,3 @@ export class Menu {
     return this.role === 'analista';
   }
 }
-=======
-import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterLink } from "@angular/router";
-
-@Component({
-  selector: 'app-menu',
-  imports: [MatToolbarModule, MatIconModule, MatButtonModule, MatMenuModule, RouterLink],
-  templateUrl: './menu.html',
-  styleUrl: './menu.css',
-})
-export class Menu {
-
-}
->>>>>>> 025f87f507c1755ca786cb4953a649d705e74a23

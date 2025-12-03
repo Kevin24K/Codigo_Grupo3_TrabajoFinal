@@ -22,6 +22,14 @@
   font-size: 2rem !important;
 }
 
+/* Input text */
+.mdc-text-field__input,
+.mat-mdc-input-element {
+    color: #ffffff !important;
+    font-size: 1rem !important;
+    padding: 10px;
+}
+
 .report-card h3 mat-icon {
   color: #64ffda !important;
   font-size: 32px !important;

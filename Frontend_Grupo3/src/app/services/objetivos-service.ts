@@ -45,7 +45,8 @@ export class ObjetivosService implements OnInit {
   delete(id: number) {
     return this.http.delete(`${this.url}/${id}`, { responseType: 'text' });
   }
+
   objetivosAlcanzados(): Observable<ObjetivosAlcanzadosDTO[]> {
-    return this.http.get<ObjetivosAlcanzadosDTO[]>(`${this.url}/objetivosAlcanzados`);
+    return this.http.get<ObjetivosAlcanzadosDTO[]>(`${this.url}/objetivos-alcanzados-x-usuario`);
   }
 }

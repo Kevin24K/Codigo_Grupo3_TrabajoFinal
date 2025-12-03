@@ -42,12 +42,10 @@ export class UsuarioService {
   getList(): Observable<Users[]> {
     return this.listaCambio.asObservable();
   }
-<<<<<<< HEAD
 
   buscarPorUsername(username: string): Observable<Users> {
     // Corresponde a GET /users/buscar/{username}
     return this.http.get<Users>(`${this.url}/buscar/${username}`);
   }
-=======
->>>>>>> 025f87f507c1755ca786cb4953a649d705e74a23
+
 }

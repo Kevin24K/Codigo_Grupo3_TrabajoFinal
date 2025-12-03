@@ -109,15 +109,15 @@ export class ObjetivosAlcanzadosXUsuario implements OnInit {
       {
         data: this.filteredData.map(x => x.objetivosAlcanzados ?? 0),
         label: 'Objetivos Alcanzados',
-        backgroundColor: 'rgba(100, 255, 218, 0.7)',
-        borderColor: 'rgba(100, 255, 218, 1)',
+        backgroundColor: '#64ffda',
+        borderColor: '#64ffda',
         borderWidth: 1
       },
       {
         data: this.filteredData.map(x => x.objetivosNoAlcanzados ?? 0),
         label: 'Objetivos No alcanzados',
-        backgroundColor: 'rgba(100, 180, 255, 0.7)',
-        borderColor: 'rgba(100, 180, 255, 1)',
+        backgroundColor: '#d6e2f0',
+        borderColor: '#d6e2f0',
         borderWidth: 1
       }
     ];

@@ -34,7 +34,6 @@
     "@angular/platform-server": "^20.3.0",
     "@angular/router": "^20.3.0",
     "@angular/ssr": "^20.3.9",
-<<<<<<< HEAD
     "@auth0/angular-jwt": "^5.2.0",
     "@fullcalendar/angular": "^6.1.19",
     "@fullcalendar/daygrid": "^6.1.19",
@@ -42,9 +41,6 @@
     "chart.js": "^4.5.1",
     "express": "^5.1.0",
     "ng2-charts": "^8.0.0",
-=======
-    "express": "^5.1.0",
->>>>>>> 025f87f507c1755ca786cb4953a649d705e74a23
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

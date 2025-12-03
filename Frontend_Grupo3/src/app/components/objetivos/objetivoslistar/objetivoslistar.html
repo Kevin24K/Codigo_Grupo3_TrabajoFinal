@@ -7,7 +7,7 @@
 
     <button mat-button class="add" [routerLink]="['/objetivos/news']">
       <mat-icon>add</mat-icon>
-      <span>Nuevo Objetivo</span>
+      <span>Registrar Objetivo</span>
     </button>
   </div>
 
@@ -69,7 +69,6 @@
       <div class="card-actions">
         <button mat-icon-button color="primary" [routerLink]="['/objetivos/edits', o.idObjetivos]"><mat-icon>edit</mat-icon></button>
         <button mat-icon-button color="warn" (click)="eliminar(o.idObjetivos)"><mat-icon>delete</mat-icon></button>
-        <button mat-icon-button color="accent" [routerLink]="['/seguimientoobjetivos/listar', o.idObjetivos, o.idUsuario?.id]"><mat-icon>playlist_add_check</mat-icon></button>
       </div>
     </div>
   </div>

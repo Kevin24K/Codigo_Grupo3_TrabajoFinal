@@ -47,6 +47,6 @@ export class EstresService implements OnInit {
     }
 
     promedioEstresTodosUsuarios(): Observable<PromedioEstresDTO[]> {
-    return this.http.get<PromedioEstresDTO[]>(`${this.url}/promediosEstres`);
+    return this.http.get<PromedioEstresDTO[]>(`${this.url}/promedio`);
   }
 }

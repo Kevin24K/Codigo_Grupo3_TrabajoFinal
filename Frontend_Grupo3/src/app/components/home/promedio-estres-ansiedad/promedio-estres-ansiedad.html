@@ -4,7 +4,7 @@
   <div class="filtro">
     <mat-form-field appearance="outline">
       <mat-label>Buscar por nombre</mat-label>
-      <input matInput (input)="applyFilter($event)" placeholder="Escribe un nombre..." />
+      <input matInput (input)="applyFilter($event)"/>
     </mat-form-field>
   </div>
 
@@ -20,13 +20,13 @@
       <!-- Promedio Estrés -->
       <ng-container matColumnDef="promedioEstres">
         <th mat-header-cell *matHeaderCellDef> Promedio Estrés </th>
-        <td mat-cell *matCellDef="let row"> {{ row.promedioEstres | number:'1.2-2' }} </td>
+        <td mat-cell *matCellDef="let row"> {{ row.promedioEstres }} </td>
       </ng-container>
 
       <!-- Promedio Ansiedad -->
       <ng-container matColumnDef="promedioAnsiedad">
         <th mat-header-cell *matHeaderCellDef> Promedio Ansiedad </th>
-        <td mat-cell *matCellDef="let row"> {{ row.promedioAnsiedad | number:'1.2-2' }} </td>
+        <td mat-cell *matCellDef="let row"> {{ row.promedioAnsiedad }} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

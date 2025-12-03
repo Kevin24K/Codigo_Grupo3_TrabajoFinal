@@ -1,166 +1,180 @@
+/* === CONTENEDOR PRINCIPAL === */
 .container-reporte {
-  padding: 40px;
-  background-color: #030511;
-  min-height: 100vh;
-  color: #ffffff;
-  font-family: ui-sans-serif, system-ui, sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Título principal */
-.container-reporte > h2 {
-  color: #64ffda;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 30px;
-}
-
-/* Contenedor del filtro */
-.filtro {
-  width: 100%;
-  max-width: 900px;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: flex-start;
-  gap: 16px;
-}
-
-/* Campo de filtro (mat-form-field) */
-.filter-field {
-  width: 320px;
-}
-
-/* Tarjeta que envuelve la tabla */
-.report-card {
   background-color: #040f1b;
-  padding: 24px;
+  padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
-  border: 1px solid rgba(100, 255, 218, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(100, 255, 218, 0.1);
+  max-width: 900px;
+  margin: 0 auto;
   width: 100%;
-  max-width: 1200px;
 }
 
-/* Subtítulo / descripción */
-.report-subtitle {
-  color: #b8c1cc;
-  margin-top: 0;
-  margin-bottom: 18px;
+/* === TÍTULO === */
+.container-reporte h2 {
+  color: #64ffda !important;
+  font-weight: bold !important;
+  margin-top: 0 !important;
+  margin-bottom: 30px !important;
+  text-align: center;
+  font-size: 2rem !important;
 }
 
-/* Wrapper para manejo de overflow en la tabla */
+/* Input text */
+.mdc-text-field__input,
+.mat-mdc-input-element {
+    color: #ffffff !important;
+    font-size: 1rem !important;
+    padding: 10px;
+}
+
+
+/* === FILTRO === */
+.filtro {
+  margin-bottom: 25px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.filtro mat-form-field {
+  width: 100%;
+}
+
+/* Estilos del campo outline */
+::ng-deep .filtro .mat-mdc-text-field-wrapper {
+  background-color: #1b263b !important;
+  border-radius: 8px !important;
+}
+
+::ng-deep .filtro .mdc-notched-outline__leading,
+::ng-deep .filtro .mdc-notched-outline__notch,
+::ng-deep .filtro .mdc-notched-outline__trailing {
+  border-color: rgba(100, 255, 218, 0.3) !important;
+}
+
+::ng-deep .filtro .mat-focused .mdc-notched-outline__leading,
+::ng-deep .filtro .mat-focused .mdc-notched-outline__notch,
+::ng-deep .filtro .mat-focused .mdc-notched-outline__trailing {
+  border-color: #64ffda !important;
+}
+
+::ng-deep .filtro .mat-mdc-form-field-label,
+::ng-deep .filtro .mdc-floating-label {
+  color: #b8c1cc !important;
+}
+
+::ng-deep .filtro .mat-mdc-input-element {
+  color: #ffffff !important;
+}
+
+::ng-deep .filtro .mat-mdc-input-element::placeholder {
+  color: #b8c1cc !important;
+  opacity: 0.6;
+}
+
+/* === CONTENEDOR DE TABLA === */
 .tabla-reporte {
   overflow-x: auto;
   width: 100%;
 }
 
-/* Tabla material (uso de clase genérica .report-table para mantener consistencia) */
-.report-table {
-  width: 100%;
-  color: #ffffff;
+/* === TABLA === */
+::ng-deep .tabla-reporte table {
+  width: 100% !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
 }
 
-/* Encabezados de la tabla */
-.report-table th.mat-header-cell {
-  background-color: #1b263b;
-  color: #64ffda;
-  font-weight: 700;
-  font-size: 0.95rem;
-  padding: 14px 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
+::ng-deep .tabla-reporte .mat-elevation-z8 {
+  box-shadow: none !important;
 }
 
-/* Celdas de datos */
-.report-table td.mat-cell {
-  color: #d6e2f0;
-  font-size: 0.95rem;
-  padding: 12px 10px;
-  border-bottom-color: #162232;
-}
-
-/* Filas alternadas para legibilidad */
-.report-table tr.mat-row:nth-child(even) {
-  background-color: #0d1b2a;
-}
-
-/* Hover en filas */
-.report-table tr.mat-row:hover {
-  background-color: #1b263b;
-}
-
-/* Valores resaltados (ej. promedios importantes) */
-.highlight-value {
-  color: #64ffda;
-  font-weight: 700;
-}
-
-/* Mensaje cuando no hay datos */
-.no-data-message {
-  padding: 28px;
-  text-align: center;
-  color: #b8c1cc;
-  font-size: 1.05rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background-color: #040f1b;
-  border-radius: 10px;
-  margin-top: 20px;
-}
-
-/* Icono dentro del mensaje sin datos */
-.no-data-message mat-icon {
-  color: #64ffda;
-  font-size: 32px;
-}
-
-/* Botones de navegación (si usas) */
-.report-navigation {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 18px;
-  border-bottom: 1px solid rgba(100, 255, 218, 0.06);
-  padding-bottom: 10px;
-}
-
-/* Link activo */
-.active-report-link {
+/* Cabeceras */
+::ng-deep .tabla-reporte th {
+  background-color: #1b263b !important;
   color: #64ffda !important;
-  font-weight: 700 !important;
-  border-bottom: 3px solid #64ffda;
+  font-weight: bold !important;
+  font-size: 0.95rem !important;
+  padding: 15px 16px !important;
+  text-transform: uppercase !important;
+  border-bottom: 2px solid rgba(100, 255, 218, 0.2) !important;
 }
 
-/* Contenedor de la tabla y el filtro */
-.content-row {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+::ng-deep .tabla-reporte .mat-header-cell {
+  background-color: #1b263b !important;
+  color: #64ffda !important;
+  font-weight: bold !important;
+  font-size: 0.95rem !important;
+  padding: 15px 16px !important;
+  text-transform: uppercase !important;
+  border-bottom: 2px solid rgba(100, 255, 218, 0.2) !important;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .filter-field {
-    width: 100%;
-    max-width: 100%;
-  }
+/* Celdas */
+::ng-deep .tabla-reporte td {
+  color: #d6e2f0 !important;
+  font-size: 0.95rem !important;
+  padding: 15px 16px !important;
+  border-bottom: 1px solid rgba(100, 255, 218, 0.05) !important;
+}
 
+::ng-deep .tabla-reporte .mat-cell {
+  color: #d6e2f0 !important;
+  font-size: 0.95rem !important;
+  padding: 15px 16px !important;
+  border-bottom: 1px solid rgba(100, 255, 218, 0.05) !important;
+}
+
+/* Fila de cabecera */
+::ng-deep .tabla-reporte .mat-header-row {
+  background-color: #1b263b !important;
+}
+
+::ng-deep .tabla-reporte tr.mat-header-row {
+  background-color: #1b263b !important;
+}
+
+/* Filas de datos */
+::ng-deep .tabla-reporte .mat-row {
+  background-color: #0d1b2a !important;
+  transition: background-color 0.2s ease;
+}
+
+::ng-deep .tabla-reporte tr.mat-row {
+  background-color: #0d1b2a !important;
+  transition: background-color 0.2s ease;
+}
+
+::ng-deep .tabla-reporte .mat-row:nth-child(even),
+::ng-deep .tabla-reporte tr.mat-row:nth-child(even) {
+  background-color: #040f1b !important;
+}
+
+::ng-deep .tabla-reporte .mat-row:hover,
+::ng-deep .tabla-reporte tr.mat-row:hover {
+  background-color: #1b263b !important;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
   .container-reporte {
     padding: 20px;
   }
 
-  .container-reporte > h2 {
-    font-size: 1.5rem;
-    margin-bottom: 18px;
+  .container-reporte h2 {
+    font-size: 1.5rem !important;
   }
 
-  .report-card {
-    padding: 18px;
+  .filtro {
+    max-width: 100%;
+  }
+
+  ::ng-deep .tabla-reporte th,
+  ::ng-deep .tabla-reporte .mat-header-cell,
+  ::ng-deep .tabla-reporte td,
+  ::ng-deep .tabla-reporte .mat-cell {
+    padding: 12px 10px !important;
+    font-size: 0.85rem !important;
   }
 }

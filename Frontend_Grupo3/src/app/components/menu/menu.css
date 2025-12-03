@@ -1,8 +1,10 @@
-<<<<<<< HEAD
 .sidenav-container {
   display: flex;
   height: 100vh;
   background-color: #030511;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .sidebar {
@@ -18,6 +20,15 @@
   /* Reduce el tamaño del icono */
   margin-right: 6px;
 }
+
+/* Asegúrate de que el body no tenga barras de desplazamiento adicionales */
+body {
+  overflow-x: hidden;
+  /* Esto ocultará el desbordamiento horizontal */
+  overflow-y: auto;
+  /* Esto permitirá el desbordamiento vertical si es necesario */
+}
+
 
 
 .sidenav-content {
@@ -209,10 +220,11 @@ button[mat-icon-button] mat-icon {
 .sidebar ul li a mat-icon {
   color: #ffffff;
 }
-=======
+
 /* --- Toolbar --- */
 .custom-toolbar {
-  background-color: rgb(242, 94, 35);/* verde principal */
+  background-color: rgb(242, 94, 35);
+  /* verde principal */
   display: flex;
   align-items: center;
   padding: 0 8px;
@@ -259,8 +271,10 @@ button[mat-icon-button] mat-icon {
 
 /* --- Menú desplegable translúcido verde claro --- */
 .mat-mdc-menu-panel {
-  background-color: rgba(243, 122, 122, 0.3) !important; /* verde claro translúcido (lightgreen con transparencia) */
-  backdrop-filter: blur(6px); /* efecto suave de vidrio */
+  background-color: rgba(243, 122, 122, 0.3) !important;
+  /* verde claro translúcido (lightgreen con transparencia) */
+  backdrop-filter: blur(6px);
+  /* efecto suave de vidrio */
   border: 1px solid rgba(238, 79, 10, 0.3);
   border-radius: 8px;
   padding: 4px 0;
@@ -268,12 +282,13 @@ button[mat-icon-button] mat-icon {
 
 /* --- Opciones del menú --- */
 .mat-mdc-menu-item {
-  color: #f43218 !important; /* texto verde oscuro */
+  color: #f43218 !important;
+  /* texto verde oscuro */
   font-size: 0.85rem;
   font-weight: 500;
 }
 
 .mat-mdc-menu-item:hover {
-  background-color: rgba(246, 136, 111, 0.2) !important; /* un verde más visible al pasar el mouse */
+  background-color: rgba(246, 136, 111, 0.2) !important;
+  /* un verde más visible al pasar el mouse */
 }
->>>>>>> 025f87f507c1755ca786cb4953a649d705e74a23
