@@ -5,3 +5,8 @@ dist/* filter=lfs diff=lfs merge=lfs -text
 Backend_Grupo3 filter=lfs diff=lfs merge=lfs -text
 Frontend_Grupo3 filter=lfs diff=lfs merge=lfs -text
 GitHub.rar filter=lfs diff=lfs merge=lfs -text
+*.jar filter=lfs diff=lfs merge=lfs -text
+*.war filter=lfs diff=lfs merge=lfs -text
+*.tgz filter=lfs diff=lfs merge=lfs -text
+*.tar.gz filter=lfs diff=lfs merge=lfs -text
+node_modules/* filter=lfs diff=lfs merge=lfs -text
