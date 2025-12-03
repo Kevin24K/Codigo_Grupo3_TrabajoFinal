@@ -1,20 +1,3 @@
-{
-  "name": "codigo_grupo3_trabajofinal2",
-  "version": "1.0.0",
-  "description": "Este documento presenta el **Product Backlog ** con todas las Historias de Usuario (US), sus descripciones y estimaciones en **Story Points**.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Kevin24K/Codigo_Grupo3_TrabajoFinal.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Kevin24K/Codigo_Grupo3_TrabajoFinal/issues"
-  },
-  "homepage": "https://github.com/Kevin24K/Codigo_Grupo3_TrabajoFinal#readme"
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:2bb3d9fdafcfdd1c8638b89e4299601b44e246350a106baffb16894021dd74b2
+size 672
