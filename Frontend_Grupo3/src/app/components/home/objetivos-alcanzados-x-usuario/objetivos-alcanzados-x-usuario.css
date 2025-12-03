@@ -1,0 +1,169 @@
+/* === CONTENEDOR PRINCIPAL === */
+.container {
+  background-color: #040f1b;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(100, 255, 218, 0.1);
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* === TÍTULO === */
+.title {
+  color: #64ffda !important;
+  font-weight: bold !important;
+  margin-top: 0 !important;
+  margin-bottom: 30px !important;
+  text-align: center;
+  font-size: 2rem !important;
+}
+
+/* === CAJA DE BÚSQUEDA === */
+.search-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 30px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Input text */
+.mdc-text-field__input,
+.mat-mdc-input-element {
+    color: #ffffff !important;
+    font-size: 1rem !important;
+    padding: 10px;
+}
+
+.search-box mat-form-field {
+  flex: 1;
+}
+
+/* Estilos del campo outline */
+::ng-deep .search-box .mat-mdc-text-field-wrapper {
+  background-color: #1b263b !important;
+  border-radius: 8px !important;
+}
+
+::ng-deep .search-box .mdc-notched-outline__leading,
+::ng-deep .search-box .mdc-notched-outline__notch,
+::ng-deep .search-box .mdc-notched-outline__trailing {
+  border-color: rgba(100, 255, 218, 0.3) !important;
+}
+
+::ng-deep .search-box .mat-focused .mdc-notched-outline__leading,
+::ng-deep .search-box .mat-focused .mdc-notched-outline__notch,
+::ng-deep .search-box .mat-focused .mdc-notched-outline__trailing {
+  border-color: #64ffda !important;
+}
+
+::ng-deep .search-box .mat-mdc-form-field-label,
+::ng-deep .search-box .mdc-floating-label {
+  color: #b8c1cc !important;
+}
+
+::ng-deep .search-box .mat-mdc-input-element {
+  color: #ffffff !important;
+}
+
+::ng-deep .search-box .mat-mdc-input-element::placeholder {
+  color: #b8c1cc !important;
+  opacity: 0.6;
+}
+
+/* === BOTÓN LIMPIAR === */
+.clear-btn {
+  background-color: #1b263b !important;
+  color: #64ffda !important;
+  border: 1px solid #64ffda !important;
+  border-radius: 8px !important;
+  width: 48px !important;
+  height: 48px !important;
+  margin-top: 4px;
+  transition: 0.25s ease-in-out !important;
+}
+
+.clear-btn:hover {
+  background-color: #64ffda !important;
+  color: #0d1b2a !important;
+}
+
+.clear-btn mat-icon {
+  color: inherit !important;
+}
+
+/* === CONTENEDOR DEL GRÁFICO === */
+.chart-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: rgba(27, 38, 59, 0.3);
+  border-radius: 8px;
+  border: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.chart-container canvas {
+  max-height: 500px;
+  height: 450px;
+}
+
+/* === MENSAJE SIN DATOS === */
+.no-data {
+  padding: 60px 40px !important;
+  text-align: center !important;
+  color: #b8c1cc !important;
+  font-size: 1.1rem !important;
+  background-color: rgba(100, 255, 218, 0.05) !important;
+  border-radius: 8px !important;
+  margin: 20px 0 !important;
+}
+
+/* === ESTILOS PARA CHART.JS === */
+::ng-deep .chart-container canvas {
+  background-color: transparent !important;
+}
+
+::ng-deep .chart-container .chartjs-render-monitor {
+  color: #ffffff !important;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  .title {
+    font-size: 1.5rem !important;
+  }
+
+  .search-box {
+    max-width: 100%;
+    flex-direction: column;
+  }
+
+  .clear-btn {
+    width: 100% !important;
+    height: 48px !important;
+    margin-top: 0;
+  }
+
+  .chart-container {
+    padding: 15px;
+  }
+
+  .chart-container canvas {
+    max-height: 300px;
+    height: 250px;
+  }
+
+  .no-data {
+    padding: 40px 20px !important;
+    font-size: 1rem !important;
+  }
+}

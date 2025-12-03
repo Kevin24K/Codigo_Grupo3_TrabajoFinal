@@ -1,0 +1,226 @@
+/* === FONDO GLOBAL === */
+:host {
+  display: block;
+  background-color: #030511;
+  min-height: 100vh;
+  color: #ffffff;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  padding: 40px;
+}
+
+/* === TÍTULO === */
+h2 {
+  color: #64ffda;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 2rem !important;
+}
+
+<<<<<<< HEAD
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+=======
+>>>>>>> 025f87f507c1755ca786cb4953a649d705e74a23
+/* === CONTENEDOR DEL FORMULARIO === */
+.form-box {
+  background-color: #040f1b;
+  padding: 30px;
+  border-radius: 12px;
+  width: 60%;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+/* === CAMPOS === */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Label */
+.mat-mdc-form-field-label,
+.mdc-floating-label {
+  color: #b8c1cc !important;
+  font-size: 1rem !important;
+}
+
+/* Campos llenados */
+.mdc-text-field--filled {
+  background-color: #1b263b !important;
+  border-radius: 8px !important;
+}
+
+.mdc-line-ripple::before {
+  border-bottom-color: rgba(100, 255, 218, 0.3) !important;
+}
+
+.mdc-line-ripple::after {
+  border-bottom-color: #64ffda !important;
+}
+
+.mdc-text-field__input,
+.mat-mdc-input-element {
+  color: #ffffff !important;
+  font-size: 1rem !important;
+}
+
+.mat-mdc-input-element::placeholder {
+  color: #b8c1cc !important;
+  opacity: 0.6;
+}
+
+/* Fondo del input */
+mat-form-field .mdc-text-field--filled {
+  background-color: #1b263b !important;
+  border-radius: 8px !important;
+  padding: 4px 10px !important;
+  height: 55px;
+  display: flex;
+  align-items: center;
+}
+
+/* Textos del select */
+.mat-mdc-select-value {
+  color: #ffffff !important;
+  font-size: 1rem !important;
+}
+
+.mat-mdc-select-arrow {
+  color: #64ffda !important;
+}
+
+.mat-mdc-select-panel,
+.mdc-menu-surface {
+  background-color: #1b263b !important;
+  border-radius: 8px !important;
+}
+
+.mat-mdc-option {
+  background-color: #1b263b !important;
+  color: #ffffff !important;
+  padding: 14px 18px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mat-mdc-option:hover {
+  background-color: #0f1a28 !important;
+}
+
+.mat-mdc-option.mdc-list-item--selected {
+  background-color: #0a1a27 !important;
+  color: #64ffda !important;
+}
+
+/* ================================
+   BOTONES
+   ================================ */
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Botón principal */
+button[mat-raised-button] {
+  width: 48%;
+  background-color: #1b263b !important;
+  color: #64ffda !important;
+  border: 1px solid #64ffda !important;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 1rem !important;
+  font-weight: 500;
+  transition: 0.25s ease-in-out;
+}
+
+button[mat-raised-button]:hover {
+  background-color: #64ffda !important;
+  color: #0d1b2a !important;
+}
+
+/* Botón cancelar */
+.cancel-btn {
+  width: 48%;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background-color: #1b263b;
+  color: #64ffda;
+  border: 1px solid #64ffda;
+  font-size: 1rem !important;
+  font-weight: 500;
+  transition: 0.25s ease-in-out;
+}
+
+.cancel-btn:hover {
+  background-color: #64ffda;
+  color: #0d1b2a;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .form-box {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .button-container {
+    flex-direction: column;
+  }
+
+  .cancel-btn,
+  button[mat-raised-button] {
+    width: 100%;
+  }
+}
+
+/* ==== ERRORES ==== */
+mat-error {
+  color: #b8c1cc !important;
+  font-size: 0.85rem !important;
+}
+
+.container {
+  margin-top: 80px;
+}
+
+.mensaje-global {
+  text-align: center;
+  color: #b8c1cc;
+  font-size: 0.9rem !important;
+}
+
+
+mat-form-field.textarea-filled .mdc-notched-outline__leading,
+mat-form-field.textarea-filled .mdc-notched-outline__notch,
+mat-form-field.textarea-filled .mdc-notched-outline__trailing {
+  display: none !important;
+}
+
+mat-form-field.textarea-filled .mdc-text-field {
+  background-color: #1b263b !important;
+  border: 1px solid rgba(100, 255, 218, 0.3) !important;
+  border-radius: 8px !important;
+  padding: 8px !important;
+}
+
+mat-form-field.textarea-filled .mdc-text-field.mdc-text-field--focused {
+  border-color: #64ffda !important;
+}
+
+mat-form-field.textarea-filled textarea {
+  padding: 6px 0 !important;
+  margin-top: 4px !important;
+}
+
+.error-text {
+  color: #b8c1cc;
+  font-style: italic;
+  opacity: 0.8;
+}

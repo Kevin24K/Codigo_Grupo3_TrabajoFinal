@@ -1,0 +1,54 @@
+<div class="reportes-container">
+
+  <div class="header-row">
+    <h2><mat-icon class="report-icon">trending_up</mat-icon> Reportes del Dashboard</h2>
+  </div>
+
+  <div class="report-navigation">
+
+    <button mat-button class="report-nav-button" [routerLink]="['/homes/buscar']" routerLinkActive="active-report-link">
+      <mat-icon>timer</mat-icon> Buscar usuarios
+    </button>
+    <button mat-button class="report-nav-button" [routerLink]="['/homes/calidad-umbral']"
+      routerLinkActive="active-report-link">
+      <mat-icon>warning</mat-icon> Reporte por Calidad de los Sueños
+    </button>
+    <button mat-button class="report-nav-button" [routerLink]="['/homes/promedio-sueno-todos-usuarios']"
+      routerLinkActive="active-report-link">
+      <mat-icon>assessment</mat-icon> Promedios de Sueño por Usuario
+    </button>
+
+    <button mat-button class="report-nav-button" [routerLink]="['/homes/horas-dormidas-por-usuario-por-registro']"
+      routerLinkActive="active-report-link">
+      <mat-icon>timer</mat-icon> Horas Dormidas Detalle
+    </button>
+
+    <button mat-button class="report-nav-button" [routerLink]="['/homes/completados-listar']"
+      routerLinkActive="active-report-link">
+      <mat-icon>check_circle</mat-icon> Seguimiento de Hábitos Completados
+    </button>
+
+    <button mat-button class="report-nav-button" [routerLink]="['/homes/no-completados-listar']"
+      routerLinkActive="active-report-link">
+      <mat-icon>highlight_off</mat-icon> Seguimiento de Hábitos No Completados
+    </button>
+
+    <button mat-button class="report-nav-button" [routerLink]="['/homes/reporte-activos']"
+      routerLinkActive="active-report-link">
+      <mat-icon>monitorin</mat-icon> Seguimiento de Hábitos Activos
+    </button>
+
+    <button mat-button class="report-nav-button" [routerLink]="['/homes/objetivos-alcanzados-x-usuario']"
+      routerLinkActive="active-report-link">
+      <mat-icon>flag</mat-icon> Objetivos Alcanzados por Usuario
+    </button>
+
+    <button mat-button class="report-nav-button" [routerLink]="['/homes/promedio']"
+      routerLinkActive="active-report-link">
+      <mat-icon>psychology_al</mat-icon> Promedio de Estrés y Ansiedad
+    </button>
+
+  </div>
+
+  <router-outlet></router-outlet>
+</div>

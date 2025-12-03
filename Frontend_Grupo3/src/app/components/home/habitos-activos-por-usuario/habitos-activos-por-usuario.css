@@ -1,0 +1,249 @@
+/* === FONDO GLOBAL === */
+:host {
+  display: block;
+  background-color: #030511;
+  min-height: 100vh;
+  color: #ffffff;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  padding: 40px;
+}
+
+/* === CONTENEDOR PRINCIPAL === */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 900px;
+  margin: 80px auto 0;
+}
+
+/* === TÍTULO === */
+h2 {
+  color: #64ffda;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 2rem !important;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.report-icon {
+  color: #64ffda !important;
+  font-size: 32px !important;
+}
+
+/* === CAJA DE BÚSQUEDA === */
+.search-box {
+  background-color: #040f1b;
+  padding: 30px;
+  border-radius: 12px;
+  width: 100%;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.search-box form {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.input-full-width {
+  flex: 1;
+}
+
+/* === CAMPOS DE FORMULARIO === */
+mat-form-field {
+  width: 100%;
+}
+
+/* Label */
+.mat-mdc-form-field-label,
+.mdc-floating-label {
+  color: #b8c1cc !important;
+  font-size: 1rem !important;
+}
+
+/* Campos llenados (filled) */
+.mdc-text-field--filled {
+  background-color: #1b263b !important;
+  border-radius: 8px !important;
+}
+
+.mdc-line-ripple::before {
+  border-bottom-color: rgba(100, 255, 218, 0.3) !important;
+}
+
+.mdc-line-ripple::after {
+  border-bottom-color: #64ffda !important;
+}
+
+.mdc-text-field__input,
+.mat-mdc-input-element {
+  color: #ffffff !important;
+  font-size: 1rem !important;
+}
+
+.mat-mdc-input-element::placeholder {
+  color: #b8c1cc !important;
+  opacity: 0.6;
+}
+
+/* Fondo del input */
+mat-form-field .mdc-text-field--filled {
+  background-color: #1b263b !important;
+  border-radius: 8px !important;
+  padding: 4px 10px !important;
+  height: 55px;
+  display: flex;
+  align-items: center;
+}
+
+/* Errores */
+mat-error {
+  color: #64ffda !important;
+  font-size: 0.85rem !important;
+}
+
+/* === BOTÓN DE BÚSQUEDA === */
+button[mat-raised-button] {
+  background-color: #1b263b !important;
+  color: #64ffda !important;
+  border: 1px solid #64ffda !important;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1rem !important;
+  font-weight: 500;
+  transition: 0.25s ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 55px;
+  white-space: nowrap;
+}
+
+button[mat-raised-button]:hover:not([disabled]) {
+  background-color: #64ffda !important;
+  color: #0d1b2a !important;
+}
+
+button[mat-raised-button]:disabled {
+  background-color: #0d1b2a !important;
+  color: #3c4b5a !important;
+  border-color: #3c4b5a !important;
+  cursor: not-allowed;
+}
+
+/* === CAJA DE RESULTADOS === */
+.results-box {
+  width: 100%;
+}
+
+/* Mensaje */
+.message {
+  text-align: center;
+  color: #b8c1cc;
+  font-size: 1rem;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background-color: rgba(100, 255, 218, 0.05);
+}
+
+.message.error {
+  color: #64ffda;
+  background-color: rgba(255, 100, 100, 0.05);
+  border: 1px solid rgba(255, 100, 100, 0.2);
+}
+
+/* === TABLA === */
+.table-responsive {
+  overflow-x: auto;
+  width: 100%;
+}
+
+/* Tabla Material */
+::ng-deep .mat-mdc-table {
+  background-color: #040f1b !important;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+/* Cabeceras */
+::ng-deep .mat-mdc-header-cell {
+  background-color: #1b263b !important;
+  color: #64ffda !important;
+  font-weight: bold !important;
+  font-size: 0.95rem !important;
+  padding: 15px 16px !important;
+  text-transform: uppercase;
+  border-bottom: 2px solid rgba(100, 255, 218, 0.2) !important;
+}
+
+/* Celdas */
+::ng-deep .mat-mdc-cell {
+  color: #d6e2f0 !important;
+  font-size: 0.95rem !important;
+  padding: 15px 16px !important;
+  border-bottom: 1px solid rgba(100, 255, 218, 0.05) !important;
+}
+
+/* Filas */
+::ng-deep .mat-mdc-row {
+  background-color: #0d1b2a;
+  transition: background-color 0.2s ease;
+}
+
+::ng-deep .mat-mdc-row:nth-child(even) {
+  background-color: #040f1b;
+}
+
+::ng-deep .mat-mdc-row:hover {
+  background-color: #1b263b !important;
+}
+
+/* Fila de cabecera */
+::ng-deep .mat-mdc-header-row {
+  background-color: #1b263b !important;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  :host {
+    padding: 20px;
+  }
+
+  .container {
+    margin-top: 40px;
+    width: 100%;
+  }
+
+  h2 {
+    font-size: 1.5rem !important;
+  }
+
+  .search-box {
+    padding: 20px;
+  }
+
+  .search-box form {
+    flex-direction: column;
+  }
+
+  button[mat-raised-button] {
+    width: 100%;
+    justify-content: center;
+  }
+
+  ::ng-deep .mat-mdc-header-cell,
+  ::ng-deep .mat-mdc-cell {
+    padding: 12px 10px !important;
+    font-size: 0.85rem !important;
+  }
+}

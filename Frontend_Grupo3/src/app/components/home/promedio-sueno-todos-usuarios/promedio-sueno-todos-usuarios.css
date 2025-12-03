@@ -1,0 +1,109 @@
+.title-container {
+    background-color: #040f1b;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    max-width: 1400px;
+    /* Aumentar de 900px a 1400px */
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* === TÍTULO === */
+.title {
+    margin-bottom: 30px;
+}
+
+.title h2 {
+    color: #64ffda !important;
+    font-weight: bold !important;
+    font-size: 2rem !important;
+    margin: 0 !important;
+    text-align: center;
+}
+
+.chart-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(27, 38, 59, 0.3);
+    border-radius: 8px;
+    border: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.chart-container canvas {
+    max-height: 600px;
+    height: 500px;
+}
+
+/* === MENSAJE SIN DATOS === */
+.no-data {
+    padding: 60px 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    background-color: rgba(100, 255, 218, 0.05);
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.no-data-icon {
+    color: #64ffda !important;
+    font-size: 48px !important;
+    width: 48px !important;
+    height: 48px !important;
+}
+
+.no-data-message {
+    color: #b8c1cc !important;
+    font-size: 1.1rem !important;
+    margin: 0 !important;
+}
+
+/* === ESTILOS PARA CHART.JS === */
+::ng-deep .title-container canvas {
+    background-color: transparent !important;
+}
+
+/* Asegurar que el texto del gráfico sea visible */
+::ng-deep .title-container .chartjs-render-monitor {
+    color: #ffffff !important;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .title-container {
+        padding: 20px;
+    }
+
+    .title h2 {
+        font-size: 1.5rem !important;
+    }
+
+    .chart-container {
+        padding: 15px;
+    }
+
+    .chart-container canvas {
+        max-height: 300px;
+    }
+
+    .no-data {
+        padding: 40px 20px;
+    }
+
+    .no-data-icon {
+        font-size: 40px !important;
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .no-data-message {
+        font-size: 1rem !important;
+    }
+}
